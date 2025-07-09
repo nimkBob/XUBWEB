@@ -948,19 +948,413 @@
             /* 防止阴影被切掉 */
         }
 
-        /* 轮播里的卡片样式调整 */
-        .classroom-carousel .card {
-            /* 原来的 width 计算方式可能还适用，但要确保不换行 */
-            /* width: calc((100% / 3) - (2 * 30px / 3)); */
-            /* 尝试保持三列宽度，减去gap影响 */
-            /* 或者更稳妥地设置 flex-basis 和 flex-shrink */
-            flex-basis: calc(33.333% - 20px);
-            /* 基于 30px gap 计算 */
+        /* 思政课堂滑动网格布局样式 */
+        .classroom-carousel-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px; /* 减小外层padding */
+            background-image: url('./img/dwmo_index_bg1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 15px;
+            border: 3px solid #dc3545;
+            box-shadow: 0 8px 32px rgba(220, 53, 69, 0.2);
+            position: relative;
+            overflow: hidden;
+            touch-action: pan-x; /* 支持水平滑动 */
+            transition: all 0.3s ease;
+        }
+
+        .classroom-carousel-container:hover {
+            box-shadow: 0 12px 40px rgba(220, 53, 69, 0.3),
+                        0 0 30px rgba(220, 53, 69, 0.1);
+            border-color: #ff4757;
+        }
+
+        /* 为容器添加微妙的背景动画 */
+        .classroom-carousel-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 30%,
+                rgba(220, 53, 69, 0.02) 50%,
+                transparent 70%);
+            background-size: 200% 200%;
+            animation: backgroundShift 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* 查看更多按钮 */
+        .classroom-more-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #dc3545, #ff4757);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(192, 13, 31, 0.975);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3),
+                            0 0 25px rgba(220, 53, 69, 0.4);
+            }
+        }
+
+        .classroom-more-button::before {
+            content: '';
+            font-size: 12px;
+        }
+
+        .classroom-more-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent);
+            transition: left 0.5s ease;
+        }
+
+        .classroom-more-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: linear-gradient(135deg, #ff4757, #dc3545);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.5),
+                        0 0 20px rgba(220, 53, 69, 0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: none; /* 悬停时停止脉冲动画 */
+        }
+
+        .classroom-more-button:hover::after {
+            left: 100%;
+        }
+
+        .classroom-more-button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .classroom-carousel-wrapper {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 40px; /* 页面间添加40px间距，防止重叠 */
+            padding-bottom: 10px;
+            cursor: grab;
+            will-change: transform; /* 优化性能 */
+            backface-visibility: hidden; /* 防止闪烁 */
+            position: relative;
+            z-index: 2; /* 确保在背景动画之上 */
+        }
+
+        .classroom-carousel-wrapper:active {
+            cursor: grabbing;
+        }
+
+        .classroom-page {
+            min-width: 100%;
+            width: 100%; /* 确保每页占满容器宽度 */
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 保持2列布局 */
+            grid-template-rows: 1fr 1fr; /* 保持2行布局 */
+            gap: 20px; /* 减小卡片间距到20px */
             flex-shrink: 0;
-            /* 防止卡片被压缩！ */
-            min-width: 300px;
-            /* 保留最小宽度 */
-            /* 其他 .card 样式继承 */
+            box-sizing: border-box; /* 确保边距计算正确 */
+            padding: 0; /* 移除页面内边距，依靠外层容器的padding */
+            margin: 0; /* 确保无外边距 */
+        }
+
+        .classroom-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            height: 320px; /* 增加卡片高度，改善图片比例 */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .classroom-card:hover {
+            transform: translateY(-15px) scale(1.08);
+            box-shadow: 0 25px 50px rgba(220, 53, 69, 0.4), 
+                        0 15px 30px rgba(220, 53, 69, 0.2),
+                        0 0 20px rgba(220, 53, 69, 0.1);
+            border-color: #dc3545;
+            background: rgba(255, 255, 255, 1);
+            z-index: 10;
+        }
+
+        .classroom-card:hover::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #dc3545, #ff6b6b, #dc3545);
+            border-radius: 17px;
+            z-index: -1;
+            animation: cardGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes cardGlow {
+            0% {
+                box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(220, 53, 69, 0.8), 
+                            0 0 30px rgba(220, 53, 69, 0.4);
+            }
+        }
+
+        .classroom-card-image {
+            width: 100%;
+            height: 180px; /* 增加图片高度 */
+            object-fit: contain; /* 改为contain，保持图片完整不变形 */
+            object-position: center; /* 图片居中显示 */
+            background-color: #f8f9fa; /* 添加背景色填充空白区域 */
+            border-bottom: 2px solid #f8f9fa;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .classroom-card:hover .classroom-card-image {
+            transform: scale(1.05); /* 减小缩放比例，避免过度变形 */
+            filter: brightness(1.1) contrast(1.1) saturate(1.2);
+            background-color: #ffffff; /* 悬停时背景变白 */
+        }
+
+        .classroom-card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent);
+            transition: left 0.6s ease;
+            z-index: 2;
+        }
+
+        .classroom-card:hover .classroom-card-image::before {
+            left: 100%;
+        }
+
+        .classroom-card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .classroom-card:hover .classroom-card-content {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(248, 249, 250, 0.98) 100%);
+        }
+
+        .classroom-card-title {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .classroom-card:hover .classroom-card-title {
+            color: #dc3545;
+            transform: translateY(-2px);
+        }
+
+        .classroom-card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .classroom-card-title a:hover {
+            color: #dc3545;
+        }
+
+        /* 移除轮播控制按钮样式 */
+
+        /* 思政课堂轮播指示器 */
+        .classroom-dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .classroom-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(139, 0, 0, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .classroom-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(139, 0, 0, 0.8);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .classroom-dot.active,
+        .classroom-dot:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: scale(1.2);
+            border-color: rgba(139, 0, 0, 0.8);
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+        }
+
+        .classroom-dot.active::before,
+        .classroom-dot:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .classroom-page {
+                grid-template-columns: 1fr; /* 移动端改为单列 */
+                grid-template-rows: repeat(4, 1fr); /* 4行布局 */
+                gap: 15px; /* 移动端减小间距 */
+                padding: 0; /* 移动端无内边距 */
+            }
+            
+            .classroom-carousel-container {
+                padding: 15px; /* 移动端减小外层padding */
+            }
+            
+            .classroom-carousel-wrapper {
+                gap: 30px; /* 移动端页面间距减小到30px */
+            }
+            
+            .classroom-more-button {
+                top: 15px;
+                right: 15px;
+                padding: 8px 16px;
+                font-size: 13px;
+                border-radius: 20px;
+            }
+            
+            .classroom-card {
+                height: 260px; /* 移动端调整高度 */
+            }
+            
+            .classroom-card-image {
+                height: 140px; /* 移动端图片高度 */
+            }
+            
+            .classroom-card-content {
+                padding: 15px; /* 移动端减少内边距 */
+            }
+            
+            .classroom-card-title {
+                font-size: 14px; /* 移动端稍小字体 */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .classroom-carousel-container {
+                padding: 12px; /* 小屏幕进一步减小padding */
+            }
+            
+            .classroom-carousel-wrapper {
+                gap: 20px; /* 小屏幕页面间距进一步减小到20px */
+            }
+            
+            .classroom-more-button {
+                top: 12px;
+                right: 12px;
+                padding: 6px 14px;
+                font-size: 12px;
+                border-radius: 18px;
+            }
+            
+            .classroom-more-button::before {
+                font-size: 10px;
+            }
+            
+            .classroom-page {
+                gap: 12px; /* 小屏幕进一步减小间距 */
+                padding: 0; /* 小屏幕无内边距 */
+            }
+            
+            .classroom-card {
+                height: 240px; /* 小屏幕卡片高度 */
+            }
+            
+            .classroom-card-image {
+                height: 130px; /* 小屏幕图片高度 */
+            }
+            
+            .classroom-card-content {
+                padding: 12px;
+            }
+            
+            .classroom-card-title {
+                font-size: 13px;
+                line-height: 1.3;
+            }
         }
 
         /* 轮播箭头样式 */
@@ -1707,55 +2101,245 @@
                 updateSlides();
             }
 
-            // 思政课堂轮播功能
+            // 思政课堂滑动功能
             function initClassroomCarousel() {
-                const carousel = document.querySelector('.classroom-carousel');
-                if (!carousel) return;
-
-                const wrapper = carousel.querySelector('.carousel-wrapper');
-                const cards = carousel.querySelectorAll('.card');
-                const prevBtn = carousel.querySelector('.prev');
-                const nextBtn = carousel.querySelector('.next');
+                const carouselWrapper = document.getElementById('classroomCarousel');
+                const pages = document.querySelectorAll('.classroom-page');
+                const dotsContainer = document.getElementById('classroomDots');
                 
-                if (!wrapper || cards.length === 0) return;
+                if (!carouselWrapper || pages.length === 0) return;
 
-                let currentIndex = 0;
-                const cardWidth = cards[0].offsetWidth + 30; // 包括gap
-                const visibleCards = 3;
-                const maxIndex = Math.max(0, cards.length - visibleCards);
+                let currentPage = 0;
+                let autoplayInterval;
+                let startX = 0;
+                let currentX = 0;
+                let isDragging = false;
+                let startTime = 0;
+                let containerWidth = 0;
 
-                function updateCarousel() {
-                    wrapper.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+                // 获取当前页面间距（根据屏幕尺寸）
+                function getPageGap() {
+                    if (window.innerWidth <= 480) {
+                        return 20; // 小屏幕
+                    } else if (window.innerWidth <= 768) {
+                        return 30; // 中等屏幕
+                    } else {
+                        return 40; // 大屏幕
+                    }
+                }
+
+                // 初始化容器宽度
+                function updateContainerWidth() {
+                    const container = carouselWrapper.parentElement;
+                    // 获取容器的内容宽度（不包括padding和border）
+                    const containerStyle = window.getComputedStyle(container);
+                    const paddingLeft = parseFloat(containerStyle.paddingLeft);
+                    const paddingRight = parseFloat(containerStyle.paddingRight);
                     
-                    if (prevBtn) prevBtn.disabled = currentIndex === 0;
-                    if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
+                    // 计算实际可用宽度
+                    containerWidth = container.clientWidth - paddingLeft - paddingRight;
+                    
+                    // 确保每个页面的宽度与可用宽度一致
+                    pages.forEach(page => {
+                        page.style.width = containerWidth + 'px';
+                        page.style.minWidth = containerWidth + 'px';
+                        page.style.maxWidth = containerWidth + 'px';
+                    });
+                    
+                    // 设置wrapper总宽度，考虑页面间距
+                    const currentGap = getPageGap();
+                    const totalGapWidth = (pages.length - 1) * currentGap;
+                    carouselWrapper.style.width = (containerWidth * pages.length + totalGapWidth) + 'px';
                 }
 
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', () => {
-                        if (currentIndex > 0) {
-                            currentIndex--;
-                            updateCarousel();
-                        }
+                // 创建指示器圆点
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = ''; // 清空现有圆点
+                    pages.forEach((_, index) => {
+                        const dot = document.createElement('div');
+                        dot.classList.add('classroom-dot');
+                        if (index === 0) dot.classList.add('active');
+                        dot.addEventListener('click', () => goToPage(index));
+                        dotsContainer.appendChild(dot);
                     });
                 }
 
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', () => {
-                        if (currentIndex < maxIndex) {
-                            currentIndex++;
-                            updateCarousel();
-                        }
+                function updateCarousel(animated = true) {
+                    // 计算偏移量：页面宽度 + 当前间距
+                    const currentGap = getPageGap();
+                    const translateX = -currentPage * (containerWidth + currentGap);
+                    
+                    if (animated) {
+                        carouselWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    } else {
+                        carouselWrapper.style.transition = 'none';
+                    }
+                    
+                    carouselWrapper.style.transform = `translateX(${translateX}px)`;
+                    
+                    // 恢复过渡效果
+                    if (!animated) {
+                        requestAnimationFrame(() => {
+                            carouselWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        });
+                    }
+                    
+                    // 更新圆点
+                    const dots = document.querySelectorAll('.classroom-dot');
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentPage);
                     });
                 }
 
-                updateCarousel();
+                function goToPage(index) {
+                    if (index >= 0 && index < pages.length && index !== currentPage) {
+                        currentPage = index;
+                        updateCarousel(true);
+                        restartAutoplay();
+                    }
+                }
+
+                function nextPage() {
+                    const nextIndex = (currentPage + 1) % pages.length;
+                    currentPage = nextIndex;
+                    updateCarousel(true);
+                }
+
+                function prevPage() {
+                    const prevIndex = (currentPage - 1 + pages.length) % pages.length;
+                    currentPage = prevIndex;
+                    updateCarousel(true);
+                }
+
+                function startAutoplay() {
+                    stopAutoplay(); // 确保之前的定时器被清除
+                    autoplayInterval = setInterval(nextPage, 6000); // 6秒自动切换
+                }
+
+                function stopAutoplay() {
+                    if (autoplayInterval) {
+                        clearInterval(autoplayInterval);
+                        autoplayInterval = null;
+                    }
+                }
+
+                function restartAutoplay() {
+                    stopAutoplay();
+                    setTimeout(startAutoplay, 1000); // 延迟1秒后重新开始自动播放
+                }
+
+                // 触摸/鼠标事件处理
+                function handleStart(e) {
+                    if (isDragging) return;
+                    
+                    isDragging = true;
+                    startTime = Date.now();
+                    startX = e.touches ? e.touches[0].clientX : e.clientX;
+                    currentX = startX;
+                    stopAutoplay();
+                    carouselWrapper.style.cursor = 'grabbing';
+                    
+                    // 阻止默认行为
+                    e.preventDefault();
+                }
+
+                function handleMove(e) {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    
+                    currentX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const deltaX = currentX - startX;
+                    // 修正：计算当前页面的translateX值，包含动态间距
+                    const currentGap = getPageGap();
+                    const currentTranslate = -currentPage * (containerWidth + currentGap);
+                    
+                    // 添加阻尼效果，限制滑动范围
+                    let dampedDelta = deltaX;
+                    if (currentPage === 0 && deltaX > 0) {
+                        dampedDelta = deltaX * 0.3; // 第一页向右滑动时添加阻尼
+                    } else if (currentPage === pages.length - 1 && deltaX < 0) {
+                        dampedDelta = deltaX * 0.3; // 最后一页向左滑动时添加阻尼
+                    }
+                    
+                    // 实时跟随手指移动
+                    carouselWrapper.style.transition = 'none';
+                    carouselWrapper.style.transform = `translateX(${currentTranslate + dampedDelta}px)`;
+                }
+
+                function handleEnd(e) {
+                    if (!isDragging) return;
+                    
+                    isDragging = false;
+                    carouselWrapper.style.cursor = 'grab';
+                    
+                    const deltaX = currentX - startX;
+                    const deltaTime = Date.now() - startTime;
+                    const velocity = Math.abs(deltaX) / deltaTime; // 计算滑动速度
+                    const threshold = containerWidth * 0.25; // 25%的宽度作为阈值
+                    
+                    // 根据滑动距离和速度判断是否切换页面
+                    if (Math.abs(deltaX) > threshold || (velocity > 0.3 && Math.abs(deltaX) > 50)) {
+                        if (deltaX > 0 && currentPage > 0) {
+                            prevPage(); // 向右滑动，显示上一页
+                        } else if (deltaX < 0 && currentPage < pages.length - 1) {
+                            nextPage(); // 向左滑动，显示下一页
+                        } else {
+                            // 到达边界，回弹到当前页面
+                            updateCarousel(true);
+                        }
+                    } else {
+                        // 滑动距离不够，回弹到当前页面
+                        updateCarousel(true);
+                    }
+                    
+                    // 延迟重启自动播放，确保动画完成
+                    setTimeout(() => {
+                        if (!isDragging) restartAutoplay();
+                    }, 100);
+                }
+
+                // 窗口大小变化时重新计算位置
+                function handleResize() {
+                    updateContainerWidth();
+                    updateCarousel(false);
+                }
+
+                // 添加事件监听器
+                // 触摸事件
+                carouselWrapper.addEventListener('touchstart', handleStart, { passive: false });
+                carouselWrapper.addEventListener('touchmove', handleMove, { passive: false });
+                carouselWrapper.addEventListener('touchend', handleEnd, { passive: false });
+                carouselWrapper.addEventListener('touchcancel', handleEnd, { passive: false });
+                
+                // 鼠标事件
+                carouselWrapper.addEventListener('mousedown', handleStart);
+                carouselWrapper.addEventListener('mousemove', handleMove);
+                carouselWrapper.addEventListener('mouseup', handleEnd);
+                carouselWrapper.addEventListener('mouseleave', handleEnd);
+                
+                // 窗口大小变化事件
+                window.addEventListener('resize', handleResize);
+                
+                // 防止拖拽选择文本和图片
+                carouselWrapper.addEventListener('selectstart', (e) => e.preventDefault());
+                carouselWrapper.addEventListener('dragstart', (e) => e.preventDefault());
+
+                // 鼠标悬停时暂停自动播放
+                carouselWrapper.addEventListener('mouseenter', stopAutoplay);
+                carouselWrapper.addEventListener('mouseleave', () => {
+                    if (!isDragging) restartAutoplay();
+                });
+
+                // 初始化
+                updateContainerWidth();
+                updateCarousel(false);
+                startAutoplay();
             }
 
             // 初始化所有功能
             window.onload = function() {
                 initCarousel();
-                initClassroomCarousel();
+                initClassroomCarousel(); // 添加思政课堂轮播初始化
             };
         });
     </script>
@@ -1957,38 +2541,68 @@
         </div>
         <!-- <h2 class="section-title"><span>思政</span><span>课堂</span></h2> -->
         <section class="content-section container">
-            <div class="carousel-container classroom-carousel">
-                <div class="carousel-wrapper">
-                    <article class="card">
-                        <img src="./img/class_1.png" alt="class_1" class="card-image">
-
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a></h3>
-                            <!-- 思政课堂卡片可能没有时间戳，或者有其他信息 -->
-                        </div>
-                    </article>
-                    <article class="card">
-                        <img src="./img/class_2.png" alt="class_2" class="card-image">
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="./inner">张祎捷为全校学生宣讲党的二十大精神</a></h3>
-                                               </div>
-                    </article>
-                    <article class="card">
-                        <img src="./img/class_3.jpg" alt="class_3" class="card-image">
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="./inner">我校举行国有资产管理和招标采购业务培训会</a></h3>
-                        </div>
-                    </article>
-                    <article class="card">
-                        <img src="./img/class_3.jpg" alt="class_4" class="card-image"> <!-- 可以换新图 -->
-                        <div class="card-content">
-                            <h3 class="card-title"><a href="./inner.html">这是第四个思政课堂卡片示例标题</a></h3> <!-- 可以换新标题 -->
-                        </div>
-                    </article>
+            <div class="classroom-carousel-container">
+                <!-- 查看更多按钮 -->
+                <a href="./inner.html" class="classroom-more-button">查看更多</a>
+                
+                <div class="classroom-carousel-wrapper" id="classroomCarousel">
+                    <!-- 第一页 - 田字布局 -->
+                    <div class="classroom-page">
+                        <article class="classroom-card">
+                            <img src="./img/class_1.png" alt="class_1" class="classroom-card-image">
+                            <div class="classroom-card-content">
+                                <h3 class="classroom-card-title"><a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a></h3>
+                            </div>
+                        </article>
+                        <article class="classroom-card">
+                            <img src="./img/class_2.png" alt="class_2" class="classroom-card-image">
+                            <div class="classroom-card-content">
+                                <h3 class="classroom-card-title"><a href="./inner.html">张祎捷为全校学生宣讲党的二十大精神</a></h3>
+                            </div>
+                        </article>
+                        <article class="classroom-card">
+                            <img src="./img/class_3.jpg" alt="class_3" class="classroom-card-image">
+                            <div class="classroom-card-content">
+                                <h3 class="classroom-card-title"><a href="./inner.html">我校举行国有资产管理和招标采购业务培训会</a></h3>
+                            </div>
+                        </article>
+                        <article class="classroom-card">
+                            <img src="./img/class_3.jpg" alt="class_4" class="classroom-card-image">
+                            <div class="classroom-card-content">
+                                <h3 class="classroom-card-title"><a href="./inner.html">这是第四个思政课堂卡片示例标题</a></h3>
+                            </div>
+                        </article>
+                    </div>
+                    <!-- 第二页 - 田字布局 -->
+                    <div class="classroom-page">
+                        <article class="classroom-card">
+                            <img src="./img/class_1.png" alt="class_5" class="classroom-card-image">
+                            <div class="classroom-card-content">
+                                <h3 class="classroom-card-title"><a href="./inner.html">第五个思政课堂卡片示例标题</a></h3>
+                            </div>
+                        </article>
+                        <article class="classroom-card">
+                            <img src="./img/class_2.png" alt="class_6" class="classroom-card-image">
+                            <div class="classroom-card-content">
+                                <h3 class="classroom-card-title"><a href="./inner.html">第六个思政课堂卡片示例标题</a></h3>
+                            </div>
+                        </article>
+                        <article class="classroom-card">
+                            <img src="./img/class_3.jpg" alt="class_7" class="classroom-card-image">
+                            <div class="classroom-card-content">
+                                <h3 class="classroom-card-title"><a href="./inner.html">第七个思政课堂卡片示例标题</a></h3>
+                            </div>
+                        </article>
+                        <article class="classroom-card">
+                            <img src="./img/class_1.png" alt="class_8" class="classroom-card-image">
+                            <div class="classroom-card-content">
+                                <h3 class="classroom-card-title"><a href="./inner.html">第八个思政课堂卡片示例标题</a></h3>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-                <!-- 轮播箭头 -->
-                <button class="carousel-arrow prev" id="classroomPrevBtn"></button>
-                <button class="carousel-arrow next" id="classroomNextBtn"></button>
+                <!-- 轮播指示器 -->
+                <div class="classroom-dots-container" id="classroomDots"></div>
             </div>
         </section>
 
