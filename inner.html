@@ -46,6 +46,36 @@
 			line-height: 1.6;
 			color: #333;
 			background-color: #feffff;
+			position: relative;
+			overflow-x: hidden;
+		}
+
+		/* 添加背景粒子动画 */
+		body::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: 
+				radial-gradient(circle at 20% 30%, rgba(152, 40, 32, 0.03) 1px, transparent 1px),
+				radial-gradient(circle at 80% 70%, rgba(152, 40, 32, 0.03) 1px, transparent 1px),
+				radial-gradient(circle at 40% 90%, rgba(152, 40, 32, 0.03) 1px, transparent 1px),
+				radial-gradient(circle at 90% 20%, rgba(152, 40, 32, 0.03) 1px, transparent 1px);
+			background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px;
+			animation: particleFloat 20s linear infinite;
+			pointer-events: none;
+			z-index: -1;
+		}
+
+		@keyframes particleFloat {
+			0% { 
+				background-position: 0 0, 0 0, 0 0, 0 0;
+			}
+			100% { 
+				background-position: 100px 100px, -150px 150px, 80px -80px, -120px 120px;
+			}
 		}
 
 		/* 自定义滚动条样式 */
@@ -89,10 +119,23 @@
 			min-height: 100%;
 			display: flex;
 			flex-direction: column;
+			opacity: 0;
+			animation: fadeIn 1s ease-out forwards;
 			/* 移除下面的滚动条隐藏样式
 			scrollbar-width: none;
 			-ms-overflow-style: none;
 			*/
+		}
+
+		@keyframes fadeIn {
+			0% {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
 		}
 
 		.flex {
@@ -113,7 +156,7 @@
 
 		/* 头部导航 */
 		.header {
-			background-color: #982820;
+			background: url('./img/dw_index_topbg.jpg') center / cover no-repeat;
 			padding: 1rem 2rem;
 			color: #fff;
 			width: 100%;
@@ -283,6 +326,27 @@
 			position: relative;
 			overflow: hidden;
 			transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+			opacity: 0;
+			transform: translateY(-10px);
+			animation: slideInDown 0.6s ease-out forwards;
+		}
+
+		/* 为每个导航标签添加延迟动画 */
+		.nav-tab:nth-child(1) { animation-delay: 0.1s; }
+		.nav-tab:nth-child(2) { animation-delay: 0.2s; }
+		.nav-tab:nth-child(3) { animation-delay: 0.3s; }
+		.nav-tab:nth-child(4) { animation-delay: 0.4s; }
+		.nav-tab:nth-child(5) { animation-delay: 0.5s; }
+
+		@keyframes slideInDown {
+			0% {
+				opacity: 0;
+				transform: translateY(-10px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
 		}
 
 		.nav-tab:not(.active):hover {
@@ -316,7 +380,7 @@
 		.news-list {
 			background: #fff;
 			border-radius: 12px;
-			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 			width: 100%;
 			display: block;
 			opacity: 1;
@@ -324,17 +388,48 @@
 			transform: translateY(0);
 			max-height: 1000px;
 			overflow: hidden;
+			padding: 1rem;
 		}
 
 		.news-item {
-			padding: 1rem 1.5rem;
+			padding: 0.5rem 1.5rem;
 			display: flex;
 			justify-content: space-between;
 			border-bottom: 1px solid #e5e7eb;
 			position: relative;
 			cursor: pointer;
-			transition: background-color 0.3s ease, transform 0.3s ease, padding 0.3s ease;
+			transition: all 0.3s ease;
 			border-left: 0px solid #982820;
+			background: linear-gradient(135deg, #ffffff, #fefefe);
+			border-radius: 8px;
+			margin-bottom: 0.5rem;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+			min-height: 50px;
+			align-items: center;
+			opacity: 0;
+			transform: translateY(20px);
+			animation: slideInUp 0.6s ease-out forwards;
+		}
+
+		/* 为每个新闻项添加延迟动画 */
+		.news-item:nth-child(1) { animation-delay: 0.1s; }
+		.news-item:nth-child(2) { animation-delay: 0.2s; }
+		.news-item:nth-child(3) { animation-delay: 0.3s; }
+		.news-item:nth-child(4) { animation-delay: 0.4s; }
+		.news-item:nth-child(5) { animation-delay: 0.5s; }
+		.news-item:nth-child(6) { animation-delay: 0.6s; }
+		.news-item:nth-child(7) { animation-delay: 0.7s; }
+		.news-item:nth-child(8) { animation-delay: 0.8s; }
+
+		@keyframes slideInUp {
+			0% {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
 		}
 
 		.news-item:last-child {
@@ -342,30 +437,150 @@
 		}
 
 		.news-item:hover {
-			background-color: rgba(152, 40, 32, 0.05);
-			transform: translateX(5px);
+			background: linear-gradient(135deg, rgba(152, 40, 32, 0.08), rgba(152, 40, 32, 0.05));
+			transform: translateX(8px) translateY(-2px);
 			padding-left: 2rem;
-			border-left: 3px solid #982820;
+			border-left: 4px solid #982820;
+			box-shadow: 0 8px 25px rgba(152, 40, 32, 0.15);
+			border-radius: 12px;
 		}
 
 		.news-item.selected {
-			background-color: rgba(152, 40, 32, 0.1);
-			transform: translateX(5px);
+			background: linear-gradient(135deg, rgba(152, 40, 32, 0.12), rgba(152, 40, 32, 0.08));
+			transform: translateX(8px) translateY(-2px);
 			padding-left: 2rem;
-			border-left: 3px solid #982820;
+			border-left: 4px solid #982820;
+			box-shadow: 0 8px 25px rgba(152, 40, 32, 0.2);
+			border-radius: 12px;
 		}
 
 		.news-title {
-			font-size: 1rem;
-			color: #111827;
+			font-size: 1.05rem;
+			color: #1f2937;
 			flex: 1;
 			padding-right: 1rem;
+			font-weight: 500;
+			line-height: 1.5;
+			transition: color 0.3s ease;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.news-item:hover .news-title {
+			color: #982820;
+			font-weight: 600;
+		}
+
+		.news-item.selected .news-title {
+			color: #982820;
+			font-weight: 600;
+		}
+
+		/* 添加标题文字动画效果 */
+		.news-title::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background: linear-gradient(90deg, #982820, #b32824);
+			transition: width 0.4s ease;
+		}
+
+		.news-item:hover .news-title::after {
+			width: 100%;
 		}
 
 		.news-date {
-			font-size: 0.875rem;
+			font-size: 0.8rem;
 			color: #6b7280;
 			white-space: nowrap;
+			background: #ffffff;
+			padding: 0.5rem;
+			border-radius: 8px;
+			border: 1px solid #e5e7eb;
+			font-weight: 500;
+			position: relative;
+			overflow: hidden;
+			transition: all 0.3s ease;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			width: 50px;
+			height: 50px;
+		}
+
+		.news-date .date-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+		}
+
+		.news-date .date-day {
+			font-size: 1.2rem;
+			font-weight: 700;
+			color: #374151;
+			line-height: 1;
+			margin-bottom: 1px;
+			transition: all 0.3s ease;
+		}
+
+		.news-date .date-month-year {
+			font-size: 0.6rem;
+			color: #9ca3af;
+			font-weight: 500;
+			line-height: 1;
+			transition: all 0.3s ease;
+		}
+
+		.news-date:hover {
+			border-color: #982820;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.15);
+		}
+
+		.news-date:hover .date-day {
+			color: #982820;
+		}
+
+		.news-date:hover .date-month-year {
+			color: #982820;
+		}
+
+		/* 当鼠标悬停在新闻单元上时，日期也要变红 */
+		.news-item:hover .news-date {
+			border-color: #982820;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.15);
+		}
+
+		.news-item:hover .news-date .date-day {
+			color: #982820;
+		}
+
+		.news-item:hover .news-date .date-month-year {
+			color: #982820;
+		}
+
+		/* 当新闻单元被选中时，日期也要变红 */
+		.news-item.selected .news-date {
+			border-color: #982820;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.15);
+		}
+
+		.news-item.selected .news-date .date-day {
+			color: #982820;
+		}
+
+		.news-item.selected .news-date .date-month-year {
+			color: #982820;
 		}
 
 		/* 文章容器美化 */
@@ -1069,16 +1284,13 @@
 
 		/* 页脚 */
 		.page-footer {
-			background-color: #8B0000;
+			background: url('./img/footer_bg.jpg') center / cover no-repeat;
 			color: #fff;
 			text-align: center;
 			padding: 40px 0;
 			font-size: 14px;
 			position: relative;
 			overflow: hidden;
-			background: linear-gradient(135deg, #800000, #8B0000, #990000, #8B0000, #800000);
-			background-size: 400% 400%;
-			animation: gradientBG 15s ease infinite;
 			margin-top: 20px;
 		}
 
@@ -1183,42 +1395,92 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			padding: 0.5rem 1rem;
+			padding: 0.75rem 1.5rem;
 			border: none;
-			background-color: #f5f5f5;
-			color: #333;
+			background: linear-gradient(135deg, #982820, #a92d2d);
+			color: white;
 			font-size: 0.9rem;
-			border-radius: 4px;
+			border-radius: 25px;
 			cursor: pointer;
-			transition: all 0.2s ease;
-			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.3);
+			position: relative;
+			overflow: hidden;
+			font-weight: 600;
+			animation: bounceIn 0.8s ease-out;
+		}
+
+		@keyframes bounceIn {
+			0% {
+				opacity: 0;
+				transform: scale(0.3);
+			}
+			50% {
+				opacity: 1;
+				transform: scale(1.05);
+			}
+			70% {
+				transform: scale(0.9);
+			}
+			100% {
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+
+		.pagination-btn::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 0;
+			height: 0;
+			background: rgba(255, 255, 255, 0.2);
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+			transition: all 0.3s ease;
 		}
 
 		.pagination-btn:hover {
-			background-color: #eaeaea;
-			transform: translateY(-2px);
-			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+			background: linear-gradient(135deg, #a92d2d, #c93737);
+			transform: translateY(-3px);
+			box-shadow: 0 6px 20px rgba(152, 40, 32, 0.4);
+		}
+
+		.pagination-btn:hover::before {
+			width: 100%;
+			height: 100%;
 		}
 
 		.pagination-btn:active {
-			transform: translateY(0);
+			transform: translateY(-1px);
+			box-shadow: 0 3px 10px rgba(152, 40, 32, 0.3);
 		}
 
 		.pagination-arrow {
-			font-size: 0.8rem;
+			font-size: 1rem;
 			font-weight: bold;
+			transition: all 0.3s ease;
+			position: relative;
+			z-index: 1;
 		}
 
 		.pagination-btn[data-page="prev"] .pagination-arrow {
-			margin-right: 6px;
+			margin-right: 8px;
 		}
 
 		.pagination-btn[data-page="next"] .pagination-arrow {
-			margin-left: 6px;
+			margin-left: 8px;
+		}
+
+		.pagination-btn:hover .pagination-arrow {
+			transform: scale(1.2);
 		}
 
 		.pagination-text {
-			font-weight: 500;
+			font-weight: 600;
+			position: relative;
+			z-index: 1;
 		}
 
 		.pagination-numbers {
@@ -1228,24 +1490,54 @@
 		}
 
 		.pagination-number {
-			width: 32px;
-			height: 32px;
+			width: 40px;
+			height: 40px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			border-radius: 50%;
 			cursor: pointer;
-			font-weight: 500;
-			transition: all 0.2s ease;
+			font-weight: 600;
+			transition: all 0.3s ease;
+			background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+			border: 2px solid rgba(152, 40, 32, 0.1);
+			color: #333;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.pagination-number::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 0;
+			height: 0;
+			background: rgba(152, 40, 32, 0.1);
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+			transition: all 0.3s ease;
 		}
 
 		.pagination-number:hover {
-			background-color: rgba(152, 40, 32, 0.1);
+			background: linear-gradient(135deg, #982820, #a92d2d);
+			color: white;
+			transform: translateY(-2px) scale(1.05);
+			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.3);
+			border-color: #982820;
+		}
+
+		.pagination-number:hover::before {
+			width: 100%;
+			height: 100%;
 		}
 
 		.pagination-number.active {
-			background-color: #982820;
+			background: linear-gradient(135deg, #982820, #a92d2d);
 			color: white;
+			border-color: #982820;
+			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.4);
+			transform: scale(1.1);
 		}
 
 		.pagination-dots {
@@ -1514,9 +1806,30 @@
 					currentPageNews.forEach((item, index) => {
 						const newsItem = document.createElement('div');
 						newsItem.className = 'news-item';
+						
+						// 解析日期
+						const dateMatch = item.date.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+						let dateHtml = '';
+						if (dateMatch) {
+							const year = dateMatch[1];
+							const month = parseInt(dateMatch[2]); // 转换为数字去掉前导0
+							const day = dateMatch[3];
+							
+							dateHtml = `
+								<div class="news-date">
+									<div class="date-container">
+										<span class="date-day">${day}</span>
+										<span class="date-month-year">${month}月 ${year}</span>
+									</div>
+								</div>
+							`;
+						} else {
+							dateHtml = `<div class="news-date">${item.date}</div>`;
+						}
+						
 						newsItem.innerHTML = `
             <span class="news-title">${item.title}</span>
-            <span class="news-date">${item.date}</span>
+            ${dateHtml}
 						`;
 						
 						// 添加点击事件处理
@@ -1922,23 +2235,48 @@
 			<div class="news-list">
 				<div class="news-item">
 					<span class="news-title">党委宣传部召开巡察整改专题民主生活会</span>
-					<span class="news-date">2024年10月29日</span>
+					<div class="news-date">
+						<div class="date-container">
+							<span class="date-day">29</span>
+							<span class="date-month-year">10月 2024</span>
+						</div>
+					</div>
 				</div>
 				<div class="news-item">
 					<span class="news-title">教育部高校大学生心理健康教育专家咨询委员会秘书处主任郑骊君做客我校"至善"思政大讲堂第三讲</span>
-					<span class="news-date">2024年10月27日</span>
+					<div class="news-date">
+						<div class="date-container">
+							<span class="date-day">27</span>
+							<span class="date-month-year">10月 2024</span>
+						</div>
+					</div>
 				</div>
 				<div class="news-item">
 					<span class="news-title">党委宣传部召开2024年相关决策咨询工作讨论会</span>
-					<span class="news-date">2024年10月25日</span>
+					<div class="news-date">
+						<div class="date-container">
+							<span class="date-day">25</span>
+							<span class="date-month-year">10月 2024</span>
+						</div>
+					</div>
 				</div>
 				<div class="news-item">
 					<span class="news-title">党委宣传部一行赴河南农业大学开展交流活动</span>
-					<span class="news-date">2024年10月17日</span>
+					<div class="news-date">
+						<div class="date-container">
+							<span class="date-day">17</span>
+							<span class="date-month-year">10月 2024</span>
+						</div>
+					</div>
 				</div>
 				<div class="news-item">
 					<span class="news-title">党委宣传部召开集体学习会议</span>
-					<span class="news-date">2024年06月14日</span>
+					<div class="news-date">
+						<div class="date-container">
+							<span class="date-day">14</span>
+							<span class="date-month-year">6月 2024</span>
+						</div>
+					</div>
 				</div>
 			</div>
 			
@@ -1973,16 +2311,13 @@
 		<img src="./img/henu_logo.png" alt="Footer Logo" class="footer-logo">
 		<style>
 			.page-footer {
-				background-color: #8B0000;
+				background: url('./img/footer_bg.jpg') center / cover no-repeat;
 				color: #fff;
 				text-align: center;
 				padding: 40px 0;
 				font-size: 14px;
 				position: relative;
 				overflow: hidden;
-				background: linear-gradient(135deg, #800000, #8B0000, #990000, #8B0000, #800000);
-				background-size: 400% 400%;
-				animation: gradientBG 15s ease infinite;
 				margin-top: 20px;
 			}
 
