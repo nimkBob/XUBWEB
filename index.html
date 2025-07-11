@@ -949,46 +949,43 @@
             /* 防止阴影被切掉 */
         }
 
-        /* 思政课堂滑动网格布局样式 */
+        /* 现代化思政课堂滑动网格布局样式 */
         .classroom-carousel-container {
             max-width: 1200px;
             margin: 30px auto;
-            padding: 20px; /* 减小外层padding */
-            background-image: url('./img/dwmo_index_bg1.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 15px;
-            border: 3px solid #dc3545;
-            box-shadow: 0 8px 32px rgba(220, 53, 69, 0.2);
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,249,250,0.9) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
             position: relative;
             overflow: hidden;
-            touch-action: pan-x; /* 支持水平滑动 */
-            transition: all 0.3s ease;
+            touch-action: pan-x;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
         }
 
-        .classroom-carousel-container:hover {
-            box-shadow: 0 12px 40px rgba(220, 53, 69, 0.3),
-                        0 0 30px rgba(220, 53, 69, 0.1);
-            border-color: #ff4757;
-        }
-
-        /* 为容器添加微妙的背景动画 */
-        .classroom-carousel-container::after {
+        .classroom-carousel-container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, 
-                transparent 30%,
-                rgba(220, 53, 69, 0.02) 50%,
-                transparent 70%);
-            background-size: 200% 200%;
-            animation: backgroundShift 8s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 1;
+            background: linear-gradient(45deg, #8B0000, #DC143C);
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .classroom-carousel-container:hover {
+            box-shadow: 0 15px 45px rgba(139, 0, 0, 0.2);
+            border-color: rgba(139, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* 移除背景动画，使用更简洁的设计 */
+        .classroom-carousel-container::after {
+            display: none;
         }
 
         @keyframes backgroundShift {
@@ -1096,96 +1093,93 @@
 
         .classroom-card {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid transparent;
-            height: 320px; /* 增加卡片高度，改善图片比例 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            height: 300px;
             display: flex;
             flex-direction: column;
             position: relative;
             cursor: pointer;
         }
 
-        .classroom-card:hover {
-            transform: translateY(-15px) scale(1.08);
-            box-shadow: 0 25px 50px rgba(220, 53, 69, 0.4), 
-                        0 15px 30px rgba(220, 53, 69, 0.2),
-                        0 0 20px rgba(220, 53, 69, 0.1);
-            border-color: #dc3545;
-            background: rgba(255, 255, 255, 1);
-            z-index: 10;
-        }
-
-        .classroom-card:hover::before {
+        .classroom-card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #dc3545, #ff6b6b, #dc3545);
-            border-radius: 17px;
-            z-index: -1;
-            animation: cardGlow 1.5s ease-in-out infinite alternate;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8B0000, #DC143C, #FF6B6B);
+            z-index: 2;
         }
 
-        @keyframes cardGlow {
-            0% {
-                box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
-            }
-            100% {
-                box-shadow: 0 0 20px rgba(220, 53, 69, 0.8), 
-                            0 0 30px rgba(220, 53, 69, 0.4);
-            }
+        .classroom-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(139, 0, 0, 0.2);
+            border-color: rgba(139, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 1);
         }
 
         .classroom-card-image {
             width: 100%;
-            height: 180px; /* 增加图片高度 */
-            object-fit: contain; /* 改为contain，保持图片完整不变形 */
-            object-position: center; /* 图片居中显示 */
-            background-color: #f8f9fa; /* 添加背景色填充空白区域 */
-            border-bottom: 2px solid #f8f9fa;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 160px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .classroom-card:hover .classroom-card-image {
-            transform: scale(1.05); /* 减小缩放比例，避免过度变形 */
-            filter: brightness(1.1) contrast(1.1) saturate(1.2);
-            background-color: #ffffff; /* 悬停时背景变白 */
-        }
-
-        .classroom-card-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .classroom-card-image img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent);
-            transition: left 0.6s ease;
-            z-index: 2;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        .classroom-card:hover .classroom-card-image::before {
-            left: 100%;
+        .classroom-card:hover .classroom-card-image img {
+            transform: scale(1.05);
         }
 
         .classroom-card-content {
-            padding: 20px;
+            padding: 16px;
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            position: relative;
+            justify-content: space-between;
+        }
+
+        .classroom-card-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #2c3e50;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+
+        .classroom-card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .classroom-card:hover .classroom-card-title a {
+            color: #8B0000;
+        }
+
+        .classroom-card-meta {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: auto;
         }
 
         .classroom-card:hover .classroom-card-content {
@@ -1283,6 +1277,7 @@
             
             .classroom-carousel-container {
                 padding: 15px; /* 移动端减小外层padding */
+                margin: 20px 10px; /* 减小外边距，左右留小边距 */
             }
             
             .classroom-carousel-wrapper {
@@ -1298,25 +1293,39 @@
             }
             
             .classroom-card {
-                height: 260px; /* 移动端调整高度 */
+                height: 240px; /* 移动端调整高度 */
+                min-height: 240px; /* 确保最小高度 */
             }
             
             .classroom-card-image {
-                height: 140px; /* 移动端图片高度 */
+                height: 120px; /* 移动端图片高度 */
+                object-fit: cover; /* 确保图片适配 */
             }
             
             .classroom-card-content {
-                padding: 15px; /* 移动端减少内边距 */
+                padding: 12px; /* 移动端减少内边距 */
+                height: calc(100% - 120px); /* 确保内容区域高度 */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
             
             .classroom-card-title {
-                font-size: 14px; /* 移动端稍小字体 */
+                font-size: 13px; /* 移动端稍小字体 */
+                line-height: 1.3;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* 移动端限制3行 */
+                line-clamp: 3; /* 标准属性 */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
         @media (max-width: 480px) {
             .classroom-carousel-container {
                 padding: 12px; /* 小屏幕进一步减小padding */
+                margin: 15px 8px; /* 小屏幕进一步减小边距 */
             }
             
             .classroom-carousel-wrapper {
@@ -1338,23 +1347,36 @@
             .classroom-page {
                 gap: 12px; /* 小屏幕进一步减小间距 */
                 padding: 0; /* 小屏幕无内边距 */
+                min-height: 440px; /* 确保足够高度 */
             }
             
             .classroom-card {
-                height: 240px; /* 小屏幕卡片高度 */
+                height: 210px; /* 小屏幕卡片高度进一步减小 */
+                min-height: 210px;
             }
             
             .classroom-card-image {
-                height: 130px; /* 小屏幕图片高度 */
+                height: 110px; /* 小屏幕图片高度 */
+                object-fit: cover;
             }
             
             .classroom-card-content {
-                padding: 12px;
+                padding: 10px;
+                height: calc(100% - 110px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
             
             .classroom-card-title {
-                font-size: 13px;
+                font-size: 12px;
                 line-height: 1.3;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* 小屏幕限制2行 */
+                line-clamp: 2; /* 标准属性 */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
@@ -1592,6 +1614,24 @@
             font-weight: bold;
             color: #8B0000; /* 改为红色文字，与白色背景形成对比 */
             text-shadow: 0 3px 6px rgba(255, 255, 255, 1), 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.6); /* 增强阴影效果以适应纯背景图 */
+            display: flex;
+            flex-direction: column; /* 垂直排列 */
+            align-items: center; /* 居中对齐 */
+        }
+
+        .status-left .logo-text .logo-line-1,
+        .status-left .logo-text .logo-line-2 {
+            display: flex;
+            align-items: center;
+        }
+
+        .status-left .logo-text .logo-line-1 {
+            font-size: 15px; /* 河南大学稍大 */
+            margin-bottom: 2px;
+        }
+
+        .status-left .logo-text .logo-line-2 {
+            font-size: 13px; /* 党委宣传部稍小 */
         }
 
         /* 移动端logo文字逐字展开动画 */
@@ -1632,24 +1672,44 @@
         }
 
         .status-menu-button {
-            background: none;
-            border: none;
-            color: #333; /* 改为深色图标 */
-            font-size: 20px;
+            background: rgba(139, 0, 0, 0.1);
+            border: none; /* 取消边框 */
+            color: white; /* 改为白色文字 */
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
-            padding: 5px;
-            text-shadow: 0 3px 6px rgba(255, 255, 255, 1), 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.6); /* 增强阴影效果以适应纯背景图 */
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(139, 0, 0, 0.2);
         }
+
+        .status-menu-button:hover {
+            background: rgba(139, 0, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(139, 0, 0, 0.3);
+        }
+
+        .status-menu-button:active {
+            transform: scale(0.95);
+            background: rgba(139, 0, 0, 0.3);
+        }
+
 
         /* --- 侧边栏样式 --- */
         .sidebar {
             position: fixed;
             top: 60px;
-            right: -300px;
-            width: 250px;
+            right: -40vw; /* 改为40%屏幕宽度 */
+            width: 40vw; /* 设置为屏幕宽度的40% */
             height: calc(100vh - 60px);
-            background-color: #fff;
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(180deg, #DC143C, #8B0000);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
             transition: right 0.3s ease;
             z-index: 999;
             overflow-y: auto;
@@ -1660,25 +1720,313 @@
         }
 
         .sidebar nav {
-            padding: 20px 0;
+            padding: 20px 0; /* 减小上下padding */
         }
 
         .sidebar .nav-list {
+            display: flex;
             flex-direction: column;
-            gap: 0;
+            gap: 8px; /* 增加间距 */
+            list-style: none;
+            margin: 0;
+            padding: 0 10px; /* 添加左右padding */
+        }
+
+        .sidebar .nav-list li {
+            list-style: none;
+            margin: 0;
+            opacity: 1 !important; /* 强制显示，覆盖通用样式 */
+            transform: translateY(0) !important; /* 覆盖通用样式的位移 */
+            width: 100%; /* li占满一行 */
         }
 
         .sidebar .nav-list li a {
             display: block;
-            padding: 15px 20px;
-            color: #333;
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.3s ease;
+            padding: 14px 16px; /* 调整内边距 */
+            color: #8B0000; /* 深红色文字 */
+            background: rgba(255, 255, 255, 0.98); /* 增强背景不透明度 */
+            margin: 0; /* 移除左右margin，让li占满宽度 */
+            border-radius: 10px; /* 稍微减小圆角 */
+            border: 1px solid rgba(139, 0, 0, 0.2); /* 添加淡红色边框 */
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 15px; /* 稍微减小字体 */
+            text-decoration: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 减小阴影 */
+            border-left: 3px solid #DC143C; /* 减小左边框宽度 */
+            text-align: center; /* 文字居中 */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar .nav-list li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
         }
 
         .sidebar .nav-list li a:hover {
-            background-color: #f5f5f5;
-            color: #8B0000;
+            background: #8B0000; /* 悬停时背景变为深红色 */
+            color: #fff; /* 悬停时文字变为白色 */
+            transform: translateY(-2px); /* 轻微上移效果 */
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3); /* 悬停时阴影变为红色 */
+            border-left-color: #DC143C;
+            border-color: #DC143C; /* 悬停时整个边框变为亮红色 */
+        }
+
+        .sidebar .nav-list li a:hover::before {
+            left: 100%; /* 悬停时光效从左到右划过 */
+        }
+
+        .sidebar .nav-list li a:active {
+            transform: translateX(-3px) scale(0.98);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 桌面端导航栏 .nav-list 样式仅限 .main-nav 下，避免影响侧边栏 */
+        @media (min-width: 769px) {
+            .main-nav .nav-list {
+                display: flex;
+                flex-direction: row;
+                gap: 30px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                opacity: 0;
+                transform: translateY(-15px);
+                transition: opacity 0.3s, transform 0.3s;
+            }
+            .main-nav .nav-list li {
+                opacity: 0;
+                transform: translateY(-15px);
+                transition: opacity 0.3s, transform 0.3s;
+            }
+            .main-nav .nav-list li a {
+                display: block;
+                padding: 12px 24px;
+                color: #333;
+                background: rgba(255,255,255,0.95);
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 16px;
+                text-decoration: none;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+                border-left: 4px solid transparent;
+                margin: 0;
+                transition: all 0.3s;
+            }
+            .main-nav .nav-list li a:hover {
+                background: #fff;
+                color: #8B0000;
+                border-left-color: #8B0000;
+                box-shadow: 0 4px 12px rgba(139,0,0,0.15);
+                transform: translateY(-2px);
+            }
+        }
+
+        /* 侧边栏遮罩层 */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 现代化移动端新闻轮播样式 */
+        .news-carousel-container {
+            display: block; /* 默认显示，通过媒体查询控制 */
+            max-width: 1200px;
+            margin: 25px auto;
+            padding: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,249,250,0.9) 100%);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .news-carousel-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./img/dwmo_index_bg1.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .news-carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 100%;
+            will-change: transform;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .news-carousel-slide {
+            min-width: 100%;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            flex-shrink: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .news-carousel-slide > div {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 0;
+            margin: 0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 280px;
+        }
+
+        .news-carousel-slide > div::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8B0000, #DC143C, #FF6B6B);
+            z-index: 1;
+        }
+
+        .news-carousel-slide > div:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(139, 0, 0, 0.2);
+            border-color: rgba(139, 0, 0, 0.3);
+        }
+
+        .news-carousel-slide img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            display: block;
+        }
+
+        .news-carousel-slide h3 {
+            font-size: 16px;
+            line-height: 1.4;
+            margin: 16px 16px 8px 16px;
+            color: #2c3e50;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-carousel-slide p {
+            font-size: 13px;
+            margin: 0 16px 16px 16px;
+            color: #7f8c8d;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .news-carousel-slide p::before {
+            content: '📅';
+            font-size: 12px;
+        }
+        .news-carousel-dots {
+            text-align: center;
+            margin-top: 20px;
+            padding: 0 20px 20px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .news-carousel-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: rgba(139, 0, 0, 0.3);
+            border: none;
+            border-radius: 50%;
+            margin: 0 4px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-carousel-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(139, 0, 0, 0.6);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .news-carousel-dot.active {
+            background-color: #8B0000;
+            transform: scale(1.5);
+            box-shadow: 0 0 12px rgba(139, 0, 0, 0.4);
+        }
+
+        .news-carousel-dot.active::before {
+            width: 120%;
+            height: 120%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .news-carousel-dot:hover:not(.active) {
+            transform: scale(1.2);
+            background-color: rgba(139, 0, 0, 0.5);
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* --- 响应式设计 --- */
@@ -1693,17 +2041,33 @@
             padding-top: 60px;
         }
 
+        /* 默认隐藏移动端理论学习容器 */
+        .mobile-theory-container {
+            display: none;
+        }
+
         /* 桌面端样式 */
         @media (min-width: 769px) {
             /* 隐藏移动端元素 */
             .status-bar,
-            .sidebar {
+            .sidebar,
+            .news-carousel-container {
                 display: none !important;
             }
 
             /* 显示桌面端元素 */
             .page-header,
             .main-nav {
+                display: block !important;
+            }
+
+            /* 桌面端隐藏移动端理论学习容器 */
+            .mobile-theory-container {
+                display: none !important;
+            }
+
+            /* 桌面端显示原有的新闻布局 */
+            .card-grid {
                 display: block !important;
             }
 
@@ -1715,86 +2079,666 @@
 
         /* 移动端样式 - 隐藏桌面端的隐藏式导航栏 */
         @media (max-width: 768px) {
+            /* 移动端基础优化 */
+            body {
+                font-size: 14px !important; /* 统一调整基础字体大小 */
+                line-height: 1.4 !important;
+            }
+
+            /* 隐藏桌面端导航 */
             .main-nav {
                 display: none !important;
             }
 
-            /* --- 轮播图响应式优化 --- */
-            .hero-section {
-                height: 300px; /* 移动端减小高度 */
+            /* 确保移动端侧边栏可以显示 */
+            .status-bar {
+                display: flex !important;
             }
 
-            /* 移动端简化3D效果 */
-            .slide {
-                width: 85% !important;
-                height: 75% !important;
+            .sidebar {
+                display: block !important;
+                width: 40vw; /* 保持40%宽度 */
+                right: -40vw;
             }
 
-            .slide.prev, .slide.next {
-                width: 65% !important;
-                height: 60% !important;
-                transform: scale(0.7) !important;
+            /* 侧边栏菜单项在移动端的优化 */
+            .sidebar .nav-list li a {
+                font-size: 14px; /* 移动端稍微减小字体 */
+                padding: 12px 14px; /* 调整padding适应小屏幕 */
             }
 
-            .slide.prev {
-                transform: translateX(-70%) scale(0.7) rotateY(25deg) !important;
-            }
-
-            .slide.next {
-                transform: translateX(70%) scale(0.7) rotateY(-25deg) !important;
-            }
-
-            .hero-text-box {
-                left: 15px;
-                right: 15px;
+            /* 移动端新闻轮播现代化优化 */
+            .news-carousel-container {
+                display: block !important;
+                margin: 20px 15px;
+                padding: 0;
                 max-width: calc(100% - 30px);
-                padding: 20px 25px;
-                bottom: 40px;
-                transform: translateX(-50%);
+                border-radius: 18px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                overflow: hidden;
             }
 
-            .hero-title {
-                font-size: 20px;
-                line-height: 1.3;
+            /* 移动端新闻轮播内容优化 */
+            .news-carousel-slide {
+                padding: 12px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
             }
 
-            .hero-subtitle {
+            .news-carousel-slide > div {
+                border-radius: 12px !important;
+                overflow: hidden !important;
+                margin: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 280px !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+
+            .news-carousel-slide img {
+                height: 160px !important;
+                object-fit: cover !important;
+                object-position: center !important;
+            }
+
+            .news-carousel-slide h3 {
+                font-size: 15px !important;
+                line-height: 1.3 !important;
+                margin: 14px 14px 8px 14px !important;
+                -webkit-line-clamp: 2 !important;
+                line-clamp: 2 !important;
+                font-weight: 600 !important;
+                color: #2c3e50 !important;
+            }
+
+            .news-carousel-slide p {
+                font-size: 12px !important;
+                margin: 0 14px 14px 14px !important;
+                color: #7f8c8d !important;
+            }
+
+            .news-carousel-dots {
+                padding: 0 15px 15px 15px;
+            }
+
+            /* 移动端隐藏桌面端新闻布局 */
+            .card-grid {
+                display: none !important;
+            }
+
+            /* 移动端显示理论学习容器 */
+            .mobile-theory-container {
+                display: block !important;
+            }
+
+            /* 移动端隐藏桌面端理论学习 */
+            .theory-latest-grid {
+                display: none !important;
+            }
+
+            /* 移动端新闻文章标题列表优化 */
+            .newsList {
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 100% !important;
+                height: 180px !important; /* 减小高度 */
+                margin-bottom: 15px !important;
+                font-size: 12px !important; /* 减小字体 */
+                padding: 8px !important; /* 减小内边距 */
+            }
+
+            .newsList .news-item,
+            .newsList .newsItem {
+                padding: 6px 8px !important; /* 减小列表项内边距 */
+                margin-bottom: 4px !important; /* 减小列表项间距 */
+                font-size: 12px !important; /* 减小字体 */
+                line-height: 1.3 !important; /* 调整行高 */
+                cursor: pointer !important; /* 添加指针样式 */
+                border-radius: 4px !important; /* 添加圆角 */
+                transition: all 0.2s ease !important; /* 添加过渡效果 */
+            }
+
+            .newsList .news-item:hover,
+            .newsList .newsItem:hover {
+                background-color: rgba(139, 0, 0, 0.08) !important; /* 减淡悬停背景 */
+            }
+
+            .newsList .news-item.active,
+            .newsList .newsItem.active {
+                background-color: rgba(139, 0, 0, 0.15) !important; /* 当前选中项背景 */
+                color: #8B0000 !important; /* 当前选中项文字颜色 */
+                font-weight: 600 !important;
+            }
+
+            /* 移动端理论学习优化 - 隐藏桌面端，显示移动端版本 */
+            .theory-latest-grid {
+                display: none !important; /* 隐藏桌面端理论学习 */
+            }
+
+            /* 移动端理论学习容器 */
+            .mobile-theory-container {
+                display: block !important;
+                margin: 15px auto;
+                padding: 15px;
+                background-image: url('./img/dwmo_index_bg1.jpg');
+                background-size: cover;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            /* 移动端理论学习切换按钮 */
+            .mobile-theory-tabs {
+                display: flex;
+                margin-bottom: 15px;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .mobile-theory-tab {
+                flex: 1;
+                padding: 10px 15px;
+                background: rgba(255, 255, 255, 0.9);
+                border: none;
                 font-size: 14px;
+                font-weight: 600;
+                color: #666;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-theory-tab.active {
+                background: #8B0000;
+                color: white;
+            }
+
+            .mobile-theory-tab:hover {
+                background: rgba(139, 0, 0, 0.1);
+            }
+
+            .mobile-theory-tab.active:hover {
+                background: #A0001F;
+            }
+
+            /* 移动端理论学习内容 */
+            .mobile-theory-content {
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 10px;
+                padding: 15px;
+                min-height: 200px;
+            }
+
+            .mobile-theory-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .mobile-theory-list li {
+                margin-bottom: 12px;
+                padding: 10px;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 6px;
+                border-left: 3px solid #8B0000;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-theory-list li:hover {
+                background: rgba(139, 0, 0, 0.05);
+                transform: translateX(3px);
+            }
+
+            .mobile-theory-list li a {
+                color: #333;
+                text-decoration: none;
+                font-size: 13px;
+                line-height: 1.4;
+                display: block;
+            }
+
+            .mobile-theory-list li a:hover {
+                color: #8B0000;
+            }
+
+            .mobile-theory-list .latest-meta {
+                margin-top: 5px;
+                font-size: 11px;
+                color: #999;
+            }
+
+
+            /* 隐藏桌面端新闻模块中的轮播部分 */
+            .carouselWrapper,
+            .buttonContainer {
+                display: none !important;
+            }
+
+            /* 调整桌面新闻列表在移动端的显示 */
+            .wrapper {
+                flex-direction: column !important;
+            }
+
+            .newsList {
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 100% !important;
+                height: 300px !important;
                 margin-bottom: 20px;
             }
 
+            /* 卡片网格移动端优化 */
+            .card-grid {
+                padding: 20px 15px !important; /* 减小容器内边距 */
+                gap: 15px !important; /* 减小卡片间距 */
+                margin: 15px auto !important; /* 减小外边距 */
+            }
+
+            .card {
+                width: 100% !important; /* 移动端单列布局 */
+                min-width: unset !important; /* 移除最小宽度限制 */
+                max-width: 100% !important;
+                margin: 0 !important; /* 移除外边距 */
+            }
+
+            .card-image {
+                height: 160px !important; /* 减小图片高度 */
+            }
+
+            .card-content {
+                padding: 15px !important; /* 减小内容区域内边距 */
+            }
+
+            .card-title {
+                font-size: 16px !important; /* 调整标题字体大小 */
+                line-height: 1.3 !important;
+                margin-bottom: 8px !important;
+                min-height: 40px !important; /* 减小最小高度 */
+            }
+
+            .card-meta {
+                font-size: 12px !important; /* 调整元信息字体 */
+            }
+
+            /* 思政课堂移动端优化 - 现代化设计 */
+            .classroom-carousel-container {
+                padding: 20px 15px !important;
+                margin: 20px auto !important;
+                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+                border-radius: 18px !important;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
+                border: 1px solid rgba(220, 220, 220, 0.3) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                overflow: hidden !important;
+            }
+
+            .classroom-carousel-wrapper {
+                gap: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+
+            .classroom-page {
+                display: grid !important;
+                gap: 8px !important;
+                grid-template-columns: 1fr 1fr !important;
+                grid-template-rows: 1fr 1fr !important;
+                width: 100% !important;
+                padding: 8px !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                margin: 0 !important;
+                background: transparent !important;
+                border-radius: 12px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .classroom-card {
+                height: 180px !important;
+                margin: 0 !important;
+                background: #ffffff !important;
+                border-radius: 8px !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                border: 1px solid rgba(229, 231, 235, 0.6) !important;
+                overflow: hidden !important;
+                position: relative !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .classroom-card:hover {
+                transform: translateY(-3px) !important;
+                box-shadow: 0 8px 24px rgba(139, 0, 0, 0.15) !important;
+                border-color: rgba(139, 0, 0, 0.2) !important;
+            }
+
+            .classroom-card::before {
+                content: '' !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 3px !important;
+                background: linear-gradient(90deg, #8B0000, #DC143C) !important;
+                z-index: 1 !important;
+            }
+
+            .classroom-card-image {
+                height: 80px !important;
+                position: relative !important;
+                overflow: hidden !important;
+                width: 100% !important;
+            }
+
+            .classroom-card-image img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+                transition: transform 0.3s ease !important;
+            }
+
+            .classroom-card:hover .classroom-card-image img {
+                transform: scale(1.05) !important;
+            }
+
+            .classroom-card-content {
+                padding: 8px !important;
+                height: calc(100% - 83px) !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .classroom-card-title {
+                font-size: 11px !important;
+                font-weight: 600 !important;
+                color: #2c3e50 !important;
+                line-height: 1.2 !important;
+                margin-bottom: 4px !important;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2 !important;
+                line-clamp: 2 !important;
+                -webkit-box-orient: vertical !important;
+                overflow: hidden !important;
+                min-height: 2.4em !important;
+            }
+
+            .classroom-card-title a {
+                color: inherit !important;
+                text-decoration: none !important;
+                transition: color 0.3s ease !important;
+            }
+
+            .classroom-card:hover .classroom-card-title a {
+                color: #8B0000 !important;
+            }
+
+            .classroom-card-meta {
+                font-size: 9px !important;
+                color: #95a5a6 !important;
+                margin-top: auto !important;
+            }
+
+            .classroom-carousel-dots {
+                display: flex !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                margin-top: 15px !important;
+            }
+
+            .classroom-card:hover .classroom-card-image img {
+                transform: scale(1.1) !important;
+            }
+
+            .classroom-card-content {
+                padding: 12px !important; /* 优化内容区域内边距 */
+                height: calc(100% - 110px) !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                background: white !important; /* 内容区域背景白色 */
+            }
+
+            .classroom-card-title {
+                font-size: 13px !important; /* 优化标题字体 */
+                font-weight: 600 !important;
+                line-height: 1.3 !important;
+                color: #2c3e50 !important;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 3 !important; /* 限制显示3行 */
+                line-clamp: 3 !important; /* 标准属性 */
+                -webkit-box-orient: vertical !important;
+                overflow: hidden !important;
+                margin-bottom: 8px !important;
+                min-height: 3.9em !important;
+            }
+
+            .classroom-card-meta {
+                font-size: 11px !important;
+                color: rgba(100, 100, 100, 0.8) !important; /* 调整元信息颜色 */
+                font-weight: 500 !important;
+                margin-top: auto !important;
+            }
+
+            /* 通知公告移动端优化 */
+            .announcements-list {
+                padding: 20px 15px !important; /* 减小容器内边距 */
+                margin: 15px auto !important;
+            }
+
+            .announcement-item {
+                flex-direction: column !important; /* 垂直布局 */
+                padding: 15px !important; /* 减小内边距 */
+                margin-bottom: 15px !important;
+            }
+
+            .announcement-content {
+                padding-right: 0 !important; /* 移除右侧内边距 */
+                margin-bottom: 10px !important;
+            }
+
+            .announcement-title {
+                font-size: 16px !important; /* 调整标题字体 */
+                margin: 8px 0 !important;
+            }
+
+            .announcement-meta {
+                font-size: 12px !important; /* 调整元信息字体 */
+                gap: 10px !important;
+            }
+
+            .details-link {
+                align-self: flex-start !important; /* 左对齐链接 */
+                font-size: 12px !important;
+                padding: 6px 12px !important;
+            }
+
+            /* --- 轮播图响应式优化 --- */
+            .hero-section {
+                height: 320px; /* 优化移动端高度 */
+                margin-top: 0; /* 移除负边距 */
+                padding: 8px; /* 减小内边距 */
+            }
+
+            /* 页面整体布局优化 */
+            .container, main {
+                padding: 0 10px !important; /* 减小页面左右边距 */
+            }
+
+            /* 节标题移动端优化 */
+            .section-title {
+                font-size: 22px !important; /* 减小标题字体 */
+                margin: 20px 0 15px 0 !important; /* 减小上下边距 */
+            }
+
+            /* 按钮在移动端的优化 */
+            .hero-button, .classroom-more-button {
+                font-size: 12px !important;
+                padding: 8px 16px !important;
+            }
+
+            /* 移动端简化3D效果，确保完整显示 */
+            .slide {
+                width: 90% !important;
+                height: 85% !important;
+                top: 5% !important;
+                left: 5% !important;
+            }
+
+            .slide.active {
+                transform: translateX(0) scale(1) !important;
+            }
+
+            .slide.prev, .slide.next {
+                width: 70% !important;
+                height: 70% !important;
+                top: 10% !important;
+            }
+
+            .slide.prev {
+                left: -50% !important;
+                transform: translateX(0) scale(0.8) rotateY(15deg) !important;
+            }
+
+            .slide.next {
+                left: 85% !important;
+                transform: translateX(0) scale(0.8) rotateY(-15deg) !important;
+            }
+
+            .slide.hidden {
+                display: none !important;
+            }
+
+            .hero-text-box {
+                left: 50%;
+                right: auto;
+                max-width: 90%;
+                width: 90%;
+                padding: 15px 20px;
+                bottom: 20px;
+                transform: translateX(-50%);
+                border-radius: 8px;
+            }
+
+            .hero-title {
+                font-size: 18px;
+                line-height: 1.3;
+                margin-bottom: 8px;
+            }
+
+            .hero-subtitle {
+                font-size: 13px;
+                margin-bottom: 15px;
+                line-height: 1.4;
+            }
+
             .hero-button {
-                padding: 12px 25px;
-                font-size: 15px;
+                padding: 10px 20px;
+                font-size: 14px;
             }
 
             .hero-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+                background: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(5px);
             }
 
             .hero-arrow.left {
-                left: 20px;
+                left: 15px;
             }
 
             .hero-arrow.right {
-                right: 20px;
+                right: 15px;
             }
 
             .dots-container {
-                bottom: 15px;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
             }
 
             .dot {
-                width: 10px;
-                height: 10px;
+                width: 8px;
+                height: 8px;
+                margin: 0 3px;
             }
         }
 
         @media (max-width: 480px) {
+            /* 超小屏幕新闻轮播优化 */
+            .news-carousel-container {
+                margin: 15px 8px !important;
+                padding: 10px !important;
+            }
+
+            .news-carousel-slide > div {
+                margin: 3px !important;
+                padding: 10px !important;
+            }
+
+            .news-carousel-slide img {
+                height: 120px !important;
+            }
+
+            .news-carousel-slide h3 {
+                font-size: 12px !important;
+                -webkit-line-clamp: 2 !important;
+                line-clamp: 2 !important;
+            }
+
+            .news-carousel-slide p {
+                font-size: 10px !important;
+            }
+
             .hero-section {
-                height: 250px;
+                height: 280px; /* 为超小屏幕优化高度 */
+                padding: 5px;
+            }
+
+            .slide {
+                width: 95% !important;
+                height: 90% !important;
+                border-radius: 8px;
+            }
+
+            .hero-text-box {
+                width: 95%;
+                max-width: 95%;
+                padding: 12px 15px;
+                bottom: 10px;
+            }
+
+            .hero-title {
+                font-size: 16px;
+            }
+
+            .hero-subtitle {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+
+            .hero-button {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .hero-arrow {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
             }
 
             .hero-text-box {
@@ -1807,6 +2751,147 @@
 
             .hero-subtitle {
                 font-size: 14px;
+            }
+
+            /* 超小屏幕侧边栏优化 */
+            .sidebar {
+                width: 45vw; /* 超小屏幕稍微增加宽度到45% */
+                right: -45vw;
+            }
+
+            .sidebar .nav-list li a {
+                font-size: 13px; /* 更小的字体 */
+                padding: 10px 12px; /* 更紧凑的padding */
+            }
+
+            /* 超小屏幕新闻轮播优化 */
+            .news-carousel-container {
+                padding: 8px !important;
+                margin: 15px auto !important;
+            }
+
+            .news-carousel-slide > div {
+                margin: 3px !important;
+                padding: 10px !important;
+            }
+
+            .news-carousel-slide img {
+                height: 120px !important; /* 超小屏幕进一步减小图片高度 */
+            }
+
+            .news-carousel-slide h3 {
+                font-size: 12px !important;
+                -webkit-line-clamp: 2 !important; /* 确保标题最多显示2行 */
+                line-clamp: 2 !important; /* 标准属性 */
+            }
+
+            .news-carousel-slide p {
+                font-size: 10px !important;
+            }
+
+            /* 超小屏幕卡片优化 */
+            .card-grid {
+                padding: 15px 10px !important; /* 进一步减小内边距 */
+                gap: 12px !important;
+            }
+
+            .card-image {
+                height: 140px !important; /* 减小图片高度 */
+            }
+
+            .card-content {
+                padding: 12px !important; /* 减小内容区域内边距 */
+            }
+
+            .card-title {
+                font-size: 14px !important; /* 减小标题字体 */
+                min-height: 35px !important;
+            }
+
+            /* 超小屏幕思政课堂优化 - 增强田字布局 */
+            .classroom-carousel-container {
+                padding: 15px 10px !important;
+                margin: 15px auto !important;
+                background: white !important; /* 改为白色背景 */
+                border-radius: 12px !important;
+                box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1) !important; /* 调整阴影 */
+            }
+
+            .classroom-carousel-wrapper {
+                gap: 80px !important; /* 超小屏幕优化间距 */
+            }
+
+            .classroom-page {
+                gap: 10px !important; /* 紧凑的网格间距 */
+                padding: 8px !important;
+                background: white !important; /* 页面背景白色 */
+            }
+
+            .classroom-card {
+                height: 190px !important; /* 超小屏幕卡片高度 */
+                border-radius: 10px !important;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important; /* 调整阴影 */
+                background: white !important;
+                border: 1px solid rgba(200, 200, 200, 0.2) !important; /* 调整边框 */
+            }
+
+            .classroom-card-image {
+                height: 85px !important; /* 减小图片高度 */
+            }
+
+            .classroom-card-content {
+                padding: 8px !important;
+                height: calc(100% - 85px) !important;
+                background: white !important; /* 内容区域背景白色 */
+            }
+
+            .classroom-card-title {
+                font-size: 11px !important;
+                line-height: 1.2 !important;
+                -webkit-line-clamp: 2 !important; /* 超小屏幕限制2行 */
+                line-clamp: 2 !important; /* 标准属性 */
+                min-height: 2.4em !important;
+                margin-bottom: 6px !important;
+            }
+
+            .classroom-card-meta {
+                font-size: 10px !important;
+                color: rgba(100, 100, 100, 0.8) !important; /* 调整颜色 */
+            }
+
+            /* 超小屏幕通知公告优化 */
+            .announcements-list {
+                padding: 15px 10px !important;
+                margin: 12px auto !important;
+            }
+
+            .announcement-item {
+                padding: 12px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .announcement-title {
+                font-size: 14px !important;
+                margin: 6px 0 !important;
+            }
+
+            .announcement-meta {
+                font-size: 11px !important;
+            }
+
+            .details-link {
+                font-size: 11px !important;
+                padding: 5px 10px !important;
+            }
+
+            /* 超小屏幕页面整体优化 */
+            .container, main {
+                padding: 0 8px !important; /* 进一步减小页面边距 */
+            }
+
+            .section-title {
+                font-size: 20px !important; /* 减小标题字体 */
+                margin: 15px 0 12px 0 !important;
             }
         }
 
@@ -1929,23 +3014,381 @@
     <script src="./news/loadNews.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- 新增：新闻轮播功能 ---
+            function initNewsCarousel() {
+                console.log('=== 新闻轮播初始化开始 ===');
+                console.log('设备信息:', {
+                    宽度: window.innerWidth,
+                    高度: window.innerHeight,
+                    是否移动端: window.innerWidth <= 768,
+                    用户代理: navigator.userAgent.substring(0, 50) + '...'
+                });
+                
+                const container = document.querySelector('.news-carousel-container');
+                console.log('新闻轮播容器:', container);
+                
+                if (!container) {
+                    console.error('新闻轮播容器未找到！');
+                    return;
+                }
+
+                const wrapper = document.getElementById('mobileNewsCarousel');
+                const dotsContainer = document.getElementById('mobileNewsCarouselDots');
+                
+                console.log('wrapper元素:', wrapper);
+                console.log('dots容器:', dotsContainer);
+
+                if (!wrapper || !dotsContainer) {
+                    console.error('新闻轮播子元素未找到！wrapper:', wrapper, 'dots:', dotsContainer);
+                    return;
+                }
+
+                // 立即显示容器
+                container.style.display = 'block';
+                container.style.visibility = 'visible';
+                
+                console.log('新闻轮播容器样式设置完成');
+
+                console.log('新闻轮播容器样式设置完成');
+                
+                // 立即添加测试内容，不使用setTimeout
+                const testNews = [
+                    {
+                        img: "./img/news_1.png",
+                        title: "宣传部党支部召开专题理论学习会",
+                        link: "./inner.html",
+                        date: "2024年10月29日 15:01",
+                    },
+                    {
+                        img: "./img/news_2.png", 
+                        title: "党委宣传部联合举办主题党日活动",
+                        link: "./inner.html",
+                        date: "2024年10月27日 16:02",
+                    },
+                    {
+                        img: "./img/news_3.png",
+                        title: "河南省报业协会秘书长到我校调研座谈",
+                        link: "./inner.html", 
+                        date: "2024年10月25日 09:47",
+                    }
+                ];
+                
+                console.log('开始创建测试新闻轮播...');
+                
+                // 清空并创建测试内容
+                wrapper.innerHTML = '';
+                
+                // 设置wrapper为flex容器，确保正确的轮播布局
+                wrapper.style.display = 'flex';
+                wrapper.style.width = `${testNews.length * 100}%`; // 总宽度 = slide数量 × 100%
+                wrapper.style.transition = 'transform 0.5s ease-in-out';
+                wrapper.style.transform = 'translateX(0%)';
+                
+                testNews.forEach((news, index) => {
+                    console.log(`创建测试slide ${index + 1}:`, news.title);
+                    const slide = document.createElement('div');
+                    slide.className = 'news-carousel-slide';
+                    slide.style.width = '100%'; // 每个slide占满整个容器宽度
+                    slide.style.minWidth = '100%';
+                    slide.style.flexShrink = '0';
+                    slide.style.boxSizing = 'border-box';
+                    slide.innerHTML = `
+                        <div style="background: white; border-radius: 12px; padding: 16px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s ease; height: 280px; width: 100%; max-width: 100%; display: flex; flex-direction: column;">
+                            <img src="${news.img}" alt="${news.title}" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; display: block;">
+                            <h3 style="font-size: 15px; color: #2c3e50; margin-bottom: 8px; line-height: 1.4; font-weight: 600; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${news.title}</h3>
+                            <p style="font-size: 12px; color: #7f8c8d; margin: 0; display: flex; align-items: center; gap: 4px;"><span style="color: #ff6b6b;">📅</span>${news.date}</p>
+                        </div>
+                    `;
+                    wrapper.appendChild(slide);
+                });
+                
+                console.log('新闻轮播HTML结构优化完成');
+                console.log('wrapper总宽度:', wrapper.style.width);
+                console.log('每个slide宽度:', `${100 / testNews.length}%`);
+                console.log('slides总数:', wrapper.children.length);
+                
+                // 验证每个slide的实际宽度设置
+                Array.from(wrapper.children).forEach((slide, index) => {
+                    console.log(`Slide ${index + 1} 宽度:`, slide.style.width);
+                });
+                
+                // 创建导航点
+                dotsContainer.innerHTML = '';
+                testNews.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.className = 'news-carousel-dot';
+                    if (index === 0) dot.classList.add('active');
+                    dotsContainer.appendChild(dot);
+                });
+                
+                console.log('测试新闻轮播创建完成，slides数量:', wrapper.children.length);
+                console.log('wrapper HTML:', wrapper.innerHTML.substring(0, 200) + '...');
+
+                // 基本轮播功能
+                let currentIndex = 0;
+                const totalSlides = testNews.length;
+                
+                function goToSlide(index) {
+                    console.log('goToSlide 调用，目标index:', index, '当前index:', currentIndex);
+                    
+                    // 正确处理边界情况
+                    if (index < 0) {
+                        currentIndex = totalSlides - 1;
+                    } else if (index >= totalSlides) {
+                        currentIndex = 0;
+                    } else {
+                        currentIndex = index;
+                    }
+                    
+                    // 修复：正确计算偏移量 - 每次移动整个容器宽度
+                    const offset = -currentIndex * 100;
+                    console.log('设置 translateX 偏移量:', offset + '%');
+                    
+                    // 确保transform应用到正确的元素
+                    if (wrapper) {
+                        wrapper.style.transform = `translateX(${offset}%)`;
+                        wrapper.style.transition = 'transform 0.5s ease-in-out';
+                        console.log('已应用 transform:', wrapper.style.transform);
+                    }
+                    
+                    // 更新导航点
+                    const dots = dotsContainer.querySelectorAll('.news-carousel-dot');
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentIndex);
+                    });
+                    
+                    console.log('切换到slide:', currentIndex, '总共slides:', totalSlides);
+                }
+                
+                // 添加点击导航功能
+                const dots = dotsContainer.querySelectorAll('.news-carousel-dot');
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        clearInterval(autoplayInterval); // 暂停自动播放
+                        goToSlide(index);
+                        // 重新启动自动播放
+                        autoplayInterval = setInterval(() => {
+                            goToSlide(currentIndex + 1);
+                        }, 5000); // 统一使用5秒间隔
+                    });
+                });
+
+                // 添加触摸滑动支持
+                let startX = 0;
+                let endX = 0;
+                
+                wrapper.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                }, { passive: true });
+                
+                wrapper.addEventListener('touchend', (e) => {
+                    endX = e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
+                    
+                    if (Math.abs(diffX) > 50) { // 最小滑动距离
+                        clearInterval(autoplayInterval);
+                        if (diffX > 0) {
+                            goToSlide(currentIndex + 1); // 向左滑，下一张
+                        } else {
+                            goToSlide(currentIndex - 1); // 向右滑，上一张
+                        }
+                        // 重新启动自动播放
+                        autoplayInterval = setInterval(() => {
+                            goToSlide(currentIndex + 1);
+                        }, 5000); // 统一使用5秒间隔
+                    }
+                }, { passive: true });
+
+                // 鼠标悬停暂停自动播放
+                wrapper.addEventListener('mouseenter', () => {
+                    clearInterval(autoplayInterval);
+                });
+                
+                wrapper.addEventListener('mouseleave', () => {
+                    autoplayInterval = setInterval(() => {
+                        goToSlide(currentIndex + 1);
+                    }, 5000); // 统一使用5秒间隔
+                });
+                
+                // 初始化
+                goToSlide(0);
+                
+                // 修复：设置正确的自动播放间隔 - 适应3页内容
+                let autoplayInterval = setInterval(() => {
+                    goToSlide(currentIndex + 1);
+                }, 5000); // 5秒间隔，适合3页内容的浏览节奏
+                
+                console.log('新闻轮播完全初始化完成！总页数:', totalSlides);
+                console.log('自动播放已启动，间隔5秒');
+                
+                // 页面失去焦点时暂停，获得焦点时恢复
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        clearInterval(autoplayInterval);
+                        console.log('页面失去焦点，暂停轮播');
+                    } else {
+                        autoplayInterval = setInterval(() => {
+                            goToSlide(currentIndex + 1);
+                        }, 5000);
+                        console.log('页面获得焦点，恢复轮播');
+                    }
+                });
+            }
+
+            // 初始化所有功能
+            initCarousel();
+            initClassroomCarousel();
+            
+            // 立即初始化新闻轮播，适用于所有设备
+            console.log('开始初始化新闻轮播...');
+            initNewsCarousel();
+            
+            // 根据屏幕尺寸决定是否初始化移动端功能
+            if (window.innerWidth <= 768) {
+                console.log('移动端模式，初始化移动端理论学习...');
+                initMobileTheory(); // 初始化移动端理论学习
+            }
+
+            // 窗口大小改变时重新判断
+            window.addEventListener('resize', function() {
+                // 确保轮播在窗口大小改变时仍然正常工作
+                const container = document.querySelector('.news-carousel-container');
+                const wrapper = document.getElementById('mobileNewsCarousel');
+                if (container && wrapper) {
+                    // 重新计算宽度
+                    wrapper.style.transform = 'translateX(0%)';
+                }
+            });
+
+            // 移动端理论学习功能
+            function initMobileTheory() {
+                const tabs = document.querySelectorAll('.mobile-theory-tab');
+                const contentList = document.getElementById('mobile-theory-list');
+                
+                if (!tabs.length || !contentList) return;
+
+                // 理论学习数据
+                const theoryData = {
+                    theory: [
+                        { title: '习近平：培养德智体美劳全面发展的社会主义建设者和接班人', link: './inner.html' },
+                        { title: '习近平：在全国科技大会、国家科学技术奖励大会、两院院士大会上的讲话', link: './inner.html' },
+                        { title: '纪律是管党治党的"戒尺"——习近平总书记关于党的纪律和规矩相关重要论述', link: './inner.html' },
+                        { title: '习近平：推进新时代党的建设新的伟大工程', link: './inner.html' },
+                        { title: '习近平：坚持以人民为中心的发展思想', link: './inner.html' }
+                    ],
+                    latest: [
+                        { title: '必须坚持人民至上', date: '2024-04-08', views: '1230', link: './inner.html' },
+                        { title: '坚持系统观念', date: '2024-04-05', views: '1100', link: './inner.html' },
+                        { title: '习近平：培养德智体美劳全面发展的社会主义建设者和接班人', date: '2024-02-18', views: '960', link: './inner.html' },
+                        { title: '推进新时代党的建设新的伟大工程', date: '2024-02-15', views: '820', link: './inner.html' },
+                        { title: '深入学习贯彻习近平新时代中国特色社会主义思想', date: '2024-02-10', views: '750', link: './inner.html' }
+                    ]
+                };
+
+                function renderContent(type) {
+                    const data = theoryData[type];
+                    let html = '';
+                    
+                    data.forEach(item => {
+                        if (type === 'theory') {
+                            html += `
+                                <li>
+                                    <a href="${item.link}">${item.title}</a>
+                                </li>
+                            `;
+                        } else {
+                            html += `
+                                <li>
+                                    <a href="${item.link}">${item.title}</a>
+                                    <div class="latest-meta">
+                                        <span>${item.date}</span>
+                                        <span class="views">${item.views}</span>
+                                    </div>
+                                </li>
+                            `;
+                        }
+                    });
+                    
+                    contentList.innerHTML = html;
+                }
+
+                // 初始化显示重点专题
+                renderContent('theory');
+
+                // 绑定切换事件
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // 移除所有活跃状态
+                        tabs.forEach(t => t.classList.remove('active'));
+                        // 添加当前活跃状态
+                        tab.classList.add('active');
+                        // 渲染对应内容
+                        renderContent(tab.dataset.tab);
+                    });
+                });
+            }
+            
+            // 监听屏幕尺寸变化
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    // 切换到移动端时初始化新闻轮播和理论学习
+                    initNewsCarousel();
+                    initMobileTheory();
+                }
+            });
             // 全局入场动画逻辑已移除
 
             // 侧边栏控制逻辑
             const sidebarToggle = document.getElementById('sidebarToggle');
             const sidebar = document.getElementById('sidebarMenu');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
             
-            if (sidebarToggle && sidebar) {
-                sidebarToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('active');
+            console.log('侧边栏元素检查:', {
+                sidebarToggle: sidebarToggle ? '找到' : '未找到',
+                sidebar: sidebar ? '找到' : '未找到',
+                sidebarOverlay: sidebarOverlay ? '找到' : '未找到'
+            });
+            
+            if (sidebarToggle && sidebar && sidebarOverlay) {
+                console.log('侧边栏控制逻辑已初始化');
+                
+                // 打开侧边栏
+                sidebarToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('侧边栏按钮被点击');
+                    sidebar.classList.add('active');
+                    sidebarOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // 防止背景滚动
+                });
+
+                // 点击遮罩层关闭侧边栏
+                sidebarOverlay.addEventListener('click', function() {
+                    console.log('遮罩层被点击，关闭侧边栏');
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.style.overflow = ''; // 恢复滚动
                 });
 
                 // 点击侧边栏外部关闭侧边栏
                 document.addEventListener('click', function(e) {
                     if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
                         sidebar.classList.remove('active');
+                        sidebarOverlay.classList.remove('active');
+                        document.body.style.overflow = ''; // 恢复滚动
                     }
                 });
+
+                // ESC键关闭侧边栏
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                        sidebar.classList.remove('active');
+                        sidebarOverlay.classList.remove('active');
+                        document.body.style.overflow = ''; // 恢复滚动
+                    }
+                });
+            } else {
+                console.error('侧边栏元素未找到，无法初始化控制逻辑');
             }
 
             // 导航栏弹出增强功能（仅在桌面端生效）
@@ -2121,13 +3564,7 @@
 
                 // 获取当前页面间距（根据屏幕尺寸）
                 function getPageGap() {
-                    if (window.innerWidth <= 480) {
-                        return 20; // 小屏幕
-                    } else if (window.innerWidth <= 768) {
-                        return 30; // 中等屏幕
-                    } else {
-                        return 40; // 大屏幕
-                    }
+                    return 0; // 移除所有间距，确保卡片居中显示
                 }
 
                 // 初始化容器宽度
@@ -2146,12 +3583,11 @@
                         page.style.width = containerWidth + 'px';
                         page.style.minWidth = containerWidth + 'px';
                         page.style.maxWidth = containerWidth + 'px';
+                        page.style.flexShrink = '0';
                     });
                     
-                    // 设置wrapper总宽度，考虑页面间距
-                    const currentGap = getPageGap();
-                    const totalGapWidth = (pages.length - 1) * currentGap;
-                    carouselWrapper.style.width = (containerWidth * pages.length + totalGapWidth) + 'px';
+                    // 设置wrapper总宽度，无间距
+                    carouselWrapper.style.width = (containerWidth * pages.length) + 'px';
                 }
 
                 // 创建指示器圆点
@@ -2167,9 +3603,8 @@
                 }
 
                 function updateCarousel(animated = true) {
-                    // 计算偏移量：页面宽度 + 当前间距
-                    const currentGap = getPageGap();
-                    const translateX = -currentPage * (containerWidth + currentGap);
+                    // 计算偏移量：无间距，直接按页面宽度计算
+                    const translateX = -currentPage * containerWidth;
                     
                     if (animated) {
                         carouselWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
@@ -2251,9 +3686,8 @@
                     
                     currentX = e.touches ? e.touches[0].clientX : e.clientX;
                     const deltaX = currentX - startX;
-                    // 修正：计算当前页面的translateX值，包含动态间距
-                    const currentGap = getPageGap();
-                    const currentTranslate = -currentPage * (containerWidth + currentGap);
+                    // 修正：计算当前页面的translateX值，无间距
+                    const currentTranslate = -currentPage * containerWidth;
                     
                     // 添加阻尼效果，限制滑动范围
                     let dampedDelta = deltaX;
@@ -2360,15 +3794,19 @@
                     <img src="./img/logo.png" alt="Logo">
                 </div>
                 <span class="logo-text">
-                    <span class="char" style="animation-delay: 0.5s;">河</span>
-                    <span class="char" style="animation-delay: 0.6s;">南</span>
-                    <span class="char" style="animation-delay: 0.7s;">大</span>
-                    <span class="char" style="animation-delay: 0.8s;">学</span>
-                    <span class="char" style="animation-delay: 0.9s;">党</span>
-                    <span class="char" style="animation-delay: 1.0s;">委</span>
-                    <span class="char" style="animation-delay: 1.1s;">宣</span>
-                    <span class="char" style="animation-delay: 1.2s;">传</span>
-                    <span class="char" style="animation-delay: 1.3s;">部</span>
+                    <div class="logo-line-1">
+                        <span class="char" style="animation-delay: 0.5s;">河</span>
+                        <span class="char" style="animation-delay: 0.6s;">南</span>
+                        <span class="char" style="animation-delay: 0.7s;">大</span>
+                        <span class="char" style="animation-delay: 0.8s;">学</span>
+                    </div>
+                    <div class="logo-line-2">
+                        <span class="char" style="animation-delay: 0.9s;">党</span>
+                        <span class="char" style="animation-delay: 1.0s;">委</span>
+                        <span class="char" style="animation-delay: 1.1s;">宣</span>
+                        <span class="char" style="animation-delay: 1.2s;">传</span>
+                        <span class="char" style="animation-delay: 1.3s;">部</span>
+                    </div>
                 </span>
             </div>
         </div>
@@ -2425,6 +3863,9 @@
         </nav>
     </aside>
 
+    <!-- 侧边栏遮罩层 -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <!-- 导航栏 -->
     <nav class="main-nav">
         <ul class="nav-list">
@@ -2468,6 +3909,18 @@
                 <img src="./img/title_new.svg" alt="新闻资讯" style="width: 180px; height: auto; max-width: 100%; display: block; background: transparent; box-shadow: none; border: none; border-radius: 0; padding: 0; margin: 0;" />
             </div>
             <!-- <h2 class="section-title"><span>新闻</span><span>资讯</span></h2> -->
+            
+            <!-- 移动端新闻轮播容器 -->
+            <div class="news-carousel-container">
+                <div class="news-carousel-wrapper" id="mobileNewsCarousel">
+                    <!-- 动态内容由JavaScript填充 -->
+                </div>
+                <div class="news-carousel-dots" id="mobileNewsCarouselDots">
+                    <!-- 动态圆点由JavaScript填充 -->
+                </div>
+            </div>
+            
+            <!-- 桌面端新闻模块 -->
             <div class="card-grid" id="news-card-grid">
                 <section class="container">
                     <div class="wrapper">
@@ -2521,6 +3974,19 @@
                                                        </div>
                         </li>
                         <!-- 更多文章... -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 移动端理论学习容器 -->
+            <div class="mobile-theory-container">
+                <div class="mobile-theory-tabs">
+                    <button class="mobile-theory-tab active" data-tab="theory">重点专题</button>
+                    <button class="mobile-theory-tab" data-tab="latest">最新文章</button>
+                </div>
+                <div class="mobile-theory-content">
+                    <ul class="mobile-theory-list" id="mobile-theory-list">
+                        <!-- 内容由JavaScript切换显示 -->
                     </ul>
                 </div>
             </div>
