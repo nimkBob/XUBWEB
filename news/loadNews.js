@@ -5,22 +5,40 @@ document.addEventListener("DOMContentLoaded", function () {
   const newsList = [
     {
       img: "./img/news_1.png",
-      title: "宣传部党支部召开“习近平文化思想”专题理论学习会",
+      title: "宣传部党支部进行专题理论学习",
       link: "./inner.html",
-      date: "2024年10月29日 15:01",
+      date: "2025年07月09日 18:06",
     },
     {
       img: "./img/news_2.png",
       title:
-        "凝心聚力强文化 提质进位创辉煌 ——党委宣传部、总务处、教育发展基金会办公室、哲学与公共管理学院、经济学院 联合举办主题党日活动-宣传部思想论坛 ",
+        "宣传部党支部召开“习近平文化思想”专题理论学习会 ",
       link: "./inner.html",
-      date: "2024年10月27日 16:02",
+      date: "2025年06月05日 15:37",
     },
     {
       img: "./img/news_3.png",
-      title: "河南省报业协会秘书长李宜鹏一行到我校调研座谈-宣传部思想论坛",
+      title: "凝心聚力强文化 提质进位创辉煌 ——党委宣传部、总务处、教育发展基金会办公室、哲学与公共管理学院、经济学院 联合举办主题党日活动",
       link: "./inner.html",
-      date: "2024年10月25日 09:47",
+      date: "2025年05月30日 09:51",
+    },
+    {
+      img: "./img/news_4.png",
+      title: "河南省报业协会秘书长李宜鹏一行到我校调研座谈",
+      link: "./inner.html",
+      date: "2025年03月20日 10:04",
+    },
+    {
+      img: "./img/news_5.png",
+      title: "党委宣传部召开组织生活会",
+      link: "./inner.html",
+      date: "2025年02月26日 17:20",
+    },
+    {
+      img: "./img/news_6.png",
+      title: "党委宣传部召开巡察整改专题民主生活会",
+      link: "./inner.html",
+      date: "2024年10月29日 15:01",
     },
     // 可继续添加更多新闻
   ];
