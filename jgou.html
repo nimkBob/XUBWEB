@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>党委宣传部</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
     <link rel="icon" href="./img/henu-head.png" type="image/png">
 
     <style>
@@ -31,7 +26,7 @@
 
       /* 页眉样式 */
       .page-header {
-        background-color: var(--primary-color);
+        background: url('./img/dw_index_topbg.jpg') center / cover no-repeat;
         color: white;
         padding: 1rem 1rem;
         display: flex;
@@ -320,23 +315,14 @@
       }
 
       .page-footer {
-        background-color: #8B0000;
+        background: url('./img/footer_bg.jpg') center / cover no-repeat;
         color: #fff;
         text-align: center;
         padding: 40px 0;
         font-size: 14px;
         position: relative;
         overflow: hidden;
-        background: linear-gradient(135deg, #800000, #8B0000, #990000, #8B0000, #800000);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
         margin-top: 20px;
-      }
-
-      @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
       }
 
       .footer-copyright {
