@@ -314,9 +314,8 @@
             position: relative; /* 改为相对定位 */
             z-index: 1000;
             height: 56px; /* 固定高度防止晃动 */
-            transform: translateY(-100%); /* 初始位置在上方 */
-            opacity: 0;
-            /* 默认透明 */
+            transform: translateY(0); /* 修改为0，让导航栏正常显示 */
+            opacity: 1; /* 修改为1，让导航栏可见 */
             box-shadow: 
                 0 4px 20px rgba(0, 0, 0, 0.15),
                 0 1px 3px rgba(139, 0, 0, 0.3),
@@ -350,13 +349,13 @@
 
         .nav-list li {
             list-style: none;
-            opacity: 0;
-            transform: translateY(-15px);
+            opacity: 1; /* 修改为1，让li默认显示 */
+            transform: translateY(0); /* 修改为0，让li处于正常位置 */
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* 更平滑的动画 */
         }
 
         .nav-list li a {
-            color: #fff;
+            color: #FFD700; /* 金色文字 */
             text-decoration: none;
             padding: 6px 12px;
             /* 减小按钮内边距 */
@@ -370,7 +369,7 @@
             white-space: nowrap;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, transparent, transparent);
+            background: transparent; /* 透明背景 */
         }
 
         .nav-list li a::before {
@@ -388,16 +387,14 @@
         }
 
         .nav-list li a:hover {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.25) 0%,
-                rgba(255, 255, 255, 0.15) 50%,
-                rgba(255, 255, 255, 0.1) 100%);
+            background: rgba(255, 215, 0, 0.2); /* 淡金色背景 */
             transform: translateY(-2px) scale(1.05);
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             box-shadow: 
-                0 4px 12px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+                0 4px 12px rgba(255, 215, 0, 0.3), /* 金色阴影 */
+                inset 0 1px 0 rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.5); /* 金色边框 */
+            color: #FFF700; /* 更亮的金色 */
         }
 
         .nav-list li a:hover::before {
@@ -442,7 +439,7 @@
         /* --- Banner/Hero --- */
         .hero-section {
             height: 550px; /* 增加高度，更有视觉冲击力 */
-            margin-top: -56px; /* 默认向上移动，占据导航栏位置 */
+            margin-top: 0; /* 正常位置，因为导航栏现在正常显示 */
             border-radius: 0; /* 移除圆角，让它与屏幕边缘对齐 */
             /* background: url('./img/background.jpg') no-repeat center center; */ /* 已移除，防止图片嵌套 */
             background-size: cover;
@@ -1801,34 +1798,34 @@
                 list-style: none;
                 margin: 0;
                 padding: 0;
-                opacity: 0;
-                transform: translateY(-15px);
+                opacity: 1; /* 修改为1，让导航列表可见 */
+                transform: translateY(0); /* 修改为0，让导航列表处于正常位置 */
                 transition: opacity 0.3s, transform 0.3s;
             }
             .main-nav .nav-list li {
-                opacity: 0;
-                transform: translateY(-15px);
+                opacity: 1; /* 修改为1，让导航项可见 */
+                transform: translateY(0); /* 修改为0，让导航项处于正常位置 */
                 transition: opacity 0.3s, transform 0.3s;
             }
             .main-nav .nav-list li a {
                 display: block;
                 padding: 12px 24px;
-                color: #333;
-                background: rgba(255,255,255,0.95);
+                color: #FFD700; /* 金色文字 */
+                background: transparent; /* 透明背景 */
                 border-radius: 8px;
                 font-weight: 600;
                 font-size: 16px;
                 text-decoration: none;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+                box-shadow: none; /* 移除阴影 */
                 border-left: 4px solid transparent;
                 margin: 0;
                 transition: all 0.3s;
             }
             .main-nav .nav-list li a:hover {
-                background: #fff;
-                color: #8B0000;
-                border-left-color: #8B0000;
-                box-shadow: 0 4px 12px rgba(139,0,0,0.15);
+                background: rgba(255, 215, 0, 0.1); /* hover时添加淡金色背景 */
+                color: #FFF700; /* hover时更亮的金色 */
+                border-left-color: #FFD700; /* 金色左边框 */
+                box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2); /* 金色阴影 */
                 transform: translateY(-2px);
             }
         }

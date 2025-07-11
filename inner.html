@@ -3502,12 +3502,17 @@
 					newsList.innerHTML = '';
 					currentPageNews.forEach((item, index) => {
 						const newsItem = document.createElement('div');
-						newsItem.className = 'news-item';					const dateMatch = item.date.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
-					let dateHtml = '';
-					if (dateMatch) {
-						const year = dateMatch[1];
-						const month = parseInt(dateMatch[2]);
-						const day = dateMatch[3];
+						newsItem.className = 'news-item';
+						const dateMatch = item.date.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+						let dateHtml = '';
+						if (dateMatch) {
+							const year = dateMatch[1];
+<<<<<<< HEAD
+							const month = dateMatch[2];
+=======
+							const month = parseInt(dateMatch[2]);
+>>>>>>> 2512ab5f35e3977c06bffe7d6cd0ab9ea1fc959b
+							const day = dateMatch[3];
 							dateHtml = `
 								<div class="news-date">
 									<div class="date-container">
