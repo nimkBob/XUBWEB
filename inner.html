@@ -5,10 +5,10 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="author" content="author name">
-	<title>党委宣传部</title>
+	<title>新闻中心 - 河南大学党委宣传部</title>
 	<link rel="icon" href="./img/henu-head.png" type="image/png">
 	<style>
-		/* 重置样式 */
+		/* 超级可爱的全局样式初始化~ */
 		* {
 			margin: 0;
 			padding: 0;
@@ -22,32 +22,31 @@
 			margin: 0;
 			padding: 0;
 			overflow-x: hidden;
-
-			/* 移除下面的滚动条隐藏样式 
-			scrollbar-width: none;
-			-ms-overflow-style: none;
-			*/
+			font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
+			color: #333;
 		}
 
-		/* 移除下面的WebKit滚动条隐藏样式 
-		html::-webkit-scrollbar,
-		body::-webkit-scrollbar {
-			display: none;
+		:root {
+			--primary-color: #8B0000;
+			--secondary-color: #e6e6e6;
+			--text-primary: #1f2937;
+			--text-secondary: #6b7280;
+			--text-muted: #4b5563;
+			--border-color: #eee;
+			--gold-color: #FFD700;
 		}
-
-		/* 移除容器滚动条隐藏样式 
-		.container::-webkit-scrollbar {
-			display: none;
-		}
-		*/
 
 		body {
-			font-family: "Microsoft YaHei", sans-serif;
 			line-height: 1.6;
-			color: #333;
 			background-color: #feffff;
 			position: relative;
 			overflow-x: hidden;
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 15px;
 		}
 
 		/* 添加背景粒子动画 */
@@ -59,10 +58,10 @@
 			width: 100%;
 			height: 100%;
 			background-image: 
-				radial-gradient(circle at 20% 30%, rgba(152, 40, 32, 0.03) 1px, transparent 1px),
-				radial-gradient(circle at 80% 70%, rgba(152, 40, 32, 0.03) 1px, transparent 1px),
-				radial-gradient(circle at 40% 90%, rgba(152, 40, 32, 0.03) 1px, transparent 1px),
-				radial-gradient(circle at 90% 20%, rgba(152, 40, 32, 0.03) 1px, transparent 1px);
+				radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.02) 1px, transparent 1px),
+				radial-gradient(circle at 80% 70%, rgba(139, 0, 0, 0.02) 1px, transparent 1px),
+				radial-gradient(circle at 40% 90%, rgba(139, 0, 0, 0.02) 1px, transparent 1px),
+				radial-gradient(circle at 90% 20%, rgba(139, 0, 0, 0.02) 1px, transparent 1px);
 			background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px;
 			animation: particleFloat 20s linear infinite;
 			pointer-events: none;
@@ -79,7 +78,6 @@
 		}
 
 		/* 自定义滚动条样式 */
-		/* WebKit浏览器 (Chrome, Safari等) */
 		::-webkit-scrollbar {
 			width: 10px;
 			height: 10px;
@@ -91,8 +89,7 @@
 		}
 
 		::-webkit-scrollbar-thumb {
-			background: rgba(152, 40, 32, 1);
-			/* 使用学校主题色 */
+			background: var(--primary-color);
 			border-radius: 5px;
 			transition: background 0.3s ease;
 		}
@@ -104,7 +101,7 @@
 		/* Firefox浏览器 */
 		* {
 			scrollbar-width: thin;
-			scrollbar-color: rgba(152, 40, 32, 1) #f1f1f1;
+			scrollbar-color: var(--primary-color) #f1f1f1;
 		}
 
 		/* 确保内容可滚动 */
@@ -114,17 +111,13 @@
 		}
 
 		/* 布局辅助类 */
-		.container {
+		.main-container {
 			width: 100%;
 			min-height: 100%;
 			display: flex;
 			flex-direction: column;
 			opacity: 0;
 			animation: fadeIn 1s ease-out forwards;
-			/* 移除下面的滚动条隐藏样式
-			scrollbar-width: none;
-			-ms-overflow-style: none;
-			*/
 		}
 
 		@keyframes fadeIn {
@@ -154,13 +147,105 @@
 			justify-content: space-between;
 		}
 
-		/* 头部导航 */
+		/* --- 头部样式 --- */
 		.header {
 			background: url('./img/dw_index_topbg.jpg') center / cover no-repeat;
-			padding: 1rem 2rem;
-			color: #fff;
+			padding: 0.75rem 1rem;
+			color: #333;
 			width: 100%;
 			z-index: 100;
+			position: relative;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		.header-content {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.5rem 0;
+			margin: 0;
+			opacity: 0;
+			transform: translateY(-20px);
+			animation: headerSlideIn 1s ease-out 0.2s forwards;
+		}
+
+		@keyframes headerSlideIn {
+			from {
+				opacity: 0;
+				transform: translateY(-20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.logo-area {
+			display: flex;
+			align-items: center;
+		}
+
+		.logo-img {
+			width: 50px;
+			height: 50px;
+			margin-right: 10px;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			opacity: 0;
+			transform: scale(0.8);
+			animation: logoImageZoomIn 0.6s ease-out 0.1s forwards;
+		}
+
+		@keyframes logoImageZoomIn {
+			0% {
+				opacity: 0;
+				transform: scale(0.8);
+			}
+			70% {
+				transform: scale(1.1);
+			}
+			100% {
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+
+		.logo-img img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.logo-text {
+			color: var(--primary-color);
+			font-size: 24px;
+			font-weight: bold;
+			margin-left: 10px;
+			text-shadow: 0 3px 6px rgba(255, 255, 255, 1), 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.6);
+		}
+
+		.logo-text .char {
+			display: inline-block;
+			opacity: 0;
+			transform: translateY(-20px) scale(0.5);
+			animation: charFadeIn 0.6s ease-out forwards;
+		}
+
+		@keyframes charFadeIn {
+			0% {
+				opacity: 0;
+				transform: translateY(-20px) scale(0.5);
+			}
+			60% {
+				transform: translateY(-5px) scale(1.1);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+			}
 		}
 
 		.header-title {
@@ -172,13 +257,18 @@
 		.header-title a {
 			position: relative;
 			display: inline-block;
-			color: #fff;
+			color: var(--primary-color);
 			text-decoration: none;
 			font-weight: bold;
-			font-size: 24px;
+			font-size: 20px;
 			opacity: 0;
 			transform: translateY(5px);
 			animation: titleFadeIn 0.8s ease-out forwards 0.1s;
+			transition: color 0.3s ease;
+		}
+
+		.header-title a:hover {
+			color: var(--gold-color);
 		}
 
 		@keyframes titleFadeIn {
@@ -201,7 +291,7 @@
 			left: 0;
 			width: 0;
 			height: 2px;
-			background-color: rgba(255, 255, 255, 0.7);
+			background: linear-gradient(90deg, var(--primary-color), var(--gold-color));
 			animation: underlineGrow 0.6s ease-out forwards 0.7s;
 		}
 
@@ -214,6 +304,27 @@
 				width: 100%;
 				left: 0;
 			}
+		}
+
+		/* 面包屑导航 */
+		.breadcrumb {
+			background: linear-gradient(135deg, 
+				rgba(139, 0, 0, 0.05) 0%,
+				rgba(160, 20, 20, 0.03) 50%,
+				rgba(139, 0, 0, 0.02) 100%);
+			padding: 12px 0;
+			font-size: 14px;
+			color: var(--text-secondary);
+			border-bottom: 1px solid rgba(139, 0, 0, 0.1);
+		}
+
+		.breadcrumb a {
+			color: var(--primary-color);
+			transition: color 0.3s ease;
+		}
+
+		.breadcrumb a:hover {
+			color: var(--gold-color);
 		}
 
 		/* 添加移动端导航样式 */
@@ -309,6 +420,23 @@
 		.nav-section {
 			padding: 2rem;
 			width: 100%;
+			background: linear-gradient(135deg, 
+				rgba(255, 255, 255, 0.9) 0%,
+				rgba(248, 249, 250, 0.8) 100%);
+			position: relative;
+		}
+
+		.nav-section::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			background: linear-gradient(90deg, 
+				var(--primary-color) 0%,
+				var(--gold-color) 50%,
+				var(--primary-color) 100%);
 		}
 
 		.nav-tabs {
@@ -316,19 +444,24 @@
 			gap: 1rem;
 			margin-bottom: 2rem;
 			flex-wrap: wrap;
+			justify-content: center;
 		}
 
 		.nav-tab {
 			padding: 0.75rem 1.5rem;
-			border-radius: 4px;
+			border-radius: 8px;
 			font-size: 1rem;
 			cursor: pointer;
 			position: relative;
 			overflow: hidden;
-			transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+			transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 			opacity: 0;
 			transform: translateY(-10px);
 			animation: slideInDown 0.6s ease-out forwards;
+			background: white;
+			border: 2px solid rgba(139, 0, 0, 0.1);
+			color: var(--text-primary);
+			font-weight: 500;
 		}
 
 		/* 为每个导航标签添加延迟动画 */
@@ -349,26 +482,54 @@
 			}
 		}
 
+		.nav-tab::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, 
+				transparent,
+				rgba(139, 0, 0, 0.1),
+				transparent);
+			transition: left 0.5s ease;
+		}
+
 		.nav-tab:not(.active):hover {
-			transform: translateY(-2px);
-			box-shadow: 0 2px 8px rgba(152, 40, 32, 0.2);
+			transform: translateY(-2px) scale(1.05);
+			box-shadow: 0 8px 25px rgba(139, 0, 0, 0.15);
+			border-color: rgba(139, 0, 0, 0.3);
+			background: linear-gradient(135deg, 
+				rgba(139, 0, 0, 0.05) 0%,
+				rgba(255, 215, 0, 0.03) 100%);
+		}
+
+		.nav-tab:hover::before {
+			left: 100%;
 		}
 
 		.nav-tab.active {
-			background-color: #982820;
-			color: #fff;
+			background: linear-gradient(135deg, 
+				var(--primary-color) 0%,
+				rgba(139, 0, 0, 0.9) 100%);
+			color: white;
 			transform: scale(1.05);
+			box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+			border-color: var(--primary-color);
+			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 		}
 
 		.nav-tab::after {
 			content: '';
 			position: absolute;
-			bottom: 0;
+			bottom: -2px;
 			left: 50%;
 			width: 0;
-			height: 2px;
-			background-color: #982820;
+			height: 3px;
+			background: linear-gradient(90deg, var(--gold-color), var(--primary-color));
 			transition: width 0.3s ease, left 0.3s ease;
+			border-radius: 2px;
 		}
 
 		.nav-tab:not(.active):hover::after {
@@ -378,37 +539,54 @@
 
 		/* 新闻列表 */
 		.news-list {
-			background: #fff;
+			background: linear-gradient(135deg, 
+				rgba(255, 255, 255, 0.95) 0%,
+				rgba(248, 249, 250, 0.9) 100%);
 			border-radius: 12px;
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 			width: 100%;
 			display: block;
 			opacity: 1;
-			transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease;
+			transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 			transform: translateY(0);
 			max-height: 1000px;
 			overflow: hidden;
-			padding: 1rem;
+			padding: 1.5rem;
+			border: 1px solid rgba(139, 0, 0, 0.1);
+			position: relative;
+		}
+
+		.news-list::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.02) 0%, transparent 50%),
+						radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+			pointer-events: none;
 		}
 
 		.news-item {
-			padding: 0.5rem 1.5rem;
+			padding: 1rem 1.5rem;
 			display: flex;
 			justify-content: space-between;
-			border-bottom: 1px solid #e5e7eb;
+			align-items: center;
+			border-bottom: 1px solid rgba(139, 0, 0, 0.1);
 			position: relative;
 			cursor: pointer;
-			transition: all 0.3s ease;
-			border-left: 0px solid #982820;
-			background: linear-gradient(135deg, #ffffff, #fefefe);
+			transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			border-left: 0px solid var(--primary-color);
+			background: white;
 			border-radius: 8px;
-			margin-bottom: 0.5rem;
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-			min-height: 50px;
-			align-items: center;
+			margin-bottom: 8px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+			min-height: 60px;
 			opacity: 0;
 			transform: translateY(20px);
 			animation: slideInUp 0.6s ease-out forwards;
+			z-index: 1;
 		}
 
 		/* 为每个新闻项添加延迟动画 */
@@ -434,45 +612,68 @@
 
 		.news-item:last-child {
 			border-bottom: none;
+			margin-bottom: 0;
+		}
+
+		.news-item::before {
+			content: '';
+			position: absolute;
+			left: -100%;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, 
+				transparent,
+				rgba(139, 0, 0, 0.1),
+				transparent);
+			transition: left 0.5s ease;
 		}
 
 		.news-item:hover {
-			background: linear-gradient(135deg, rgba(152, 40, 32, 0.08), rgba(152, 40, 32, 0.05));
-			transform: translateX(8px) translateY(-2px);
+			background: linear-gradient(135deg, 
+				rgba(139, 0, 0, 0.08) 0%,
+				rgba(255, 215, 0, 0.05) 100%);
+			transform: translateX(8px) translateY(-2px) scale(1.02);
 			padding-left: 2rem;
-			border-left: 4px solid #982820;
-			box-shadow: 0 8px 25px rgba(152, 40, 32, 0.15);
+			border-left: 4px solid var(--primary-color);
+			box-shadow: 0 8px 25px rgba(139, 0, 0, 0.15);
 			border-radius: 12px;
 		}
 
+		.news-item:hover::before {
+			left: 100%;
+		}
+
 		.news-item.selected {
-			background: linear-gradient(135deg, rgba(152, 40, 32, 0.12), rgba(152, 40, 32, 0.08));
-			transform: translateX(8px) translateY(-2px);
+			background: linear-gradient(135deg, 
+				rgba(139, 0, 0, 0.12) 0%,
+				rgba(255, 215, 0, 0.08) 100%);
+			transform: translateX(8px) translateY(-2px) scale(1.02);
 			padding-left: 2rem;
-			border-left: 4px solid #982820;
-			box-shadow: 0 8px 25px rgba(152, 40, 32, 0.2);
+			border-left: 4px solid var(--primary-color);
+			box-shadow: 0 8px 25px rgba(139, 0, 0, 0.2);
 			border-radius: 12px;
 		}
 
 		.news-title {
-			font-size: 1.05rem;
-			color: #1f2937;
+			font-size: 1.1rem;
+			color: var(--text-primary);
 			flex: 1;
 			padding-right: 1rem;
 			font-weight: 500;
 			line-height: 1.5;
-			transition: color 0.3s ease;
+			transition: all 0.3s ease;
 			position: relative;
 			overflow: hidden;
 		}
 
 		.news-item:hover .news-title {
-			color: #982820;
+			color: var(--primary-color);
 			font-weight: 600;
 		}
 
 		.news-item.selected .news-title {
-			color: #982820;
+			color: var(--primary-color);
 			font-weight: 600;
 		}
 
@@ -484,7 +685,7 @@
 			left: 0;
 			width: 0;
 			height: 2px;
-			background: linear-gradient(90deg, #982820, #b32824);
+			background: linear-gradient(90deg, var(--primary-color), var(--gold-color));
 			transition: width 0.4s ease;
 		}
 
@@ -493,13 +694,13 @@
 		}
 
 		.news-date {
-			font-size: 0.8rem;
-			color: #6b7280;
+			font-size: 0.85rem;
+			color: var(--text-secondary);
 			white-space: nowrap;
-			background: #ffffff;
-			padding: 0.5rem;
+			background: white;
+			padding: 0.6rem;
 			border-radius: 8px;
-			border: 1px solid #e5e7eb;
+			border: 1px solid rgba(139, 0, 0, 0.1);
 			font-weight: 500;
 			position: relative;
 			overflow: hidden;
@@ -510,8 +711,8 @@
 			align-items: center;
 			justify-content: center;
 			text-align: center;
-			width: 50px;
-			height: 50px;
+			width: 55px;
+			height: 55px;
 		}
 
 		.news-date .date-container {
@@ -523,11 +724,11 @@
 		}
 
 		.news-date .date-day {
-			font-size: 1.2rem;
+			font-size: 1.3rem;
 			font-weight: 700;
 			color: #374151;
 			line-height: 1;
-			margin-bottom: 1px;
+			margin-bottom: 2px;
 			transition: all 0.3s ease;
 		}
 
@@ -540,56 +741,61 @@
 		}
 
 		.news-date:hover {
-			border-color: #982820;
+			border-color: var(--primary-color);
 			transform: translateY(-2px);
-			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.15);
+			box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
+			background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), white);
 		}
 
 		.news-date:hover .date-day {
-			color: #982820;
+			color: var(--primary-color);
 		}
 
 		.news-date:hover .date-month-year {
-			color: #982820;
+			color: var(--primary-color);
 		}
 
 		/* 当鼠标悬停在新闻单元上时，日期也要变红 */
 		.news-item:hover .news-date {
-			border-color: #982820;
+			border-color: var(--primary-color);
 			transform: translateY(-2px);
-			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.15);
+			box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
+			background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), white);
 		}
 
 		.news-item:hover .news-date .date-day {
-			color: #982820;
+			color: var(--primary-color);
 		}
 
 		.news-item:hover .news-date .date-month-year {
-			color: #982820;
+			color: var(--primary-color);
 		}
 
 		/* 当新闻单元被选中时，日期也要变红 */
 		.news-item.selected .news-date {
-			border-color: #982820;
+			border-color: var(--primary-color);
 			transform: translateY(-2px);
-			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.15);
+			box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
+			background: linear-gradient(135deg, rgba(139, 0, 0, 0.08), white);
 		}
 
 		.news-item.selected .news-date .date-day {
-			color: #982820;
+			color: var(--primary-color);
 		}
 
 		.news-item.selected .news-date .date-month-year {
-			color: #982820;
+			color: var(--primary-color);
 		}
 
 		/* 文章容器美化 */
 		.article-container {
 			position: relative;
 			margin: 1rem auto 2rem;
-			background: url(https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054809440/0cef/42a2/7df8/b093dc39ae9481220f856a8748a277af.jpg) center / cover no-repeat;
-			border: none;
-			border-radius: 8px;
+			background: linear-gradient(135deg, 
+				rgba(255, 255, 255, 0.95) 0%,
+				rgba(248, 249, 250, 0.9) 100%);
+			border: 1px solid rgba(139, 0, 0, 0.1);
+			border-radius: 12px;
 			padding-bottom: 2rem;
 			flex: 1;
 			display: flex;
@@ -597,18 +803,32 @@
 			width: 100%;
 			max-width: none;
 			overflow: hidden;
-			transition: opacity 0.5s ease, transform 0.5s ease;
+			transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 			opacity: 0;
 			transform: translateY(20px);
 			max-height: 0;
 			pointer-events: none;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+		}
+
+		.article-container::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.02) 0%, transparent 50%),
+						radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+			pointer-events: none;
+			z-index: 0;
 		}
 
 		.article-container.visible {
 			display: flex;
 			opacity: 1;
 			transform: translateY(0);
-			max-height: 5000px; /* 足够大的高度确保内容可见 */
+			max-height: 5000px;
 			pointer-events: auto;
 		}
 
@@ -623,18 +843,50 @@
 
 		/* 文章标题区域美化 */
 		.article-header {
-			background: linear-gradient(90deg, rgba(152, 40, 32, 0.95), rgba(178, 20, 20, 0.95));
-			padding: 1.25rem 0;
+			background: linear-gradient(135deg, 
+				var(--primary-color) 0%,
+				rgba(139, 0, 0, 0.9) 100%);
+			padding: 1.5rem 0;
 			text-align: center;
 			width: 100vw;
-			/* 设置为视口宽度 */
 			position: relative;
 			left: 50%;
 			right: 50%;
 			margin-left: -50vw;
 			margin-right: -50vw;
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+			box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
 			color: #fff;
+			z-index: 1;
+		}
+
+		.article-header::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: 
+				radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+				radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+				radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+			background-size: 50px 50px;
+			animation: particleMove 8s linear infinite;
+		}
+
+		@keyframes particleMove {
+			0% { background-position: 0 0; }
+			100% { background-position: 50px 50px; }
+		}
+
+		.article-title {
+			position: relative;
+			z-index: 2;
+			font-size: 1.8rem;
+			font-weight: bold;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+			margin: 0;
+			padding: 0 20px;
 		}
 
 		/* 文章内容区美化 */
@@ -644,7 +896,8 @@
 			display: flex;
 			flex: 1;
 			justify-content: center;
-			/* 确保内容居中 */
+			position: relative;
+			z-index: 1;
 		}
 
 		.article-main {
@@ -652,9 +905,25 @@
 			padding: 2.5rem;
 			flex-grow: 1;
 			max-width: 65%;
-			/* 限制文章宽度，提高可读性 */
-			border-radius: 8px;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
+			border-radius: 12px;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+			border: 1px solid rgba(139, 0, 0, 0.1);
+			position: relative;
+			z-index: 1;
+		}
+
+		.article-main::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			background: linear-gradient(90deg, 
+				var(--primary-color) 0%,
+				var(--gold-color) 50%,
+				var(--primary-color) 100%);
+			border-radius: 2px 2px 0 0;
 		}
 
 		/* 文章元信息美化 */
@@ -663,18 +932,18 @@
 			align-items: center;
 			justify-content: center;
 			gap: 15px;
-			/* 减小间距 */
 			flex-wrap: wrap;
-			/* 允许换行 */
 			font-size: 0.9rem;
-			/* 略微缩小字体 */
-			color: #4d4d4d;
+			color: var(--text-muted);
 			margin: 0.5rem auto 1.5rem;
 			padding: 0.75rem 1rem;
-			background-color: rgba(248, 249, 250, 0.7);
-			border-radius: 6px;
+			background: linear-gradient(135deg, 
+				rgba(139, 0, 0, 0.05) 0%,
+				rgba(248, 249, 250, 0.8) 100%);
+			border-radius: 8px;
 			width: fit-content;
-			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+			border: 1px solid rgba(139, 0, 0, 0.1);
 		}
 
 		.meta-item {
@@ -686,16 +955,43 @@
 		.meta-divider {
 			height: 14px;
 			width: 1px;
-			background-color: #d0d0d0;
+			background: linear-gradient(180deg, transparent, var(--primary-color), transparent);
 		}
 
 		.article-divider {
 			height: 4px;
 			width: 40%;
 			max-width: 400px;
-			background: linear-gradient(90deg, transparent, #982820, transparent);
+			background: linear-gradient(90deg, 
+				transparent, 
+				var(--primary-color), 
+				var(--gold-color), 
+				var(--primary-color), 
+				transparent);
 			margin: 1rem auto 2.5rem;
 			border-radius: 2px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.article-divider::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, 
+				transparent,
+				rgba(255, 255, 255, 0.6),
+				transparent);
+			animation: dividerShine 2s ease-in-out infinite;
+		}
+
+		@keyframes dividerShine {
+			0% { left: -100%; }
+			50% { left: 100%; }
+			100% { left: -100%; }
 		}
 
 		/* 文章图片美化 */
@@ -1205,6 +1501,149 @@
 		.back-arrow {
 			display: none; /* 隐藏返回箭头 */
 		}
+
+		/* 底部页脚样式与动画 */
+		.page-footer {
+			background: url('./img/dw_index_topbg.jpg') center / cover no-repeat;
+			color: #fff;
+			text-align: center;
+			padding: 60px 0;
+			font-size: 14px;
+			position: relative;
+			overflow: hidden;
+			margin-top: 40px;
+		}
+
+		.page-footer::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(139, 0, 0, 0.7);
+			z-index: 1;
+		}
+
+		.page-footer::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: 
+				radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+				radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+				radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+			background-size: 50px 50px;
+			animation: particleMove 8s linear infinite;
+			z-index: 2;
+		}
+
+		.footer-logo {
+			display: block;
+			margin: 0 auto 20px auto;
+			max-width: 120px;
+			height: auto;
+			position: relative;
+			z-index: 3;
+			filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+			transition: transform 0.3s ease;
+			animation: fadeInLogo 1.5s ease forwards;
+			opacity: 0;
+		}
+
+		.footer-logo:hover {
+			transform: scale(1.1) rotate(3deg);
+		}
+
+		@keyframes fadeInLogo {
+			0% { 
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			100% { 
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.footer-copyright {
+			font-size: 16px;
+			color: white;
+			animation: fadeInText 2s ease-in-out forwards;
+			margin-top: 10px;
+			position: relative;
+			display: inline-block;
+			opacity: 0;
+			z-index: 3;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+		}
+		
+		.footer-copyright::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 2px;
+			bottom: -5px;
+			left: 50%;
+			background: linear-gradient(90deg, var(--gold-color), white, var(--gold-color));
+			transition: all 0.5s ease;
+			opacity: 0;
+		}
+		
+		.footer-copyright:hover::after {
+			width: 100%;
+			left: 0%;
+			opacity: 0.8;
+		}
+
+		@keyframes fadeInText {
+			0% {
+				opacity: 0;
+				transform: translateY(15px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* 返回顶部按钮 */
+		.back-to-top {
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			width: 50px;
+			height: 50px;
+			background: linear-gradient(135deg, var(--primary-color), var(--gold-color));
+			color: white;
+			border: none;
+			border-radius: 50%;
+			cursor: pointer;
+			z-index: 1000;
+			opacity: 0;
+			transform: translateY(100px);
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+		}
+
+		.back-to-top.show {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.back-to-top:hover {
+			transform: scale(1.1) translateY(-2px);
+			box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
+		}
+
+		.back-to-top::before {
+			content: '↑';
+			font-size: 20px;
+			font-weight: bold;
+		}
 		
 		/* 移动端样式增强 - 美化侧边栏 */
 		@media (max-width: 768px) {
@@ -1284,7 +1723,7 @@
 
 		/* 页脚 */
 		.page-footer {
-			background: url('./img/footer_bg.jpg') center / cover no-repeat;
+			background: url('./img/dw_index_topbg.jpg') center / cover no-repeat;
 			color: #fff;
 			text-align: center;
 			padding: 40px 0;
@@ -4090,6 +4529,24 @@
 			// 页面尺寸改变时也检查一次
 			window.addEventListener('resize', handleScroll);
 		});
+
+		// 返回顶部功能
+		function scrollToTop() {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		}
+
+		// 返回顶部按钮显示/隐藏控制
+		window.addEventListener('scroll', function() {
+			const backToTopBtn = document.querySelector('.back-to-top');
+			if (window.pageYOffset > 300) {
+				backToTopBtn.classList.add('show');
+			} else {
+				backToTopBtn.classList.remove('show');
+			}
+		});
 	</script>
 </head>
 
@@ -4122,14 +4579,35 @@
 			</div>
 		</div>
 	</noscript>
-	<div class="container">
+	<div class="main-container">
 		<!-- 头部导航 -->
-		<header class="header flex justify-between items-center">
-			<h1 class="header-title"><a href="./index.html" target="_self">党委宣传部</a></h1>
-			<a href="https://www.henu.edu.cn" target="_blank">
-				<div class="logo"></div>
-			</a>
+		<header class="header">
+			<div class="container">
+				<div class="header-content">
+					<div class="logo-area">
+						<div class="logo-img">
+							<img src="./img/henu-head.png" alt="河南大学">
+						</div>
+						<div class="logo-text">
+							<span class="char" style="animation-delay: 0.1s">新</span>
+							<span class="char" style="animation-delay: 0.2s">闻</span>
+							<span class="char" style="animation-delay: 0.3s">中</span>
+							<span class="char" style="animation-delay: 0.4s">心</span>
+						</div>
+					</div>
+					<div class="header-title">
+						<a href="./index.html" target="_self">返回首页</a>
+					</div>
+				</div>
+			</div>
 		</header>
+
+		<!-- 面包屑导航 -->
+		<nav class="breadcrumb">
+			<div class="container">
+				<a href="./index.html">首页</a> > <span>新闻中心</span>
+			</div>
+		</nav>
 
 		<!-- 新闻导航 -->
 		<section class="nav-section">
@@ -4213,11 +4691,20 @@
 		<article class="article-container">
 			<!-- 内容将由JavaScript动态渲染 -->
 		</article>
-			</div>
+	</div>
 
 	<!-- 页脚 -->
 	<footer class="page-footer">
-		<img src="./img/henu_logo.png" alt="Footer Logo" class="footer-logo">
+		<img src="./img/henu_logo.png" alt="河南大学" class="footer-logo">
+		<p class="footer-copyright">
+			© 2024 河南大学党委宣传部
+			<br>
+			技术支持: 河南大学网站工作室
+		</p>
+	</footer>
+
+	<!-- 返回顶部按钮 -->
+	<button class="back-to-top" onclick="scrollToTop()"></button>
 		<style>
 			.page-footer {
 				background: url('./img/footer_bg.jpg') center / cover no-repeat;
