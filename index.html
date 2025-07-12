@@ -3010,7 +3010,20 @@
     </style>
     <script src="./news/loadNews.js"></script>
     <script>
+        // 添加时间戳参数避免缓存
+        function addTimestampToLinks() {
+            const timestamp = Date.now();
+            const links = document.querySelectorAll('a[href*="inner.html"]');
+            links.forEach(link => {
+                if (!link.href.includes('?')) {
+                    link.href = link.href + '?v=' + timestamp;
+                }
+            });
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
+            // 为所有inner.html链接添加时间戳
+            addTimestampToLinks();
             // --- 新增：新闻轮播功能 ---
             function initNewsCarousel() {
                 console.log('=== 新闻轮播初始化开始 ===');
@@ -3096,6 +3109,16 @@
                             <p style="font-size: 12px; color: #7f8c8d; margin: 0; display: flex; align-items: center; gap: 4px;"><span style="color: #ff6b6b;">📅</span>${news.date}</p>
                         </div>
                     `;
+                    
+                    // 添加点击事件跳转到inner.html
+                    slide.addEventListener('click', () => {
+                        console.log('新闻轮播slide被点击，跳转到:', news.link);
+                        // 添加时间戳避免缓存
+                        const timestamp = Date.now();
+                        const url = news.link + '?v=' + timestamp;
+                        window.location.href = url;
+                    });
+                    
                     wrapper.appendChild(slide);
                 });
                 
@@ -3287,16 +3310,20 @@
                     let html = '';
                     
                     data.forEach(item => {
+                        // 添加时间戳避免缓存
+                        const timestamp = Date.now();
+                        const linkWithTimestamp = item.link + '?v=' + timestamp;
+                        
                         if (type === 'theory') {
                             html += `
                                 <li>
-                                    <a href="${item.link}">${item.title}</a>
+                                    <a href="${linkWithTimestamp}">${item.title}</a>
                                 </li>
                             `;
                         } else {
                             html += `
                                 <li>
-                                    <a href="${item.link}">${item.title}</a>
+                                    <a href="${linkWithTimestamp}">${item.title}</a>
                                     <div class="latest-meta">
                                         <span>${item.date}</span>
                                         <span class="views">${item.views}</span>
