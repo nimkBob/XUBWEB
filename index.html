@@ -3580,6 +3580,59 @@
                 min-height: 28px !important; /* 超小屏幕稍微减小触摸区域 */
             }
         }
+
+        /* 新增：移动端新闻列表样式 */
+        .mobile-news-list {
+            list-style: none;
+            margin: 0;
+            padding: 10px 0 8px 0;
+            background: transparent;
+        }
+        .mobile-news-list li {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(139,0,0,0.07);
+            width: 90%;
+            max-width: 420px;
+            margin: 0 auto 6px auto;
+            padding: 8px 10px 6px 10px;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s;
+        }
+        .mobile-news-list li:active {
+            box-shadow: 0 4px 16px rgba(139,0,0,0.13);
+        }
+        .mobile-news-list .news-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #8B0000;
+            margin-bottom: 3px;
+            line-height: 1.15;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .mobile-news-list .news-desc {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.2;
+            margin-bottom: 2px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .mobile-news-list .news-meta {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 0;
+        }
+        /* 轮播图下移后，顶部间距优化 */
+        .mobile-news-carousel {
+            margin-top: 2px;
+        }
     </style>
     <script src="./news/loadNews.js"></script>
     <script>
@@ -3659,8 +3712,25 @@
                     }
                 ];
 
+                // 新增：渲染新闻列表
+                const listContainer = document.getElementById('mobileNewsList');
+                if (listContainer) {
+                    listContainer.innerHTML = '';
+                    newsData.slice(0, 4).forEach((news, idx) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <div class="news-title">${news.title}</div>
+                            <div class="news-desc">${news.description}</div>
+                            <div class="news-meta">${news.date} · 阅读 ${news.views}</div>
+                        `;
+                        li.addEventListener('click', () => {
+                            const timestamp = Date.now();
+                            window.location.href = news.link + '?v=' + timestamp;
+                        });
+                        listContainer.appendChild(li);
+                    });
+                }
 
-                
                 // 创建轮播幻灯片
                 slidesContainer.innerHTML = '';
                 newsData.forEach((news, index) => {
@@ -3672,11 +3742,6 @@
                         </div>
                         <div class="mobile-news-content">
                             <h3 class="mobile-news-title">${news.title}</h3>
-                            <div class="mobile-news-meta">${news.date}</div>
-                            <div class="mobile-news-actions">
-                                <a href="${news.link}?v=${Date.now()}" class="mobile-news-read-more">阅读全文</a>
-                                <div class="mobile-news-views">${news.views}</div>
-                            </div>
                         </div>
                     `;
                     
@@ -4851,18 +4916,20 @@
             
             <!-- 全新移动端新闻资讯模块 -->
             <div class="mobile-news-container">
-                
+                <!-- 新增：新闻列表 -->
+                <ul class="mobile-news-list" id="mobileNewsList">
+                    <!-- 动态内容由JavaScript填充 -->
+                </ul>
+                <!-- 轮播图下移 -->
                 <div class="mobile-news-carousel">
                     <div class="mobile-news-slides" id="mobileNewsSlides">
                         <!-- 动态内容由JavaScript填充 -->
                     </div>
-                    
                     <div class="mobile-news-controls">
                         <button class="mobile-news-arrow" id="mobileNewsPrev">‹</button>
                         <button class="mobile-news-arrow" id="mobileNewsNext">›</button>
                     </div>
                 </div>
-                
                 <div class="mobile-news-indicators" id="mobileNewsIndicators">
                     <!-- 动态指示器由JavaScript填充 -->
                 </div>
