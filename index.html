@@ -1006,6 +1006,585 @@
             border-color: #ffd6db;
             background: rgba(255, 255, 255, 1);
         }
+
+        /* 桌面端增强版思政课堂卡片样式 */
+        @media (min-width: 769px) {
+            .classroom-card.enhanced {
+                height: 380px; /* 增加高度以容纳更多内容 */
+                overflow: hidden;
+                position: relative;
+            }
+
+            .classroom-card.enhanced .classroom-card-content {
+                padding: 20px;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .classroom-card.enhanced .classroom-card-title {
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1.4;
+                margin-bottom: 12px;
+                color: #333;
+            }
+
+            .classroom-card.enhanced .classroom-card-title a {
+                color: inherit;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .classroom-card.enhanced .classroom-card-title a:hover {
+                color: #8B0000;
+            }
+
+            .classroom-card.enhanced .classroom-card-summary {
+                font-size: 14px;
+                line-height: 1.6;
+                color: #666;
+                margin-bottom: 15px;
+                flex-grow: 1;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .classroom-card.enhanced .classroom-card-meta {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 12px;
+                color: #999;
+                margin-top: auto;
+            }
+
+            .classroom-card.enhanced .publish-date {
+                color: #8B0000;
+                font-weight: 500;
+            }
+
+            .classroom-card.enhanced .read-count {
+                color: #666;
+            }
+
+            .classroom-card.enhanced .category-tag {
+                background: linear-gradient(135deg, #8B0000, #a52a2a);
+                color: white;
+                padding: 4px 8px;
+                border-radius: 12px;
+                font-size: 11px;
+                font-weight: 500;
+            }
+
+            /* 简洁的悬停交互效果 - 去掉蒙版覆盖层 */
+            .classroom-card.enhanced .classroom-card-overlay {
+                display: none; /* 完全隐藏覆盖层 */
+            }
+
+            .classroom-card.enhanced .overlay-content {
+                transform: translateY(20px);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .classroom-card.enhanced:hover .overlay-content {
+                transform: translateY(0);
+            }
+
+            .classroom-card.enhanced .extended-summary {
+                font-size: 15px;
+                line-height: 1.7;
+                margin-bottom: 25px;
+                color: rgba(255, 255, 255, 0.95);
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .classroom-card.enhanced .read-more-btn {
+                display: inline-block;
+                padding: 12px 24px;
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+                text-decoration: none;
+                border-radius: 25px;
+                font-size: 14px;
+                font-weight: 600;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+
+            .classroom-card.enhanced .read-more-btn:hover {
+                background: rgba(255, 255, 255, 0.3);
+                border-color: rgba(255, 255, 255, 0.6);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            /* 增强悬停效果 */
+            .classroom-card.enhanced:hover {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 20px 40px rgba(139, 0, 0, 0.15);
+                border-color: #8B0000;
+            }
+
+            /* 性能优化 - GPU 加速 */
+            .classroom-card.enhanced {
+                will-change: transform, box-shadow;
+                transform: translateZ(0); /* 强制GPU加速 */
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+
+            .classroom-card.enhanced .classroom-card-overlay {
+                will-change: opacity, visibility;
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+
+            .classroom-card.enhanced .overlay-content {
+                will-change: transform;
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+
+            .classroom-card.enhanced .classroom-card-image {
+                will-change: transform;
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+
+            /* 卡片图片优化 */
+            .classroom-card.enhanced .classroom-card-image {
+                height: 180px;
+                object-fit: cover;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .classroom-card.enhanced:hover .classroom-card-image {
+                transform: scale(1.05);
+            }
+        }
+
+        /* 思政课堂新闻列表样式 - 整合到同一模块 */
+        @media (min-width: 769px) {
+            .classroom-news-list {
+                margin-top: 30px;
+                padding: 25px 0 0 0;
+                border-top: 2px solid #ffeaea;
+                position: relative;
+            }
+
+            .classroom-news-list .news-list {
+                position: relative;
+                z-index: 1;
+            }
+
+            .classroom-news-list .news-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 18px 20px;
+                margin-bottom: 8px;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 12px;
+                border: 1px solid #f0f0f0;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .classroom-news-list .news-item::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background: linear-gradient(135deg, #8B0000, #a52a2a);
+                transform: scaleY(0);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .classroom-news-list .news-item:hover {
+                transform: translateX(8px);
+                background: rgba(255, 255, 255, 1);
+                border-color: #8B0000;
+                box-shadow: 0 8px 20px rgba(139, 0, 0, 0.1);
+            }
+
+            .classroom-news-list .news-item:hover::before {
+                transform: scaleY(1);
+            }
+
+            .classroom-news-list .news-item-title {
+                flex: 1;
+                margin: 0;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1.5;
+            }
+
+            .classroom-news-list .news-item-title a {
+                color: #333;
+                text-decoration: none;
+                transition: color 0.3s ease;
+                display: block;
+            }
+
+            .classroom-news-list .news-item:hover .news-item-title a {
+                color: #8B0000;
+            }
+
+            .classroom-news-list .news-date {
+                font-size: 14px;
+                color: #999;
+                font-weight: 400;
+                margin-left: 20px;
+                white-space: nowrap;
+                transition: color 0.3s ease;
+            }
+
+            .classroom-news-list .news-item:hover .news-date {
+                color: #8B0000;
+            }
+
+            .classroom-news-list .news-more-button {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .classroom-news-list .more-button {
+                display: inline-flex;
+                align-items: center;
+                padding: 10px 20px;
+                background: linear-gradient(135deg, #8B0000, #a52a2a);
+                color: white;
+                text-decoration: none;
+                border-radius: 25px;
+                font-size: 14px;
+                font-weight: 600;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .classroom-news-list .more-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.6s ease;
+            }
+
+            .classroom-news-list .more-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+                background: linear-gradient(135deg, #a52a2a, #8B0000);
+            }
+
+            .classroom-news-list .more-button:hover::before {
+                left: 100%;
+            }
+        }
+
+            .political-news-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, #ffeaea, #fff6f7);
+                opacity: 0.05;
+                z-index: 0;
+            }
+
+            .political-news-section .news-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 25px;
+                padding-bottom: 15px;
+                border-bottom: 2px solid #8B0000;
+                position: relative;
+                z-index: 1;
+            }
+
+            .political-news-section .news-title {
+                font-size: 24px;
+                font-weight: bold;
+                color: #8B0000;
+                margin: 0;
+                position: relative;
+            }
+
+            .political-news-section .news-title::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -15px;
+                width: 60px;
+                height: 3px;
+                background: linear-gradient(90deg, #8B0000, #a52a2a);
+                border-radius: 2px;
+            }
+
+            .political-news-section .more-button {
+                display: inline-flex;
+                align-items: center;
+                padding: 10px 20px;
+                background: linear-gradient(135deg, #8B0000, #a52a2a);
+                color: white;
+                text-decoration: none;
+                border-radius: 25px;
+                font-size: 14px;
+                font-weight: 600;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .political-news-section .more-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.6s ease;
+            }
+
+            .political-news-section .more-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+                background: linear-gradient(135deg, #a52a2a, #8B0000);
+            }
+
+            .political-news-section .more-button:hover::before {
+                left: 100%;
+            }
+
+            .political-news-section .news-list {
+                position: relative;
+                z-index: 1;
+            }
+
+            .political-news-section .news-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 18px 20px;
+                margin-bottom: 8px;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 12px;
+                border: 1px solid #f0f0f0;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .political-news-section .news-item::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background: linear-gradient(135deg, #8B0000, #a52a2a);
+                transform: scaleY(0);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .political-news-section .news-item:hover {
+                transform: translateX(8px);
+                background: rgba(255, 255, 255, 1);
+                border-color: #8B0000;
+                box-shadow: 0 8px 20px rgba(139, 0, 0, 0.1);
+            }
+
+            .political-news-section .news-item:hover::before {
+                transform: scaleY(1);
+            }
+
+            .political-news-section .news-item-title {
+                flex: 1;
+                margin: 0;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1.5;
+            }
+
+            .political-news-section .news-item-title a {
+                color: #333;
+                text-decoration: none;
+                transition: color 0.3s ease;
+                display: block;
+            }
+
+            .political-news-section .news-item:hover .news-item-title a {
+                color: #8B0000;
+            }
+
+            .political-news-section .news-date {
+                font-size: 14px;
+                color: #999;
+                font-weight: 400;
+                margin-left: 20px;
+                white-space: nowrap;
+                transition: color 0.3s ease;
+            }
+
+            .political-news-section .news-item:hover .news-date {
+                color: #8B0000;
+            }
+
+            /* 思政新闻列表性能优化 - GPU 加速 */
+            .political-news-section .news-item {
+                will-change: transform, box-shadow;
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+
+            .political-news-section .more-button {
+                will-change: transform, box-shadow;
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+
+            /* 最终调优 - 动画时间优化 */
+            .classroom-card.enhanced {
+                transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .classroom-card.enhanced .classroom-card-overlay {
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .classroom-card.enhanced .overlay-content {
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .political-news-section .news-item {
+                transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .political-news-section .more-button {
+                transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            /* 确保与现有功能兼容 */
+            .classroom-card.enhanced .classroom-card-title a:focus,
+            .political-news-section .news-item-title a:focus,
+            .political-news-section .more-button:focus {
+                outline: 2px solid #8B0000;
+                outline-offset: 2px;
+            }
+
+            /* 打印样式优化 */
+            @media print {
+                .classroom-card.enhanced .classroom-card-overlay,
+                .political-news-section .more-button {
+                    display: none !important;
+                }
+            }
+
+            /* 新闻列表项的序号效果 */
+            .political-news-section .news-item:nth-child(1) { animation-delay: 0.1s; }
+            .political-news-section .news-item:nth-child(2) { animation-delay: 0.2s; }
+            .political-news-section .news-item:nth-child(3) { animation-delay: 0.3s; }
+            .political-news-section .news-item:nth-child(4) { animation-delay: 0.4s; }
+            .political-news-section .news-item:nth-child(5) { animation-delay: 0.5s; }
+
+            /* 响应式优化 */
+            @media (max-width: 1024px) {
+                .political-news-section {
+                    margin: 30px auto 20px;
+                    padding: 20px;
+                }
+
+                .political-news-section .news-item-title {
+                    font-size: 15px;
+                }
+
+                .political-news-section .news-date {
+                    font-size: 13px;
+                    margin-left: 15px;
+                }
+            }
+        }
+
+        /* 移动端隐藏思政新闻列表 */
+        @media (max-width: 768px) {
+            .political-news-section {
+                display: none !important;
+            }
+        }
+
+        /* 平板设备优化 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .classroom-card.enhanced {
+                height: 350px;
+            }
+
+            .classroom-card.enhanced .classroom-card-summary {
+                -webkit-line-clamp: 2;
+            }
+
+            .political-news-section {
+                margin: 40px auto 25px;
+                padding: 25px;
+            }
+
+            .political-news-section .news-title {
+                font-size: 22px;
+            }
+
+            .political-news-section .news-item {
+                padding: 16px 18px;
+            }
+        }
+
+        /* 大屏幕优化 */
+        @media (min-width: 1400px) {
+            .classroom-card.enhanced {
+                height: 400px;
+            }
+
+            .classroom-card.enhanced .classroom-card-summary {
+                font-size: 15px;
+                -webkit-line-clamp: 4;
+            }
+
+            .political-news-section {
+                max-width: 1400px;
+                padding: 40px;
+            }
+
+            .political-news-section .news-title {
+                font-size: 26px;
+            }
+
+            .political-news-section .news-item-title {
+                font-size: 17px;
+            }
+        }
         .classroom-text-section {
             background: rgba(255, 255, 255, 0.97);
             border-radius: 12px;
@@ -6036,55 +6615,151 @@
                 <div class="classroom-carousel-wrapper" id="classroomCarousel">
                     <!-- 第一页 - 田字布局 -->
                     <div class="classroom-page">
-                        <article class="classroom-card">
+                        <article class="classroom-card enhanced">
                             <img src="./img/class_1.jpg" alt="class_1" class="classroom-card-image">
                             <div class="classroom-card-content">
                                 <h3 class="classroom-card-title"><a href="./inner.html">我校召开2025年学生思想政治教育与安全稳定工作会议</a></h3>
+                                <p class="classroom-card-summary">学校召开2025年学生思想政治教育与安全稳定工作会议，深入学习贯彻党的二十大精神，全面部署新学期学生工作重点任务，进一步加强和改进学生思想政治教育工作。</p>
+                                <div class="classroom-card-meta">
+                                    <span class="publish-date">2025-01-15</span>
+                                    <span class="read-count">阅读 328</span>
+                                    <span class="category-tag">重要会议</span>
+                                </div>
+                            </div>
+                            <div class="classroom-card-overlay">
+                                <div class="overlay-content">
+                                    <p class="extended-summary">会议强调要坚持立德树人根本任务，围绕培养德智体美劳全面发展的社会主义建设者和接班人目标，创新工作方式方法，提升育人工作质量和水平，为学校高质量发展提供有力支撑。</p>
+                                    <a href="./inner.html" class="read-more-btn">阅读全文 →</a>
+                                </div>
                             </div>
                         </article>
-                        <article class="classroom-card">
+                        <article class="classroom-card enhanced">
                             <img src="./img/class_2.jpg" alt="class_2" class="classroom-card-image">
                             <div class="classroom-card-content">
                                 <h3 class="classroom-card-title"><a href="./inner.html">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a></h3>
+                                <p class="classroom-card-summary">学校召开2025年春季学期学生工作会议，深入交流学生工作经验，研讨新学期工作重点，推进"至善"学工启思汇品牌建设，提升学生工作质量和水平。</p>
+                                <div class="classroom-card-meta">
+                                    <span class="publish-date">2025-01-12</span>
+                                    <span class="read-count">阅读 256</span>
+                                    <span class="category-tag">学工动态</span>
+                                </div>
+                            </div>
+                            <div class="classroom-card-overlay">
+                                <div class="overlay-content">
+                                    <p class="extended-summary">会议围绕立德树人根本任务，聚焦学生全面发展，深入探讨新时代学生工作的创新路径和方法，为构建高质量学生工作体系提供有力支撑。</p>
+                                    <a href="./inner.html" class="read-more-btn">阅读全文 →</a>
+                                </div>
                             </div>
                         </article>
-                        <article class="classroom-card">
+                        <article class="classroom-card enhanced">
                             <img src="./img/class_3.jpg" alt="class_3" class="classroom-card-image">
                             <div class="classroom-card-content">
                                 <h3 class="classroom-card-title"><a href="./inner.html">杨萌芽到校团委调研座谈</a></h3>
+                                <p class="classroom-card-summary">校党委副书记杨萌芽深入校团委调研座谈，了解共青团工作开展情况，指导团学工作创新发展，推动青年学生思想政治教育工作再上新台阶。</p>
+                                <div class="classroom-card-meta">
+                                    <span class="publish-date">2025-01-10</span>
+                                    <span class="read-count">阅读 189</span>
+                                    <span class="category-tag">领导调研</span>
+                                </div>
+                            </div>
+                            <div class="classroom-card-overlay">
+                                <div class="overlay-content">
+                                    <p class="extended-summary">调研中，杨萌芽强调要充分发挥共青团组织优势，创新工作方式方法，加强青年学生理想信念教育，引导广大青年学生坚定不移听党话、跟党走。</p>
+                                    <a href="./inner.html" class="read-more-btn">阅读全文 →</a>
+                                </div>
                             </div>
                         </article>
-                        <article class="classroom-card">
+                        <article class="classroom-card enhanced">
                             <img src="./img/class_4.jpg" alt="class_4" class="classroom-card-image">
                             <div class="classroom-card-content">
                                 <h3 class="classroom-card-title"><a href="./inner.html">我校召开思政课建设工作会</a></h3>
+                                <p class="classroom-card-summary">学校召开思政课建设工作会，深入学习贯彻习近平总书记关于思政课建设的重要指示精神，研究部署新时代思政课改革创新工作，推动思政课高质量发展。</p>
+                                <div class="classroom-card-meta">
+                                    <span class="publish-date">2025-01-08</span>
+                                    <span class="read-count">阅读 412</span>
+                                    <span class="category-tag">课程建设</span>
+                                </div>
+                            </div>
+                            <div class="classroom-card-overlay">
+                                <div class="overlay-content">
+                                    <p class="extended-summary">会议强调要坚持用习近平新时代中国特色社会主义思想铸魂育人，不断推进思政课改革创新，增强思政课的思想性、理论性和亲和力、针对性，努力培养担当民族复兴大任的时代新人。</p>
+                                    <a href="./inner.html" class="read-more-btn">阅读全文 →</a>
+                                </div>
                             </div>
                         </article>
                     </div>
                     <!-- 第二页 - 田字布局 -->
                     <div class="classroom-page">
-                        <article class="classroom-card">
+                        <article class="classroom-card enhanced">
                             <img src="./img/class_5.jpg" alt="class_5" class="classroom-card-image">
                             <div class="classroom-card-content">
                                 <h3 class="classroom-card-title"><a href="./inner.html">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a></h3>
+                                <p class="classroom-card-summary">校党委书记季波为2024级新生开讲思政第一课，以"选择河大就是选择责任、选择未来"为主题，引导新生树立正确的人生观、价值观，激励学生勇担时代责任。</p>
+                                <div class="classroom-card-meta">
+                                    <span class="publish-date">2025-01-05</span>
+                                    <span class="read-count">阅读 567</span>
+                                    <span class="category-tag">思政教育</span>
+                                </div>
+                            </div>
+                            <div class="classroom-card-overlay">
+                                <div class="overlay-content">
+                                    <p class="extended-summary">季波书记在课堂上深入阐述了河南大学的历史传承和文化底蕴，勉励新生要珍惜大学时光，努力学习专业知识，培养创新精神，为实现中华民族伟大复兴的中国梦贡献青春力量。</p>
+                                    <a href="./inner.html" class="read-more-btn">阅读全文 →</a>
+                                </div>
                             </div>
                         </article>
-                        <article class="classroom-card">
+                        <article class="classroom-card enhanced">
                             <img src="./img/class_6.jpg" alt="class_6" class="classroom-card-image">
                             <div class="classroom-card-content">
                                 <h3 class="classroom-card-title"><a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a></h3>
+                                <p class="classroom-card-summary">学校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会，深入学习贯彻总书记重要讲话精神，推动中华优秀传统文化传承发展。</p>
+                                <div class="classroom-card-meta">
+                                    <span class="publish-date">2025-01-03</span>
+                                    <span class="read-count">阅读 445</span>
+                                    <span class="category-tag">理论学习</span>
+                                </div>
+                            </div>
+                            <div class="classroom-card-overlay">
+                                <div class="overlay-content">
+                                    <p class="extended-summary">研讨会强调要深刻理解中华文明的突出特性，坚定文化自信，推动中华优秀传统文化创造性转化和创新性发展，为建设中华民族现代文明贡献河大力量。</p>
+                                    <a href="./inner.html" class="read-more-btn">阅读全文 →</a>
+                                </div>
                             </div>
                         </article>
-                        <article class="classroom-card">
+                        <article class="classroom-card enhanced">
                             <img src="./img/class_7.jpg" alt="class_7" class="classroom-card-image">
                             <div class="classroom-card-content">
                                 <h3 class="classroom-card-title"><a href="./inner.html">王宽行：至简人生 深情于学</a></h3>
+                                <p class="classroom-card-summary">王宽行教授以"至简人生 深情于学"为主题，分享治学心得和人生感悟，诠释了学者的责任担当和精神追求，为师生们上了一堂生动的人生课。</p>
+                                <div class="classroom-card-meta">
+                                    <span class="publish-date">2025-01-01</span>
+                                    <span class="read-count">阅读 298</span>
+                                    <span class="category-tag">学者风采</span>
+                                </div>
+                            </div>
+                            <div class="classroom-card-overlay">
+                                <div class="overlay-content">
+                                    <p class="extended-summary">王宽行教授强调，做学问要保持初心，以简驭繁，在浮躁的时代中坚守学术品格，用深情和执着对待学术研究，为培养优秀人才贡献自己的力量。</p>
+                                    <a href="./inner.html" class="read-more-btn">阅读全文 →</a>
+                                </div>
                             </div>
                         </article>
-                        <article class="classroom-card">
+                        <article class="classroom-card enhanced">
                             <img src="./img/class_8.jpg" alt="class_8" class="classroom-card-image">
                             <div class="classroom-card-content">
                                 <h3 class="classroom-card-title"><a href="./inner.html">张祎捷为全校学生宣讲党的二十大精神</a></h3>
+                                <p class="classroom-card-summary">张祎捷教授为全校学生宣讲党的二十大精神，深入解读党的二十大报告的重大意义和丰富内涵，引导青年学生深刻领会党的二十大精神实质。</p>
+                                <div class="classroom-card-meta">
+                                    <span class="publish-date">2024-12-30</span>
+                                    <span class="read-count">阅读 523</span>
+                                    <span class="category-tag">理论宣讲</span>
+                                </div>
+                            </div>
+                            <div class="classroom-card-overlay">
+                                <div class="overlay-content">
+                                    <p class="extended-summary">宣讲会上，张祎捷教授结合青年学生特点，用生动的语言和鲜活的事例，深入浅出地阐释了党的二十大精神，激励广大青年学生在新时代新征程中勇担使命、建功立业。</p>
+                                    <a href="./inner.html" class="read-more-btn">阅读全文 →</a>
+                                </div>
                             </div>
                         </article>
                     </div>
@@ -6229,6 +6904,45 @@
             </div>
                 <!-- 轮播指示器 -->
                 <div class="classroom-dots-container" id="classroomDots"></div>
+            </div>
+            
+            <!-- 思政课堂新闻列表 - 整合到同一模块 -->
+            <div class="classroom-news-list">
+                <div class="news-list">
+                    <article class="news-item">
+                        <h3 class="news-item-title">
+                            <a href="./inner.html">我校召开2025年学生思想政治教育与安全稳定工作会议</a>
+                        </h3>
+                        <span class="news-date">2025-03-20</span>
+                    </article>
+                    <article class="news-item">
+                        <h3 class="news-item-title">
+                            <a href="./inner.html">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a>
+                        </h3>
+                        <span class="news-date">2025-02-28</span>
+                    </article>
+                    <article class="news-item">
+                        <h3 class="news-item-title">
+                            <a href="./inner.html">杨萌芽到校团委调研座谈</a>
+                        </h3>
+                        <span class="news-date">2025-02-27</span>
+                    </article>
+                    <article class="news-item">
+                        <h3 class="news-item-title">
+                            <a href="./inner.html">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a>
+                        </h3>
+                        <span class="news-date">2024-12-13</span>
+                    </article>
+                    <article class="news-item">
+                        <h3 class="news-item-title">
+                            <a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a>
+                        </h3>
+                        <span class="news-date">2023-06-09</span>
+                    </article>
+                </div>
+                <div class="news-more-button">
+                    <a href="./inner.html" class="more-button">更多 →</a>
+                </div>
             </div>
         </section>
 
