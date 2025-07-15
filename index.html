@@ -1045,6 +1045,24 @@
             display: flex !important; /* 默认显示网页端布局 */
         }
 
+        /* 桌面端田字格布局 - 确保在大屏幕上正确显示 */
+        @media (min-width: 769px) {
+            .desktop-classroom .classroom-page {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important; /* 桌面端保持2列布局 */
+                grid-template-rows: 1fr 1fr !important; /* 桌面端保持2行布局 */
+                gap: 20px !important;
+                width: 100% !important;
+                min-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+                flex-shrink: 0 !important;
+            }
+        }
+
         /* 移动端显示移动端布局，隐藏网页端布局 */
         @media (max-width: 768px) {
             .mobile-classroom {
@@ -1127,19 +1145,35 @@
             background: rgba(255, 255, 255, 0.9);
             border: none;
             border-radius: 50%;
-            width: 35px;
-            height: 35px;
+            width: 44px; /* 增加到44px符合移动端触摸标准 */
+            height: 44px; /* 增加到44px符合移动端触摸标准 */
             font-size: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease, transform 0.1s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            /* 移动端触摸优化 */
+            -webkit-tap-highlight-color: rgba(139, 0, 0, 0.1);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .mobile-classroom .classroom-image-arrow:hover {
             background: white;
             transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 移动端按钮触摸反馈 */
+        @media (max-width: 768px) {
+            .mobile-classroom .classroom-image-arrow:active {
+                transform: scale(0.9);
+                background: rgba(255, 255, 255, 1);
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+            }
         }
 
         .mobile-classroom .classroom-image-dots {
@@ -1181,11 +1215,22 @@
         }
 
         .mobile-classroom .classroom-text-item {
-            padding: 12px;
+            padding: 16px 12px; /* 增加垂直内边距，确保触摸区域至少44px高 */
             border-radius: 8px;
             background: #f8f9fa;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease, transform 0.1s ease;
             cursor: pointer;
+            min-height: 44px; /* 确保符合移动端最小触摸区域标准 */
+            /* 移动端触摸优化 */
+            -webkit-tap-highlight-color: rgba(220, 53, 69, 0.1);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .mobile-classroom .classroom-text-item:hover {
@@ -1196,6 +1241,49 @@
         .mobile-classroom .classroom-text-item.active {
             background: linear-gradient(135deg, #dc3545, #ff4757);
             color: white;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+            transform: translateX(5px);
+        }
+
+        /* 移动端触摸反馈效果 */
+        @media (max-width: 768px) {
+            .mobile-classroom .classroom-text-item:active {
+                transform: scale(0.98) translateX(2px);
+                background: #dee2e6;
+            }
+            
+            .mobile-classroom .classroom-text-item.active:active {
+                transform: scale(0.98) translateX(3px);
+                box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
+            }
+            
+            /* 增强激活状态的视觉效果 */
+            .mobile-classroom .classroom-text-item.active::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 0 2px 2px 0;
+            }
+        }
+
+        /* 移动端激活动画 */
+        @keyframes classroomItemActivate {
+            0% {
+                transform: translateX(0) scale(1);
+                box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+            }
+            50% {
+                transform: translateX(8px) scale(1.02);
+                box-shadow: 0 6px 16px rgba(220, 53, 69, 0.25);
+            }
+            100% {
+                transform: translateX(5px) scale(1);
+                box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+            }
         }
 
         .mobile-classroom .classroom-text-title {
@@ -2773,11 +2861,11 @@
                 align-items: center !important;
             }
 
-            /* 移动端：只对桌面端页面应用网格布局，不影响移动端显示隐藏 */
+            /* 移动端：桌面端页面在移动端显示时的布局调整 */
             .desktop-classroom .classroom-page {
                 display: grid !important;
-                grid-template-columns: 1fr !important;
-                grid-template-rows: repeat(4, 1fr) !important;
+                grid-template-columns: 1fr !important; /* 移动端时桌面端页面改为单列 */
+                grid-template-rows: repeat(4, 1fr) !important; /* 移动端时桌面端页面改为4行 */
                 gap: 15px !important;
                 width: 100% !important;
                 padding: 8px !important;
@@ -4102,13 +4190,65 @@
             width: 90%;
             max-width: 420px;
             margin: 0 auto 6px auto;
-            padding: 8px 10px 6px 10px;
-            display: flex;
-            flex-direction: column;
-            transition: box-shadow 0.2s;
+            display: block;
+            position: relative;
+            min-height: 44px;
+            transition: box-shadow 0.2s, transform 0.1s ease;
+            overflow: hidden;
+            /* 确保可点击性 */
+            pointer-events: auto;
+            z-index: 10;
+            /* 移动端触摸优化 */
+            -webkit-tap-highlight-color: rgba(139,0,0,0.1);
+            touch-action: manipulation;
+            cursor: pointer;
         }
         .mobile-news-list li:active {
             box-shadow: 0 4px 16px rgba(139,0,0,0.13);
+            transform: scale(0.98);
+        }
+        
+        /* 移动端新闻链接样式 - 确保触摸导航正常工作 */
+        .mobile-news-link {
+            display: block;
+            padding: 8px 10px 6px 10px;
+            color: inherit;
+            text-decoration: none;
+            width: 100%;
+            min-height: 44px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 11;
+            /* 移动端触摸优化 */
+            -webkit-tap-highlight-color: rgba(139,0,0,0.1);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            /* 确保链接可点击 */
+            pointer-events: auto;
+            touch-action: manipulation;
+        }
+        .mobile-news-link:hover,
+        .mobile-news-link:focus,
+        .mobile-news-link:active,
+        .mobile-news-link:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* 移动端媒体查询优化 */
+        @media (max-width: 768px) {
+            .mobile-news-list li {
+                min-height: 48px;
+                margin-bottom: 8px;
+            }
+            .mobile-news-link {
+                min-height: 48px;
+                padding: 12px;
+            }
         }
         .mobile-news-list .news-title {
             font-size: 15px;
@@ -4225,17 +4365,154 @@
                     listContainer.innerHTML = '';
                     newsData.slice(0, 4).forEach((news, idx) => {
                         const li = document.createElement('li');
+                        // 使用 anchor 标签包装内容，确保移动端可以正常跳转
                         li.innerHTML = `
-                            <div class="news-title">${news.title}</div>
-                            <div class="news-desc">${news.description}</div>
-                            <div class="news-meta">${news.date} · 阅读 ${news.views}</div>
+                            <a href="${news.link}?v=${Date.now()}" class="mobile-news-link">
+                                <div class="news-title">${news.title}</div>
+                                <div class="news-desc">${news.description}</div>
+                                <div class="news-meta">${news.date} · 阅读 ${news.views}</div>
+                            </a>
                         `;
-                        li.addEventListener('click', () => {
-                            const timestamp = Date.now();
-                            window.location.href = news.link + '?v=' + timestamp;
+                        
+                        // 添加触摸事件支持，提升移动端体验
+                        li.addEventListener('touchstart', function(e) {
+                            this.style.transform = 'scale(0.98)';
+                            this.style.transition = 'transform 0.1s ease';
                         });
+                        
+                        li.addEventListener('touchend', function(e) {
+                            this.style.transform = 'scale(1)';
+                        });
+                        
+                        li.addEventListener('touchcancel', function(e) {
+                            this.style.transform = 'scale(1)';
+                        });
+                        
                         listContainer.appendChild(li);
                     });
+                }
+
+                // 移动端交互诊断工具
+                function diagnoseMobileInteraction() {
+                    const diagnostics = {
+                        timestamp: new Date().toISOString(),
+                        userAgent: navigator.userAgent,
+                        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+                        touchSupport: 'ontouchstart' in window,
+                        issues: []
+                    };
+
+                    // 检查新闻列表容器
+                    const newsContainer = document.getElementById('mobileNewsList');
+                    if (!newsContainer) {
+                        diagnostics.issues.push('新闻列表容器未找到');
+                        return diagnostics;
+                    }
+
+                    // 检查新闻项目
+                    const newsItems = newsContainer.querySelectorAll('li');
+                    diagnostics.newsItemsCount = newsItems.length;
+
+                    if (newsItems.length === 0) {
+                        diagnostics.issues.push('没有找到新闻项目');
+                        return diagnostics;
+                    }
+
+                    // 检查每个新闻项目的交互性
+                    newsItems.forEach((item, index) => {
+                        const itemDiag = {
+                            index: index,
+                            hasLink: !!item.querySelector('a'),
+                            linkHref: item.querySelector('a')?.href || 'N/A',
+                            computedStyle: window.getComputedStyle(item),
+                            boundingRect: item.getBoundingClientRect(),
+                            issues: []
+                        };
+
+                        // 检查CSS属性
+                        if (itemDiag.computedStyle.pointerEvents === 'none') {
+                            itemDiag.issues.push('pointer-events设置为none');
+                        }
+                        
+                        if (itemDiag.computedStyle.zIndex === 'auto' || parseInt(itemDiag.computedStyle.zIndex) < 0) {
+                            itemDiag.issues.push('z-index可能有问题');
+                        }
+
+                        // 检查触摸目标大小
+                        if (itemDiag.boundingRect.height < 44) {
+                            itemDiag.issues.push(`触摸目标太小: ${itemDiag.boundingRect.height}px < 44px`);
+                        }
+
+                        // 检查是否被其他元素覆盖
+                        const centerX = itemDiag.boundingRect.left + itemDiag.boundingRect.width / 2;
+                        const centerY = itemDiag.boundingRect.top + itemDiag.boundingRect.height / 2;
+                        const elementAtPoint = document.elementFromPoint(centerX, centerY);
+                        
+                        if (elementAtPoint && !item.contains(elementAtPoint)) {
+                            itemDiag.issues.push(`被其他元素覆盖: ${elementAtPoint.tagName}.${elementAtPoint.className}`);
+                        }
+
+                        diagnostics[`item_${index}`] = itemDiag;
+                    });
+
+                    // 检查事件监听器
+                    const eventListeners = getEventListeners ? getEventListeners(newsContainer) : {};
+                    diagnostics.eventListeners = Object.keys(eventListeners);
+
+                    return diagnostics;
+                }
+
+                // 诊断按钮已移除 - 避免在生产环境显示调试信息
+
+                // 自动运行诊断（在移动设备上）
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    setTimeout(() => {
+                        const result = diagnoseMobileInteraction();
+                        console.log('自动移动端诊断:', result);
+                        
+                        // 如果发现问题，尝试自动修复
+                        if (result.issues.length > 0) {
+                            console.warn('发现移动端交互问题，尝试自动修复...');
+                            attemptAutoFix();
+                        }
+                    }, 2000);
+                }
+
+                // 自动修复函数
+                function attemptAutoFix() {
+                    const newsContainer = document.getElementById('mobileNewsList');
+                    if (!newsContainer) return;
+
+                    const newsItems = newsContainer.querySelectorAll('li');
+                    newsItems.forEach(item => {
+                        // 确保pointer-events正常
+                        item.style.pointerEvents = 'auto';
+                        
+                        // 确保z-index足够高
+                        item.style.zIndex = '10';
+                        item.style.position = 'relative';
+                        
+                        // 确保触摸目标大小
+                        if (item.getBoundingClientRect().height < 44) {
+                            item.style.minHeight = '44px';
+                        }
+
+                        // 添加触摸反馈
+                        item.style.webkitTapHighlightColor = 'rgba(139,0,0,0.1)';
+                        item.style.touchAction = 'manipulation';
+
+                        // 确保链接可点击
+                        const link = item.querySelector('a');
+                        if (link) {
+                            link.style.display = 'block';
+                            link.style.width = '100%';
+                            link.style.height = '100%';
+                            link.style.textDecoration = 'none';
+                            link.style.color = 'inherit';
+                        }
+                    });
+
+                    console.log('自动修复完成');
                 }
 
                 // 创建轮播幻灯片
@@ -5197,20 +5474,49 @@
                     }
 
                     function updateSlides() {
-                        slides.forEach((slide, index) => {
-                            slide.classList.toggle('active', index === currentSlide);
+                        // 性能优化：使用 requestAnimationFrame 确保动画流畅
+                        requestAnimationFrame(() => {
+                            // 更新图片轮播
+                            slides.forEach((slide, index) => {
+                                slide.classList.toggle('active', index === currentSlide);
+                            });
+                            
+                            // 更新文字列表的活跃状态 - 增强移动端体验
+                            textItems.forEach((item, index) => {
+                                const wasActive = item.classList.contains('active');
+                                const shouldBeActive = index === currentSlide;
+                                
+                                if (wasActive !== shouldBeActive) {
+                                    item.classList.toggle('active', shouldBeActive);
+                                    
+                                    // 移动端激活动画效果 - 性能优化
+                                    if (shouldBeActive && window.innerWidth <= 768) {
+                                        // 使用 will-change 提示浏览器优化
+                                        item.style.willChange = 'transform, box-shadow';
+                                        item.style.animation = 'none';
+                                        item.offsetHeight; // 触发重排
+                                        item.style.animation = 'classroomItemActivate 0.3s ease-out';
+                                        
+                                        // 动画结束后清理 will-change
+                                        setTimeout(() => {
+                                            item.style.willChange = 'auto';
+                                        }, 300);
+                                    }
+                                }
+                            });
+                            
+                            // 更新指示器
+                            if (dotsContainer) {
+                                const dots = dotsContainer.querySelectorAll('.classroom-image-dot');
+                                dots.forEach((dot, index) => {
+                                    dot.classList.toggle('active', index === currentSlide);
+                                });
+                            }
                         });
                         
-                        // 更新文字列表的活跃状态
-                        textItems.forEach((item, index) => {
-                            item.classList.toggle('active', index === currentSlide);
-                        });
-                        
-                        // 更新指示器
-                        const dots = dotsContainer.querySelectorAll('.classroom-image-dot');
-                        dots.forEach((dot, index) => {
-                            dot.classList.toggle('active', index === currentSlide);
-                        });
+                        // 移动端滚动优化已禁用 - 避免自动跳转到思政课堂位置
+                        // 注释：原本的 scrollIntoView 会导致页面自动滚动到思政课堂区域
+                        // 现在只在用户主动交互时才进行局部滚动调整
                     }
 
                     function goToSlide(index) {
@@ -5242,30 +5548,180 @@
                         startAutoplay();
                     }
 
-                    // 绑定按钮事件
-                    if (prevBtn) prevBtn.addEventListener('click', () => {
-                        stopAutoplay();
-                        prevSlide();
-                        restartAutoplay();
-                    });
-                    
-                    if (nextBtn) nextBtn.addEventListener('click', () => {
-                        stopAutoplay();
-                        nextSlide();
-                        restartAutoplay();
-                    });
-
-                    // 绑定文字列表点击事件
-                    textItems.forEach((item, index) => {
-                        item.addEventListener('click', (e) => {
-                            // 如果点击的是链接，不触发轮播切换
-                            if (e.target.tagName === 'A') {
+                    // 绑定按钮事件 - 移动端优化
+                    if (prevBtn) {
+                        // 移动端触摸事件
+                        prevBtn.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            prevBtn.style.transform = 'scale(0.9)';
+                            prevBtn.style.transition = 'transform 0.1s ease';
+                        }, { passive: false });
+                        
+                        prevBtn.addEventListener('touchend', (e) => {
+                            e.preventDefault();
+                            prevBtn.style.transform = 'scale(1)';
+                            stopAutoplay();
+                            prevSlide();
+                            restartAutoplay();
+                        }, { passive: false });
+                        
+                        // 桌面端点击事件
+                        prevBtn.addEventListener('click', (e) => {
+                            // 防止在移动端重复触发
+                            if ('ontouchstart' in window) {
+                                e.preventDefault();
                                 return;
                             }
                             stopAutoplay();
-                            goToSlide(index);
+                            prevSlide();
                             restartAutoplay();
                         });
+                    }
+                    
+                    if (nextBtn) {
+                        // 移动端触摸事件
+                        nextBtn.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            nextBtn.style.transform = 'scale(0.9)';
+                            nextBtn.style.transition = 'transform 0.1s ease';
+                        }, { passive: false });
+                        
+                        nextBtn.addEventListener('touchend', (e) => {
+                            e.preventDefault();
+                            nextBtn.style.transform = 'scale(1)';
+                            stopAutoplay();
+                            nextSlide();
+                            restartAutoplay();
+                        }, { passive: false });
+                        
+                        // 桌面端点击事件
+                        nextBtn.addEventListener('click', (e) => {
+                            // 防止在移动端重复触发
+                            if ('ontouchstart' in window) {
+                                e.preventDefault();
+                                return;
+                            }
+                            stopAutoplay();
+                            nextSlide();
+                            restartAutoplay();
+                        });
+                    }
+
+                    // 绑定文字列表点击事件 - 移动端优化 + 错误处理
+                    textItems.forEach((item, index) => {
+                        let touchStartTime = 0;
+                        let preventDoubleClick = false;
+                        
+                        try {
+                            // 确保HTML链接在JavaScript禁用时仍然可用
+                            const linkElement = item.querySelector('a');
+                            if (linkElement && !linkElement.href) {
+                                linkElement.href = './inner.html';
+                            }
+                            
+                            // 移动端触摸开始事件
+                            item.addEventListener('touchstart', (e) => {
+                                try {
+                                    touchStartTime = Date.now();
+                                    if (item.style) {
+                                        item.style.transform = 'scale(0.98)';
+                                        item.style.transition = 'transform 0.1s ease';
+                                    }
+                                } catch (error) {
+                                    console.warn('Touch start error:', error);
+                                }
+                            }, { passive: true });
+                            
+                            // 移动端触摸结束事件
+                            item.addEventListener('touchend', (e) => {
+                                try {
+                                    if (item.style) {
+                                        item.style.transform = 'scale(1)';
+                                    }
+                                    
+                                    // 防止重复点击
+                                    if (preventDoubleClick) return;
+                                    preventDoubleClick = true;
+                                    setTimeout(() => { preventDoubleClick = false; }, 300);
+                                    
+                                    // 检查是否是快速点击（不是长按）
+                                    const touchDuration = Date.now() - touchStartTime;
+                                    if (touchDuration < 500) {
+                                        // 如果点击的是链接，直接跳转
+                                        if (e.target.tagName === 'A' || e.target.closest('a')) {
+                                            const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+                                            if (link && link.href) {
+                                                window.location.href = link.href;
+                                            } else {
+                                                // 降级方案：直接跳转到默认页面
+                                                window.location.href = './inner.html?v=' + Date.now();
+                                            }
+                                            return;
+                                        }
+                                        
+                                        // 否则切换轮播并跳转
+                                        try {
+                                            if (typeof stopAutoplay === 'function') stopAutoplay();
+                                            if (typeof goToSlide === 'function') goToSlide(index);
+                                            if (typeof restartAutoplay === 'function') restartAutoplay();
+                                        } catch (syncError) {
+                                            console.warn('Sync error:', syncError);
+                                        }
+                                        
+                                        // 延迟跳转，让用户看到切换效果
+                                        setTimeout(() => {
+                                            window.location.href = './inner.html?v=' + Date.now();
+                                        }, 200);
+                                    }
+                                } catch (error) {
+                                    console.warn('Touch end error:', error);
+                                    // 降级方案：直接跳转
+                                    window.location.href = './inner.html?v=' + Date.now();
+                                }
+                            }, { passive: true });
+                            
+                            // 触摸取消事件
+                            item.addEventListener('touchcancel', (e) => {
+                                try {
+                                    if (item.style) {
+                                        item.style.transform = 'scale(1)';
+                                    }
+                                } catch (error) {
+                                    console.warn('Touch cancel error:', error);
+                                }
+                            }, { passive: true });
+                            
+                            // 保留原有的点击事件作为降级方案
+                            item.addEventListener('click', (e) => {
+                                try {
+                                    // 防止在移动端重复触发
+                                    if ('ontouchstart' in window) {
+                                        e.preventDefault();
+                                        return;
+                                    }
+                                    
+                                    // 桌面端处理逻辑
+                                    if (e.target.tagName === 'A' || e.target.closest('a')) {
+                                        return; // 让链接正常工作
+                                    }
+                                    
+                                    if (typeof stopAutoplay === 'function') stopAutoplay();
+                                    if (typeof goToSlide === 'function') goToSlide(index);
+                                    if (typeof restartAutoplay === 'function') restartAutoplay();
+                                } catch (error) {
+                                    console.warn('Click error:', error);
+                                    // 降级方案：直接跳转
+                                    window.location.href = './inner.html?v=' + Date.now();
+                                }
+                            });
+                            
+                        } catch (error) {
+                            console.warn('Event binding error for item', index, ':', error);
+                            // 最基本的降级方案：确保点击能跳转
+                            item.addEventListener('click', () => {
+                                window.location.href = './inner.html?v=' + Date.now();
+                            });
+                        }
                     });
 
                     // 鼠标悬停暂停自动播放
@@ -5280,9 +5736,60 @@
                         });
                     });
 
+                    // 集成测试和验证
+                    function validateClassroomInteraction() {
+                        try {
+                            // 验证基本元素存在
+                            if (!imageCarousel || slides.length === 0 || textItems.length === 0) {
+                                console.warn('Classroom elements validation failed');
+                                return false;
+                            }
+                            
+                            // 验证事件绑定
+                            let eventsValid = true;
+                            textItems.forEach((item, index) => {
+                                if (!item.onclick && !item.ontouchend) {
+                                    console.warn(`Events not bound for item ${index}`);
+                                    eventsValid = false;
+                                }
+                            });
+                            
+                            // 验证初始状态
+                            const activeSlides = Array.from(slides).filter(slide => slide.classList.contains('active'));
+                            const activeTextItems = Array.from(textItems).filter(item => item.classList.contains('active'));
+                            
+                            if (activeSlides.length !== 1 || activeTextItems.length !== 1) {
+                                console.warn('Initial state validation failed');
+                                // 自动修复
+                                goToSlide(0);
+                            }
+                            
+                            return eventsValid;
+                        } catch (error) {
+                            console.warn('Validation error:', error);
+                            return false;
+                        }
+                    }
+                    
                     // 启动自动播放
                     startAutoplay();
                     updateSlides();
+                    
+                    // 延迟验证，确保所有初始化完成
+                    setTimeout(() => {
+                        const isValid = validateClassroomInteraction();
+                        if (!isValid) {
+                            console.warn('Classroom interaction validation failed, applying fallback');
+                            // 应用最基本的降级方案
+                            textItems.forEach((item, index) => {
+                                if (!item.onclick) {
+                                    item.onclick = () => {
+                                        window.location.href = './inner.html?v=' + Date.now();
+                                    };
+                                }
+                            });
+                        }
+                    }, 1000);
                 });
             }
 

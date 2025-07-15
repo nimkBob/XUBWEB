@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       img: "./img/news_2.png",
-      title:
-        "宣传部党支部召开“习近平文化思想”专题理论学习会 ",
+      title: "宣传部党支部召开“习近平文化思想”专题理论学习会 ",
       link: "./inner.html",
       date: "2025年06月05日 15:37",
     },
     {
       img: "./img/news_3.png",
-      title: "凝心聚力强文化 提质进位创辉煌 ——党委宣传部、总务处、教育发展基金会办公室、哲学与公共管理学院、经济学院 联合举办主题党日活动",
+      title:
+        "凝心聚力强文化 提质进位创辉煌 ——党委宣传部、总务处、教育发展基金会办公室、哲学与公共管理学院、经济学院 联合举办主题党日活动",
       link: "./inner.html",
       date: "2025年05月30日 09:51",
     },
@@ -72,9 +72,20 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
         <div class="singleRow">${element.abstract || ""}</div>
       `;
+      // 添加点击事件处理，支持移动端触摸
       item.onclick = () => {
         window.open(element.link, "_blank");
       };
+
+      // 添加触摸事件支持移动端
+      item.addEventListener("touchstart", function (e) {
+        // 防止触摸时的默认行为
+        e.preventDefault();
+        showNewsItem(realIndex);
+        currentCoverIndex = realIndex;
+      });
+
+      // 鼠标悬停事件（桌面端）
       item.onmouseenter = () => {
         showNewsItem(realIndex); // 直接高亮和切换
         currentCoverIndex = realIndex;
