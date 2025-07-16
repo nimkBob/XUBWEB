@@ -600,6 +600,11 @@
         .detail-section {
           padding: 1rem;
         }
+        /* 新增：调整机构banner在手机端的尺寸 */
+        .logo-area img[alt="机构设置"] {
+          height: 28px !important;
+          max-width: 110px !important;
+        }
       }
 
       @media (min-width: 640px) {
@@ -795,6 +800,53 @@
         font-size: 20px;
         font-weight: bold;
       }
+
+      .back-home-btn {
+          display: inline-flex;
+          align-items: center;
+          background: linear-gradient(90deg, #D0021B 0%, #8B0000 100%);
+          color: #fff;
+          border: none;
+          border-radius: 24px;
+          padding: 8px 22px 8px 16px;
+          font-size: 16px;
+          font-weight: bold;
+          box-shadow: 0 2px 12px rgba(208,2,27,0.10);
+          cursor: pointer;
+          transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+          outline: none;
+          text-decoration: none;
+      }
+      .back-home-btn:hover, .back-home-btn:focus {
+          background: linear-gradient(90deg, #8B0000 0%, #D0021B 100%);
+          box-shadow: 0 4px 18px rgba(208,2,27,0.18);
+          transform: translateY(-2px) scale(1.04);
+          color: #fff;
+          text-decoration: none;
+      }
+            .back-home-btn svg {
+        margin-right: 6px;
+        fill: #fff;
+      }
+
+      /* 移动端返回首页按钮样式调整 */
+      @media (max-width: 768px) {
+        .back-home-btn {
+          padding: 6px 16px 6px 12px;
+          font-size: 14px;
+          border-radius: 20px;
+          box-shadow: 0 1px 8px rgba(208,2,27,0.15);
+        }
+        .back-home-btn svg {
+          width: 16px;
+          height: 16px;
+          margin-right: 4px;
+        }
+        .back-home-btn:hover, .back-home-btn:focus {
+          transform: translateY(-1px) scale(1.02);
+          box-shadow: 0 2px 12px rgba(208,2,27,0.20);
+        }
+      }
     </style>
   </head>
 
@@ -803,19 +855,15 @@
     <header class="page-header">
       <div class="container">
         <div class="header-content">
-          <div class="logo-area">
+          <div class="logo-area" style="display:flex;align-items:center;gap:16px;padding:0;">
             <div class="logo-img">
               <img src="./img/henu-head.png" alt="河南大学">
             </div>
-            <div class="logo-text">
-              <span class="char" style="animation-delay: 0.1s">机</span>
-              <span class="char" style="animation-delay: 0.2s">构</span>
-              <span class="char" style="animation-delay: 0.3s">设</span>
-              <span class="char" style="animation-delay: 0.4s">置</span>
-            </div>
+            <img src="./img/jigou_banner.png" alt="机构设置" style="height:38px;max-width:180px;display:block;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.10);object-fit:contain;" />
           </div>
-          <a href="./index.html" style="color: var(--primary-color); font-weight: bold; transition: color 0.3s ease;">
-            返回首页
+          <a href="./index.html" class="back-home-btn">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M10 19V5M10 5L4 11M10 5l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              返回首页
           </a>
         </div>
       </div>

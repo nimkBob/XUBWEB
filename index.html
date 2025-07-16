@@ -300,11 +300,8 @@
 
         /* --- 导航栏 --- */
         .main-nav {
-            background: linear-gradient(135deg, 
-                rgba(139, 0, 0, 0.85) 0%,
-                rgba(160, 20, 20, 0.75) 50%,
-                rgba(139, 0, 0, 0.65) 100%);
-            /* 渐变红色背景 */
+            background: url('./img/dw_index_topbg.jpg') no-repeat center center;
+            background-size: cover;
             color: #fff;
             transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             backdrop-filter: blur(15px) saturate(1.2);
@@ -322,19 +319,16 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        /* 添加一个专门的鼠标感应区域 */
-        .hero-section:hover + .main-nav,
-        .main-nav:hover {
-            transform: translateY(0); /* 滑下来 */
-            opacity: 1;
-            /* 完全显示 */
+        /* 导航栏始终显示 */
+        .main-nav {
+            transform: translateY(0) !important; /* 始终显示 */
+            opacity: 1 !important; /* 始终可见 */
         }
 
-        /* 当导航栏显示时，导航项依次出现 */
-        .main-nav:hover .nav-list li,
-        .hero-section:hover + .main-nav .nav-list li {
-            opacity: 1;
-            transform: translateY(0);
+        /* 导航项始终显示 */
+        .nav-list li {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
         .nav-list {
             display: flex;
@@ -355,7 +349,7 @@
         }
 
         .nav-list li a {
-            color: #FFD700; /* 金色文字 */
+            color: #fff; /* 白色文字 */
             text-decoration: none;
             padding: 6px 12px;
             /* 减小按钮内边距 */
@@ -387,23 +381,22 @@
         }
 
         .nav-list li a:hover {
-            background: rgba(255, 215, 0, 0.2); /* 淡金色背景 */
+            background: rgba(255, 255, 255, 0.2); /* 淡白色背景 */
             transform: translateY(-2px) scale(1.05);
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             box-shadow: 
-                0 4px 12px rgba(255, 215, 0, 0.3), /* 金色阴影 */
-                inset 0 1px 0 rgba(255, 215, 0, 0.3);
-            border: 1px solid rgba(255, 215, 0, 0.5); /* 金色边框 */
-            color: #FFF700; /* 更亮的金色 */
+                0 4px 12px rgba(255, 255, 255, 0.3), /* 白色阴影 */
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5); /* 白色边框 */
+            color: #fff; /* 保持白色 */
         }
 
         .nav-list li a:hover::before {
             left: 100%;
         }
 
-        /* 当导航栏显示时，导航项依次出现 */
-        .main-nav:hover .nav-list li,
-        .hero-section:hover + .main-nav .nav-list li {
+        /* 导航项始终显示 */
+        .nav-list li {
             opacity: 1 !important;
             transform: translateY(0) !important;
         }
@@ -431,8 +424,7 @@
             transition: width 0.6s ease 0.2s;
         }
 
-        .hero-section:hover + .main-nav::before,
-        .main-nav:hover::before {
+        .main-nav::before {
             width: 100%;
         }
 
@@ -456,9 +448,9 @@
             transition: margin-top 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 添加平滑过渡 */
         }
 
-        /* 当鼠标悬停在轮播图上时，恢复正常位置 */
-        .hero-section:hover {
-            margin-top: 0; /* 恢复正常位置，为导航栏让出空间 */
+        /* 轮播图位置固定 */
+        .hero-section {
+            margin-top: 0; /* 固定位置，为导航栏让出空间 */
         }
 
         /* 添加粒子背景效果 */
@@ -2865,7 +2857,7 @@
             .main-nav .nav-list li a {
                 display: block;
                 padding: 12px 24px;
-                color: #FFD700; /* 金色文字 */
+                color: #fff; /* 白色文字 */
                 background: transparent; /* 透明背景 */
                 border-radius: 8px;
                 font-weight: 600;
@@ -2877,10 +2869,10 @@
                 transition: all 0.3s;
             }
             .main-nav .nav-list li a:hover {
-                background: rgba(255, 215, 0, 0.1); /* hover时添加淡金色背景 */
-                color: #FFF700; /* hover时更亮的金色 */
-                border-left-color: #FFD700; /* 金色左边框 */
-                box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2); /* 金色阴影 */
+                background: rgba(255, 255, 255, 0.1); /* hover时添加淡白色背景 */
+                color: #fff; /* 保持白色 */
+                border-left-color: #fff; /* 白色左边框 */
+                box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); /* 白色阴影 */
                 transform: translateY(-2px);
             }
         }
