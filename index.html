@@ -958,19 +958,11 @@
             backdrop-filter: none;
         }
         .classroom-carousel-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, #ffd6db, #ffeaea);
-            opacity: 0.08;
-            z-index: 0;
+            display: none;
         }
         .classroom-carousel-container:hover {
-            box-shadow: 0 15px 45px #ffeaea;
-            border-color: #ffeaea;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
         .classroom-card {
@@ -979,7 +971,7 @@
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #ffeaea;
+            border: 1px solid rgba(0, 0, 0, 0.1);
             height: 300px;
             display: flex;
             flex-direction: column;
@@ -987,19 +979,12 @@
             cursor: pointer;
         }
         .classroom-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #ffd6db, #ffeaea, #fff6f7);
-            z-index: 2;
+            display: none;
         }
         .classroom-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 12px 28px #ffeaea;
-            border-color: #ffd6db;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
             background: rgba(255, 255, 255, 1);
         }
 
@@ -1123,8 +1108,8 @@
             /* 增强悬停效果 */
             .classroom-card.enhanced:hover {
                 transform: translateY(-8px) scale(1.02);
-                box-shadow: 0 20px 40px rgba(139, 0, 0, 0.15);
-                border-color: #8B0000;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                border-color: rgba(0, 0, 0, 0.2);
             }
 
             /* 性能优化 - GPU 加速 */
@@ -1865,28 +1850,45 @@
             }
         }
 
-        .mobile-classroom .classroom-image-dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+        /* 移动端轮播图圆点样式 - 适用于除思政课堂外的其他轮播图 */
+        .mobile-carousel-dots {
+            position: relative;
             display: flex;
-            gap: 6px;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            margin-bottom: 15px;
             z-index: 10;
+            width: 100%;
+            padding: 10px 0;
+            background: transparent;
         }
 
-        .mobile-classroom .classroom-image-dot {
-            width: 8px;
-            height: 8px;
+        .mobile-carousel-dot {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid rgba(139, 0, 0, 0.5);
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .mobile-classroom .classroom-image-dot.active {
-            background: white;
+        .mobile-carousel-dot.active {
+            background: rgba(139, 0, 0, 0.8);
+            border-color: rgba(139, 0, 0, 0.8);
             transform: scale(1.2);
+            box-shadow: 0 2px 8px rgba(139, 0, 0, 0.3);
+        }
+
+        /* 思政课堂轮播图不需要圆点，所以隐藏相关样式 */
+        .mobile-classroom .classroom-image-dots {
+            display: none !important;
+        }
+
+        /* 思政课堂轮播图不需要圆点，所以隐藏相关样式 */
+        .mobile-classroom .classroom-image-dot {
+            display: none !important;
         }
 
         /* 移动端文字列表样式 */
@@ -2473,6 +2475,57 @@
 
         .classroom-dot.active::before,
         .classroom-dot:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 桌面端思政课堂轮播指示器 - 重新定位到轮播图下面 */
+        .desktop-classroom-dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 15px 0;
+            background: transparent;
+        }
+
+        .desktop-classroom-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: rgba(139, 0, 0, 0.3);
+            border: 2px solid rgba(139, 0, 0, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .desktop-classroom-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(139, 0, 0, 0.8);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .desktop-classroom-dot.active,
+        .desktop-classroom-dot:hover {
+            background-color: rgba(139, 0, 0, 0.8);
+            transform: scale(1.2);
+            border-color: rgba(139, 0, 0, 0.8);
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+        }
+
+        .desktop-classroom-dot.active::before,
+        .desktop-classroom-dot:hover::before {
             width: 100%;
             height: 100%;
         }
@@ -5995,7 +6048,7 @@
                     dotsContainer.innerHTML = ''; // 清空现有圆点
                     pages.forEach((_, index) => {
                         const dot = document.createElement('div');
-                        dot.classList.add('classroom-dot');
+                        dot.classList.add('desktop-classroom-dot');
                         if (index === 0) dot.classList.add('active');
                         dot.addEventListener('click', () => goToPage(index));
                         dotsContainer.appendChild(dot);
@@ -6024,7 +6077,7 @@
                     }
                     
                     // 更新圆点
-                    const dots = document.querySelectorAll('.classroom-dot');
+                    const dots = document.querySelectorAll('.desktop-classroom-dot');
                     dots.forEach((dot, index) => {
                         dot.classList.toggle('active', index === currentPage);
                     });
@@ -6388,8 +6441,8 @@
                     let currentSlide = 0;
                     let autoplayInterval;
 
-                    // 创建指示器圆点
-                    if (dotsContainer) {
+                    // 创建指示器圆点 - 思政课堂轮播图不需要圆点
+                    if (dotsContainer && !page.closest('.mobile-classroom')) {
                         dotsContainer.innerHTML = '';
                         slides.forEach((_, index) => {
                             const dot = document.createElement('div');
@@ -7074,9 +7127,9 @@
                         </article>
                     </div>
                 </div>
-                <!-- 桌面端思政课堂轮播指示器 -->
-                <div class="classroom-dots-container" id="classroomDots"></div>
             </div>
+            <!-- 桌面端思政课堂轮播指示器 - 重新定位到轮播图下面 -->
+            <div class="desktop-classroom-dots-container" id="classroomDots"></div>
 
             <!-- 移动端：图片轮播 + 文字列表布局 -->
             <div class="classroom-carousel-container mobile-classroom">
@@ -7115,7 +7168,6 @@
                                 <button class="classroom-image-arrow prev" id="mobileImagePrev">‹</button>
                                 <button class="classroom-image-arrow next" id="mobileImageNext">›</button>
                             </div>
-                            <div class="classroom-image-dots" id="mobileImageDots"></div>
                         </div>
                         <div class="classroom-text-section">
                             <div class="classroom-text-list">
@@ -7191,7 +7243,6 @@
                                 <button class="classroom-image-arrow prev">‹</button>
                                 <button class="classroom-image-arrow next">›</button>
                             </div>
-                            <div class="classroom-image-dots"></div>
                         </div>
                         <div class="classroom-text-section">
                             <div class="classroom-text-list">
