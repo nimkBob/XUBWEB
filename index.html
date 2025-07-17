@@ -741,7 +741,7 @@
             opacity: 0;
             transform: translateY(30px);
             animation: heroButtonSlideIn 0.8s ease-out 2.4s forwards;
-            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
             text-decoration: none;
             position: relative;
             overflow: hidden;
@@ -940,18 +940,18 @@
 
         /* 现代化思政课堂滑动网格布局样式 */
         .classroom-carousel-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 25px;
-            background: linear-gradient(135deg, #fff 0%, #fff6f7 100%);
-            border-radius: 20px;
-            border: 1px solid #ffeaea;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+            max-width: none;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
             position: relative;
             overflow: hidden;
             touch-action: pan-x;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
+            transition: none;
+            backdrop-filter: none;
         }
         .classroom-carousel-container::before {
             content: '';
@@ -1614,13 +1614,21 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.18);
         }
 
-        /* 移动端和网页端显示控制 - 最高优先级 */
+        /* 移动端和网页端显示控制 - 最高优先级，防止重叠显示 */
         .mobile-classroom {
             display: none !important; /* 默认隐藏移动端布局 */
+            isolation: isolate; /* CSS隔离，防止样式冲突 */
+            contain: layout style; /* 限制布局和样式影响范围 */
+            position: relative;
+            z-index: 10; /* 确保移动端在上层 */
         }
 
         .desktop-classroom {
             display: flex !important; /* 默认显示网页端布局 */
+            isolation: isolate; /* CSS隔离 */
+            contain: layout style; /* 限制布局和样式影响范围 */
+            position: relative;
+            z-index: 5; /* 桌面端在下层 */
         }
 
         /* 桌面端田字格布局 - 确保在大屏幕上正确显示 */
@@ -1645,10 +1653,42 @@
         @media (max-width: 768px) {
             .mobile-classroom {
                 display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow: hidden !important; /* 防止内容溢出 */
             }
-            
+
             .desktop-classroom {
                 display: none !important;
+                visibility: hidden !important; /* 双重隐藏确保不显示 */
+                opacity: 0 !important;
+                pointer-events: none !important; /* 禁用交互 */
+            }
+
+            /* 确保移动端内容项唯一性 - 防止多个active状态同时存在 */
+            .mobile-classroom .classroom-text-item.active ~ .classroom-text-item.active {
+                background: transparent !important;
+                color: inherit !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .mobile-classroom .classroom-image-slide.active ~ .classroom-image-slide.active {
+                opacity: 0 !important;
+                z-index: -1 !important;
+            }
+
+            /* 强制重置所有可能的重叠状态 */
+            .mobile-classroom .classroom-text-item:not(.active) {
+                background: rgba(255, 255, 255, 0.95) !important;
+                color: #333 !important;
+                transform: none !important;
+            }
+
+            .mobile-classroom .classroom-image-slide:not(.active) {
+                opacity: 0 !important;
+                z-index: 1 !important;
             }
         }
 
@@ -1780,10 +1820,9 @@
 
         /* 移动端文字列表样式 */
         .mobile-classroom .classroom-text-section {
-            background: #fff;
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: transparent;
+            padding: 15px 0;
+            margin: 0;
         }
 
         .mobile-classroom .classroom-text-list {
@@ -1793,8 +1832,8 @@
         }
 
         .mobile-classroom .classroom-text-item {
-            padding: 16px 12px; /* 增加垂直内边距，确保触摸区域至少44px高 */
-            border-radius: 8px;
+            padding: 16px 20px; /* 增加垂直内边距，确保触摸区域至少44px高 */
+            border-radius: 0;
             background: #f8f9fa;
             transition: all 0.3s ease, transform 0.1s ease;
             cursor: pointer;
@@ -1809,6 +1848,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            width: 100%; /* 确保横向铺满 */
+            box-sizing: border-box;
         }
 
         .mobile-classroom .classroom-text-item:hover {
@@ -1836,16 +1877,16 @@
             }
             
             /* 增强激活状态的视觉效果 */
-            .mobile-classroom .classroom-text-item.active::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 4px;
-                height: 100%;
-                background: rgba(255, 255, 255, 0.8);
-                border-radius: 0 2px 2px 0;
-            }
+                    .mobile-classroom .classroom-text-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 0;
+        }
         }
 
         /* 移动端激活动画 */
@@ -1867,8 +1908,8 @@
         .mobile-classroom .classroom-text-title {
             font-size: 14px;
             font-weight: 600;
-            margin: 0 0 5px 0;
-            line-height: 1.3;
+            margin: 0 0 8px 0;
+            line-height: 1.4;
         }
 
         .mobile-classroom .classroom-text-title a {
@@ -1879,7 +1920,62 @@
         .mobile-classroom .classroom-text-meta {
             font-size: 12px;
             opacity: 0.8;
-            margin: 0;
+            margin: 0 0 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 新增：阅读量和分类标签 */
+        .mobile-classroom .classroom-text-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        .mobile-classroom .classroom-text-category {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            padding: 2px 6px;
+            border-radius: 0;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .mobile-classroom .classroom-text-reads {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .mobile-classroom .classroom-text-reads::before {
+            content: '';
+            font-size: 10px;
+        }
+
+        /* 新增：摘要内容 */
+        .mobile-classroom .classroom-text-summary {
+            font-size: 12px;
+            line-height: 1.4;
+            opacity: 0.8;
+            margin-top: 6px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .mobile-classroom .classroom-text-item.active .classroom-text-category {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .mobile-classroom .classroom-text-item.active .classroom-text-summary {
+            opacity: 0.9;
         }
 
         /* 移动端页面布局 */
@@ -2836,6 +2932,19 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
+        /* 桌面端隐藏侧边栏 */
+        @media (min-width: 769px) {
+            .sidebar {
+                display: none !important;
+            }
+            .sidebar-overlay {
+                display: none !important;
+            }
+            .status-menu-button {
+                display: none !important;
+            }
+        }
+        
         /* 桌面端导航栏 .nav-list 样式仅限 .main-nav 下，避免影响侧边栏 */
         @media (min-width: 769px) {
             .main-nav .nav-list {
@@ -3211,8 +3320,41 @@
 
             /* 侧边栏菜单项在移动端的优化 */
             .sidebar .nav-list li a {
-                font-size: 14px; /* 移动端稍微减小字体 */
-                padding: 12px 14px; /* 调整padding适应小屏幕 */
+                font-size: 18px; /* 增大字体 */
+                padding: 20px 24px; /* 增大padding */
+                color: #fff;
+                font-family: 'FZKai-Z03','KaiTi','STKaiti','楷体',serif;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+                transition: all 0.3s ease;
+                display: block;
+                width: 100%;
+                background: transparent;
+                border-radius: 0;
+                text-align: left;
+                box-shadow: none;
+                position: relative; /* 添加相对定位，用于箭头定位 */
+            }
+            .sidebar .nav-list li a:hover {
+                background: rgba(255,255,255,0.1);
+                color: #FFD700;
+                transform: translateX(8px);
+            }
+            .sidebar .nav-list li a::after {
+                content: '›';
+                position: absolute;
+                right: 24px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 20px;
+                color: rgba(255,255,255,0.6);
+                transition: all 0.3s ease;
+            }
+            .sidebar .nav-list li a:hover::after {
+                color: #FFD700;
+                transform: translateY(-50%) translateX(4px);
+            }
+            .sidebar .nav-list li:last-child a {
+                border-bottom: none;
             }
 
             /* 移动端新闻资讯模块显示 */
@@ -3776,11 +3918,130 @@
 
             /* 超小屏幕思政课堂优化 - 图片轮播 + 文字列表 */
             .classroom-carousel-container {
-                padding: 12px 8px !important; /* 进一步减小内边距 */
-                margin: 8px 6px !important; /* 进一步减小外边距 */
-                background: white !important; /* 改为白色背景 */
-                border-radius: 10px !important; /* 减小圆角 */
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important; /* 减小阴影 */
+                padding: 16px 12px !important; /* 增加内边距，提升舒适度 */
+                margin: 12px 8px !important; /* 增加外边距 */
+                background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%) !important; /* 渐变背景 */
+                border-radius: 16px !important; /* 增加圆角，更现代 */
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05) !important; /* 增强阴影层次 */
+                border: 1px solid rgba(139, 0, 0, 0.08) !important; /* 添加淡红色边框 */
+            }
+
+            /* 移动端思政课堂文字列表优化 */
+            .classroom-text-section {
+                background: rgba(255, 255, 255, 0.98) !important;
+                border-radius: 12px !important;
+                padding: 16px 12px !important;
+                margin-top: 16px !important;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+                border: 1px solid rgba(139, 0, 0, 0.06) !important;
+            }
+
+            .classroom-text-list {
+                gap: 12px !important;
+            }
+
+            .classroom-text-item {
+                background: rgba(255, 255, 255, 0.95) !important;
+                border-radius: 10px !important;
+                padding: 14px 12px !important;
+                margin-bottom: 10px !important;
+                border-left: 3px solid transparent !important;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04) !important;
+                border: 1px solid rgba(139, 0, 0, 0.05) !important;
+                position: relative !important;
+                overflow: hidden !important;
+            }
+
+            .classroom-text-item::before {
+                content: '' !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 3px !important;
+                height: 100% !important;
+                background: linear-gradient(135deg, #8B0000, #a52a2a) !important;
+                transform: scaleY(0) !important;
+                transition: transform 0.3s ease !important;
+                transform-origin: bottom !important;
+            }
+
+            .classroom-text-item.active::before,
+            .classroom-text-item:hover::before {
+                transform: scaleY(1) !important;
+            }
+
+            .classroom-text-item.active {
+                background: linear-gradient(135deg, rgba(139, 0, 0, 0.02), rgba(255, 255, 255, 0.98)) !important;
+                border-color: rgba(139, 0, 0, 0.12) !important;
+                box-shadow: 0 3px 12px rgba(139, 0, 0, 0.08) !important;
+                transform: translateY(-1px) !important;
+            }
+
+            .classroom-text-title {
+                font-size: 14px !important;
+                font-weight: 600 !important;
+                line-height: 1.4 !important;
+                color: #2c3e50 !important;
+                margin-bottom: 8px !important;
+                transition: color 0.3s ease !important;
+            }
+
+            .classroom-text-item.active .classroom-text-title {
+                color: #8B0000 !important;
+            }
+
+            .classroom-text-title a {
+                color: inherit !important;
+                text-decoration: none !important;
+                display: block !important;
+                transition: all 0.3s ease !important;
+            }
+
+            .classroom-text-title a:hover {
+                color: #8B0000 !important;
+                transform: translateX(2px) !important;
+            }
+
+            .classroom-text-meta {
+                font-size: 11px !important;
+                color: #7f8c8d !important;
+                font-weight: 400 !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 8px !important;
+            }
+
+            .classroom-text-meta::before {
+                content: '📅' !important;
+                font-size: 10px !important;
+                opacity: 0.7 !important;
+            }
+
+            /* 移动端图片轮播区域优化 */
+            .classroom-image-section {
+                border-radius: 12px !important;
+                overflow: hidden !important;
+                box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08) !important;
+                border: 1px solid rgba(139, 0, 0, 0.06) !important;
+            }
+
+            .classroom-main-image {
+                border-radius: 0 !important;
+                transition: transform 0.3s ease !important;
+            }
+
+            .classroom-image-overlay {
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%) !important;
+                padding: 16px 12px 12px !important;
+            }
+
+            .classroom-image-title {
+                font-size: 13px !important;
+                font-weight: 600 !important;
+                line-height: 1.3 !important;
+                color: white !important;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
             }
 
             /* 超小屏幕：移除页面切换，让内容铺满宽度 */
@@ -4858,6 +5119,7 @@
         .mobile-news-carousel {
             margin-top: 2px;
         }
+        
     </style>
     <script src="./news/loadNews.js"></script>
     <script>
@@ -5275,11 +5537,11 @@
                         { title: '习近平：坚持以人民为中心的发展思想', link: './inner.html' }
                     ],
                     latest: [
-                        { title: '必须坚持人民至上', date: '2024-04-08', views: '1230', link: './inner.html' },
-                        { title: '坚持系统观念', date: '2024-04-05', views: '1100', link: './inner.html' },
-                        { title: '习近平：培养德智体美劳全面发展的社会主义建设者和接班人', date: '2024-02-18', views: '960', link: './inner.html' },
-                        { title: '推进新时代党的建设新的伟大工程', date: '2024-02-15', views: '820', link: './inner.html' },
-                        { title: '深入学习贯彻习近平新时代中国特色社会主义思想', date: '2024-02-10', views: '750', link: './inner.html' }
+                        { title: '必须坚持人民至上', link: './inner.html' },
+                        { title: '坚持系统观念', link: './inner.html' },
+                        { title: '习近平：培养德智体美劳全面发展的社会主义建设者和接班人', link: './inner.html' },
+                        { title: '推进新时代党的建设新的伟大工程', link: './inner.html' },
+                        { title: '深入学习贯彻习近平新时代中国特色社会主义思想', link: './inner.html' }
                     ]
                 };
 
@@ -5302,10 +5564,6 @@
                             html += `
                                 <li>
                                     <a href="${linkWithTimestamp}">${item.title}</a>
-                                    <div class="latest-meta">
-                                        <span>${item.date}</span>
-                                        <span class="views">${item.views}</span>
-                                    </div>
                                 </li>
                             `;
                         }
@@ -5412,6 +5670,15 @@
                 // ESC键关闭侧边栏
                 document.addEventListener('keydown', function(e) {
                     if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                        sidebar.classList.remove('active');
+                        sidebarOverlay.classList.remove('active');
+                        document.body.style.overflow = ''; // 恢复滚动
+                    }
+                });
+                
+                // 窗口大小变化时关闭侧边栏（从移动端切换到桌面端）
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth >= 769 && sidebar.classList.contains('active')) {
                         sidebar.classList.remove('active');
                         sidebarOverlay.classList.remove('active');
                         document.body.style.overflow = ''; // 恢复滚动
@@ -6421,18 +6688,23 @@
         </div>
     </header>
 
-    <!-- 新增：手机端侧边菜单 -->
-    <aside class="sidebar" id="sidebarMenu">
+    <!-- 新增：手机端侧边菜单（党风书法风重塑） -->
+    <aside class="sidebar" id="sidebarMenu" style="overflow:hidden;background:url('./img/dw_index_topbg.jpg') no-repeat center center;background-size:cover;">
+        <div class="sidebar-header" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:22px 18px 10px 18px;background:transparent;">
+            <img src="./img/henu-head.png" alt="党徽" style="width:38px;height:38px;border-radius:50%;box-shadow:0 2px 8px rgba(193,12,12,0.12);background:#fff;">
+            <span class="sidebar-title" style="color:#fff;font-size:22px;font-family:'FZKai-Z03','KaiTi','STKaiti','楷体',serif;letter-spacing:2px;text-shadow:0 2px 8px #a00,0 1px 3px #fff,0 0 10px #a00;writing-mode: horizontal-tb; white-space:nowrap;">宣传导航</span>
+        </div>
         <nav>
-            <ul class="nav-list">
-                <li><a href="./jgou.html">机构设置</a></li>
-                <li><a href="./inner.html">新闻快报</a></li>
-                <li><a href="./inner.html">理论学习</a></li>
-                <li><a href="./inner.html">思政课堂</a></li>
-                <li><a href="./inner.html">通知公告</a></li>
-                <li><a href="./inner.html">文件资料</a></li>
+            <ul class="nav-list" style="margin:0;padding:0;width:100%;">
+                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./jgou.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">机构设置<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
+                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">新闻快报<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
+                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">理论学习<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
+                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">思政课堂<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
+                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">通知公告<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
+                <li style="width:100%;"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">文件资料<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
             </ul>
         </nav>
+        <div style="width:100%;height:48px;background:url('./img/dw_index_topbg.jpg') no-repeat center center;background-size:cover;"></div>
     </aside>
 
     <!-- 侧边栏遮罩层 -->
@@ -6582,7 +6854,7 @@
             <!-- 网页端：田字布局 -->
             <div class="classroom-carousel-container desktop-classroom">
                 <!-- 查看更多按钮 -->
-                <a href="./inner.html" class="classroom-more-button">查看更多</a>
+                <!-- <a href="./inner.html" class="classroom-more-button">查看更多</a> -->
                 
                 <div class="classroom-carousel-wrapper" id="classroomCarousel">
                     <!-- 第一页 - 田字布局 -->
@@ -6593,8 +6865,6 @@
                                 <h3 class="classroom-card-title"><a href="./inner.html">我校召开2025年学生思想政治教育与安全稳定工作会议</a></h3>
                                 <p class="classroom-card-summary">学校召开2025年学生思想政治教育与安全稳定工作会议，深入学习贯彻党的二十大精神，全面部署新学期学生工作重点任务，进一步加强和改进学生思想政治教育工作。</p>
                                 <div class="classroom-card-meta">
-                                    <span class="publish-date">2025-01-15</span>
-                                    <span class="read-count">阅读 328</span>
                                     <span class="category-tag">重要会议</span>
                                 </div>
                             </div>
@@ -6611,8 +6881,6 @@
                                 <h3 class="classroom-card-title"><a href="./inner.html">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a></h3>
                                 <p class="classroom-card-summary">学校召开2025年春季学期学生工作会议，深入交流学生工作经验，研讨新学期工作重点，推进"至善"学工启思汇品牌建设，提升学生工作质量和水平。</p>
                                 <div class="classroom-card-meta">
-                                    <span class="publish-date">2025-01-12</span>
-                                    <span class="read-count">阅读 256</span>
                                     <span class="category-tag">学工动态</span>
                                 </div>
                             </div>
@@ -6629,8 +6897,6 @@
                                 <h3 class="classroom-card-title"><a href="./inner.html">杨萌芽到校团委调研座谈</a></h3>
                                 <p class="classroom-card-summary">校党委副书记杨萌芽深入校团委调研座谈，了解共青团工作开展情况，指导团学工作创新发展，推动青年学生思想政治教育工作再上新台阶。</p>
                                 <div class="classroom-card-meta">
-                                    <span class="publish-date">2025-01-10</span>
-                                    <span class="read-count">阅读 189</span>
                                     <span class="category-tag">领导调研</span>
                                 </div>
                             </div>
@@ -6647,8 +6913,6 @@
                                 <h3 class="classroom-card-title"><a href="./inner.html">我校召开思政课建设工作会</a></h3>
                                 <p class="classroom-card-summary">学校召开思政课建设工作会，深入学习贯彻习近平总书记关于思政课建设的重要指示精神，研究部署新时代思政课改革创新工作，推动思政课高质量发展。</p>
                                 <div class="classroom-card-meta">
-                                    <span class="publish-date">2025-01-08</span>
-                                    <span class="read-count">阅读 412</span>
                                     <span class="category-tag">课程建设</span>
                                 </div>
                             </div>
@@ -6668,8 +6932,6 @@
                                 <h3 class="classroom-card-title"><a href="./inner.html">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a></h3>
                                 <p class="classroom-card-summary">校党委书记季波为2024级新生开讲思政第一课，以"选择河大就是选择责任、选择未来"为主题，引导新生树立正确的人生观、价值观，激励学生勇担时代责任。</p>
                                 <div class="classroom-card-meta">
-                                    <span class="publish-date">2025-01-05</span>
-                                    <span class="read-count">阅读 567</span>
                                     <span class="category-tag">思政教育</span>
                                 </div>
                             </div>
@@ -6686,8 +6948,6 @@
                                 <h3 class="classroom-card-title"><a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a></h3>
                                 <p class="classroom-card-summary">学校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会，深入学习贯彻总书记重要讲话精神，推动中华优秀传统文化传承发展。</p>
                                 <div class="classroom-card-meta">
-                                    <span class="publish-date">2025-01-03</span>
-                                    <span class="read-count">阅读 445</span>
                                     <span class="category-tag">理论学习</span>
                                 </div>
                             </div>
@@ -6704,8 +6964,6 @@
                                 <h3 class="classroom-card-title"><a href="./inner.html">王宽行：至简人生 深情于学</a></h3>
                                 <p class="classroom-card-summary">王宽行教授以"至简人生 深情于学"为主题，分享治学心得和人生感悟，诠释了学者的责任担当和精神追求，为师生们上了一堂生动的人生课。</p>
                                 <div class="classroom-card-meta">
-                                    <span class="publish-date">2025-01-01</span>
-                                    <span class="read-count">阅读 298</span>
                                     <span class="category-tag">学者风采</span>
                                 </div>
                             </div>
@@ -6722,8 +6980,6 @@
                                 <h3 class="classroom-card-title"><a href="./inner.html">张祎捷为全校学生宣讲党的二十大精神</a></h3>
                                 <p class="classroom-card-summary">张祎捷教授为全校学生宣讲党的二十大精神，深入解读党的二十大报告的重大意义和丰富内涵，引导青年学生深刻领会党的二十大精神实质。</p>
                                 <div class="classroom-card-meta">
-                                    <span class="publish-date">2024-12-30</span>
-                                    <span class="read-count">阅读 523</span>
                                     <span class="category-tag">理论宣讲</span>
                                 </div>
                             </div>
@@ -6736,12 +6992,12 @@
                         </article>
                     </div>
                 </div>
+                <!-- 桌面端思政课堂轮播指示器 -->
+                <div class="classroom-dots-container" id="classroomDots"></div>
             </div>
 
             <!-- 移动端：图片轮播 + 文字列表布局 -->
             <div class="classroom-carousel-container mobile-classroom">
-                <!-- 查看更多按钮 -->
-                <a href="./inner.html" class="classroom-more-button">查看更多</a>
                 
                 <div class="classroom-carousel-wrapper" id="mobileClassroomCarousel">
                     <!-- 第一页 - 图片轮播 + 文字列表 -->
@@ -6785,25 +7041,37 @@
                                     <h4 class="classroom-text-title">
                                         <a href="./inner.html">我校召开2025年学生思想政治教育与安全稳定工作会议</a>
                                     </h4>
-                                    <p class="classroom-text-meta">2025年01月15日</p>
+                                    <div class="classroom-text-stats">
+                                        <span class="classroom-text-category">重要会议</span>
+                                    </div>
+                                    <p class="classroom-text-summary">学校召开2025年学生思想政治教育与安全稳定工作会议，深入学习贯彻党的二十大精神，全面部署新学期学生工作重点任务。</p>
                                 </div>
                                 <div class="classroom-text-item" data-index="1">
                                     <h4 class="classroom-text-title">
                                         <a href="./inner.html">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a>
                                     </h4>
-                                    <p class="classroom-text-meta">2025年01月12日</p>
+                                    <div class="classroom-text-stats">
+                                        <span class="classroom-text-category">学工动态</span>
+                                    </div>
+                                    <p class="classroom-text-summary">学校召开2025年春季学期学生工作会议，深入交流学生工作经验，研讨新学期工作重点，推进"至善"学工启思汇品牌建设。</p>
                                 </div>
                                 <div class="classroom-text-item" data-index="2">
                                     <h4 class="classroom-text-title">
                                         <a href="./inner.html">杨萌芽到校团委调研座谈</a>
                                     </h4>
-                                    <p class="classroom-text-meta">2025年01月10日</p>
+                                    <div class="classroom-text-stats">
+                                        <span class="classroom-text-category">领导调研</span>
+                                    </div>
+                                    <p class="classroom-text-summary">校党委副书记杨萌芽深入校团委调研座谈，了解共青团工作开展情况，指导团学工作创新发展。</p>
                                 </div>
                                 <div class="classroom-text-item" data-index="3">
                                     <h4 class="classroom-text-title">
                                         <a href="./inner.html">我校召开思政课建设工作会</a>
                                     </h4>
-                                    <p class="classroom-text-meta">2025年01月08日</p>
+                                    <div class="classroom-text-stats">
+                                        <span class="classroom-text-category">思政教育</span>
+                                    </div>
+                                    <p class="classroom-text-summary">学校召开思政课建设工作会，研究部署思政课教学改革，提升思政课教学质量和育人效果。</p>
                                 </div>
                             </div>
                         </div>
@@ -6849,73 +7117,190 @@
                                     <h4 class="classroom-text-title">
                                         <a href="./inner.html">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a>
                                     </h4>
-                                    <p class="classroom-text-meta">2025年01月05日</p>
+                                    <div class="classroom-text-stats">
+                                        <span class="classroom-text-category">思政教育</span>
+                                    </div>
+                                    <p class="classroom-text-summary">校党委书记季波为2024级新生开讲思政第一课，以"选择河大就是选择责任、选择未来"为主题，引导新生树立正确的人生观。</p>
                                 </div>
                                 <div class="classroom-text-item" data-index="1">
                                     <h4 class="classroom-text-title">
                                         <a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a>
                                     </h4>
-                                    <p class="classroom-text-meta">2025年01月03日</p>
+                                    <div class="classroom-text-stats">
+                                        <span class="classroom-text-category">理论学习</span>
+                                    </div>
+                                    <p class="classroom-text-summary">学校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会，深入研讨文化传承发展的重要论述。</p>
                                 </div>
                                 <div class="classroom-text-item" data-index="2">
                                     <h4 class="classroom-text-title">
                                         <a href="./inner.html">王宽行：至简人生 深情于学</a>
                                     </h4>
-                                    <p class="classroom-text-meta">2025年01月01日</p>
+                                    <div class="classroom-text-stats">
+                                        <span class="classroom-text-category">人物风采</span>
+                                    </div>
+                                    <p class="classroom-text-summary">王宽行教授以至简的人生哲学和深情的学术追求，展现了河大学者的精神风貌和学术品格。</p>
                                 </div>
                                 <div class="classroom-text-item" data-index="3">
                                     <h4 class="classroom-text-title">
                                         <a href="./inner.html">张祎捷为全校学生宣讲党的二十大精神</a>
                                     </h4>
-                                    <p class="classroom-text-meta">2024年12月30日</p>
+                                    <div class="classroom-text-stats">
+                                        <span class="classroom-text-category">理论宣讲</span>
+                                    </div>
+                                    <p class="classroom-text-summary">张祎捷教授结合青年学生特点，用生动的语言和鲜活的事例，深入浅出地阐释了党的二十大精神。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                <!-- 轮播指示器 -->
-                <div class="classroom-dots-container" id="classroomDots"></div>
-            </div>
             
             <!-- 思政课堂新闻列表 - 整合到同一模块 -->
             <div class="classroom-news-list">
                 <div class="news-list">
-                    <article class="news-item">
-                        <h3 class="news-item-title">
-                            <a href="./inner.html">我校召开2025年学生思想政治教育与安全稳定工作会议</a>
-                        </h3>
-                        <span class="news-date">2025-03-20</span>
+                    <article class="news-item news-card">
+                        <div class="news-card-content">
+                            <div class="news-card-title-row">
+                                <span class="news-card-tag">重要会议</span>
+                            </div>
+                            <h3 class="news-card-title">
+                                <a href="./inner.html">我校召开2025年学生思想政治教育与安全稳定工作会议</a>
+                            </h3>
+                            <div class="news-card-summary">学校召开2025年学生思想政治教育与安全稳定工作会议，深入学习贯彻党的二十大精神，全面部署新学期学生工作重点任务，进一步加强和改进学生思想政治教育工作。</div>
+                        </div>
                     </article>
-                    <article class="news-item">
-                        <h3 class="news-item-title">
-                            <a href="./inner.html">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a>
-                        </h3>
-                        <span class="news-date">2025-02-28</span>
+                    <article class="news-item news-card">
+                        <div class="news-card-content">
+                            <div class="news-card-title-row">
+                                <span class="news-card-tag">学工动态</span>
+                            </div>
+                            <h3 class="news-card-title">
+                                <a href="./inner.html">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a>
+                            </h3>
+                            <div class="news-card-summary">学校召开2025年春季学期学生工作会议，深入交流学生工作经验，研讨新学期工作重点，推进"至善"学工启思汇品牌建设，提升学生工作质量和水平。</div>
+                        </div>
                     </article>
-                    <article class="news-item">
-                        <h3 class="news-item-title">
-                            <a href="./inner.html">杨萌芽到校团委调研座谈</a>
-                        </h3>
-                        <span class="news-date">2025-02-27</span>
+                    <article class="news-item news-card">
+                        <div class="news-card-content">
+                            <div class="news-card-title-row">
+                                <span class="news-card-tag">领导调研</span>
+                            </div>
+                            <h3 class="news-card-title">
+                                <a href="./inner.html">杨萌芽到校团委调研座谈</a>
+                            </h3>
+                            <div class="news-card-summary">校党委副书记杨萌芽深入校团委调研座谈，了解共青团工作开展情况，指导团学工作创新发展，推动青年学生思想政治教育工作再上新台阶。</div>
+                        </div>
                     </article>
-                    <article class="news-item">
-                        <h3 class="news-item-title">
-                            <a href="./inner.html">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a>
-                        </h3>
-                        <span class="news-date">2024-12-13</span>
+                    <article class="news-item news-card">
+                        <div class="news-card-content">
+                            <div class="news-card-title-row">
+                                <span class="news-card-tag">思政教育</span>
+                            </div>
+                            <h3 class="news-card-title">
+                                <a href="./inner.html">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a>
+                            </h3>
+                            <div class="news-card-summary">校党委书记季波为2024级新生开讲思政第一课，以"选择河大就是选择责任、选择未来"为主题，引导新生树立正确的人生观、价值观，激励学生勇担时代责任。</div>
+                        </div>
                     </article>
-                    <article class="news-item">
-                        <h3 class="news-item-title">
-                            <a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a>
-                        </h3>
-                        <span class="news-date">2023-06-09</span>
+                    <article class="news-item news-card">
+                        <div class="news-card-content">
+                            <div class="news-card-title-row">
+                                <span class="news-card-tag">理论学习</span>
+                            </div>
+                            <h3 class="news-card-title">
+                                <a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a>
+                            </h3>
+                            <div class="news-card-summary">学校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会，深入学习贯彻总书记重要讲话精神，推动中华优秀传统文化传承发展。</div>
+                        </div>
                     </article>
                 </div>
                 <div class="news-more-button">
                     <a href="./inner.html" class="more-button">更多 →</a>
                 </div>
             </div>
+            <style>
+            /* 思政课堂新闻卡片优化样式 */
+            .news-card {
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(139,0,0,0.06);
+                margin-bottom: 8px;
+                border: 1px solid #ffeaea;
+                transition: box-shadow 0.2s, transform 0.15s;
+                padding: 0;
+                display: flex;
+                align-items: stretch;
+                position: relative;
+                min-height: 48px;
+                width: 100%;
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            .news-card:hover {
+                box-shadow: 0 4px 18px rgba(139,0,0,0.11);
+                transform: translateY(-2px) scale(1.01);
+                border-color: #8B0000;
+            }
+            .news-card-content {
+                padding: 6px 14px 6px 14px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            .news-card-title-row {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 2px;
+            }
+            .news-card-tag {
+                background: #ffeaea;
+                color: #8B0000;
+                font-size: 10px;
+                border-radius: 5px;
+                padding: 0 6px;
+                font-weight: 500;
+                height: 20px;
+                display: flex;
+                align-items: center;
+            }
+            .news-card-title {
+                font-size: 13px;
+                font-weight: 600;
+                margin: 0 0 2px 0;
+                line-height: 1.2;
+                color: #222;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .news-card-title a {
+                color: inherit;
+                text-decoration: none;
+                transition: color 0.18s;
+            }
+            .news-card-title a:hover {
+                color: #8B0000;
+            }
+            .news-card-summary {
+                font-size: 11px;
+                color: #666;
+                line-height: 1.3;
+                margin-bottom: 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            @media (max-width: 1024px) {
+                .news-card-content { padding: 4px 6px 4px 6px; }
+                .news-card-title { font-size: 11px; }
+                .news-card-summary { font-size: 10px; }
+                .news-card { min-height: 36px; }
+            }
+            </style>
         </section>
 
         <!-- 通知公告 (占位符) -->
@@ -6962,10 +7347,6 @@
                             <h3 class="announcement-title">
                                 <a href="./inner.html">党委宣传部"师生意见建议电子信箱"公示</a>
                             </h3>
-                            <div class="announcement-meta">
-                                <span class="date">2024年11月04日 12:27</span>
-                                <span class="views">328</span>
-                            </div>
                         </div>
                         <!-- 右边的操作链接 -->
                         <div class="announcement-action">
@@ -6979,10 +7360,6 @@
                             <h3 class="announcement-title">
                                 <a href="./inner.html">关于申报2024年思政系列职称人员提交材料的通知</a>
                             </h3>
-                            <div class="announcement-meta">
-                                <span class="date">2024年11月12日 09:26</span>
-                                <span class="views">456</span>
-                            </div>
                         </div>
                         <!-- 右边的操作链接 -->
                         <div class="announcement-action">
@@ -6996,10 +7373,6 @@
                             <h3 class="announcement-title">
                                 <a href="./inner.html">河南大学党委宣传部招聘劳务派遣人员公告</a>
                             </h3>
-                            <div class="announcement-meta">
-                                <span class="date">2024年08月08日 09:22</span>
-                                <span class="views">789</span>
-                            </div>
                         </div>
                         <!-- 右边的操作链接 -->
                         <div class="announcement-action">
@@ -7013,10 +7386,6 @@
                             <h3 class="announcement-title">
                                 <a href="./inner.html">关于表彰2023年度新闻宣传工作先进集体个人及优秀新闻作品的决定</a>
                             </h3>
-                            <div class="announcement-meta">
-                                <span class="date">2024年04月18日 11:59</span>
-                                <span class="views">612</span>
-                            </div>
                         </div>
                         <!-- 右边的操作链接 -->
                         <div class="announcement-action">
@@ -7030,10 +7399,6 @@
                             <h3 class="announcement-title">
                                 <a href="./inner.html">校党宣发〔2024〕3号 关于进一步加强校园文化建设的实施意见</a>
                             </h3>
-                            <div class="announcement-meta">
-                                <span class="date">2024年03月15日 14:30</span>
-                                <span class="views">445</span>
-                            </div>
                         </div>
                         <!-- 右边的操作链接 -->
                         <div class="announcement-action">
@@ -7276,6 +7641,28 @@
                 
                 .page-footer {
                     padding: 30px 0;
+                }
+                
+                /* 修复移动端侧边栏样式 */
+                .sidebar {
+                    background: url('./img/dw_index_topbg.jpg') no-repeat center center, linear-gradient(135deg, #C10C0C 80%, #fff0 100%);
+                    background-size: cover, cover;
+                    font-family: 'FZKai-Z03','KaiTi','STKaiti','楷体',serif;
+                    box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+
+                    right: -40vw !important;
+                    transition: right 0.3s ease !important;
+                    width: 40vw !important;
+                    top: 50px !important;
+                    height: calc(100vh - 50px) !important;
+                    z-index: 999 !important;
+                    overflow: hidden; /* 确保内容不会超出圆角边界 */
+                }
+                .sidebar.active {
+                    right: 0 !important;
+                }
+                .sidebar-overlay {
+                    z-index: 998 !important;
                 }
             }
         </style>
