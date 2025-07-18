@@ -4884,6 +4884,47 @@ if (navSection) navSection.style.display = '';
 }
 		</style>
 	</footer>
+	<style>
+		@media (max-width: 768px) {
+		  .news-list {
+			max-height: 70vh !important;
+			overflow-y: auto !important;
+			-webkit-overflow-scrolling: touch !important;
+			min-height: 200px;
+		  }
+		  .main-container {
+			min-height: 100vh !important;
+		  }
+		  html, body {
+			height: 100% !important;
+			min-height: 100vh !important;
+			overflow-y: auto !important;
+		  }
+		}
+		</style>
+		<style>
+			@media (max-width: 768px) {
+			  .article-container,
+			  .article-content,
+			  .article-main {
+				max-height: none !important;
+				height: auto !important;
+				overflow-y: visible !important;
+				min-height: 0 !important;
+				display: block !important;
+			  }
+			}
+			</style>
+			<style>
+				.article-container,
+				.article-content,
+				.article-main {
+				  max-height: none !important;
+				  height: auto !important;
+				  overflow-y: visible !important;
+				  min-height: 0 !important;
+				}
+				</style>
 </body>
 
 </html>
