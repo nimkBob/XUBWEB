@@ -2068,6 +2068,8 @@
 			const navSection = document.querySelector('.nav-section');
 			const paginationContainer = document.querySelector('.pagination-container');
 
+
+
 			// 添加导航栏滚动效果
 			let lastScrollTop = 0;
 			window.addEventListener('scroll', function() {
@@ -3324,22 +3326,7 @@
             "attachments": [],
             "image": "img/szkt/0025.jpg"
         },
-        {
-            "title": "《光明日报》王宽行：至简人生 深情于学",
-            "date": "2023年05月08日",
-            "full_date": "2023年05月08日 00:00",
-            "author": "河南大学宣传部",
-            "content": [],
-            "attachments": []
-        },
-        {
-            "title": "《河南日报》任东景：在新征程中绽放绚丽之花",
-            "date": "2023年05月04日",
-            "full_date": "2023年05月04日 00:00",
-            "author": "河南大学宣传部",
-            "content": [],
-            "attachments": []
-        },
+
         {
             "title": "关于做好2023年河南大学文明校园建设工作的通知",
             "date": "2023年03月29日",
@@ -4448,8 +4435,50 @@ if (navSection) navSection.style.display = '';
 				}, 300);
 			}
 
-			// 初始渲染新闻列表
-			renderNewsList(currentCategory);
+			// URL参数解析 - 检查是否需要直接显示文章或分类
+			const params = new URLSearchParams(window.location.search);
+			const hasCategory = params.has('category');
+			const hasIndex = params.has('index');
+			
+			if (hasCategory) {
+				const category = params.get('category');
+				
+				// 验证分类有效性
+				if (contentData[category]) {
+					// 激活对应的导航标签
+					navTabs.forEach(tab => {
+						tab.classList.remove('active');
+						if (tab.textContent.trim() === category) {
+							tab.classList.add('active');
+						}
+					});
+					
+					// 更新当前类别
+					currentCategory = category;
+					
+					if (hasIndex) {
+						// 有index参数，直接显示文章
+						const index = parseInt(params.get('index'));
+						if (index >= 0 && index < contentData[category].length) {
+							setTimeout(() => {
+								showArticle(category, index);
+							}, 100);
+						} else {
+							// index无效，显示该分类的文章列表
+							renderNewsList(currentCategory);
+						}
+					} else {
+						// 只有category参数，显示该分类的文章列表
+						renderNewsList(currentCategory);
+					}
+				} else {
+					// 分类无效，显示默认新闻列表
+					renderNewsList(currentCategory);
+				}
+			} else {
+				// 没有参数，显示默认新闻列表
+				renderNewsList(currentCategory);
+			}
 
 			// 为导航标签添加点击事件
 			navTabs.forEach(tab => {

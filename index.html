@@ -1943,12 +1943,12 @@
                 transform: scale(0.98) translateX(2px);
                 background: #dee2e6;
             }
-            
+
             .mobile-classroom .classroom-text-item.active:active {
                 transform: scale(0.98) translateX(3px);
                 box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
             }
-            
+
             /* 增强激活状态的视觉效果 */
                     .mobile-classroom .classroom-text-item.active::before {
             content: '';
@@ -2084,6 +2084,8 @@
             cursor: grabbing;
         }
 
+
+
         .classroom-carousel-container::before {
             content: '';
             position: absolute;
@@ -2157,7 +2159,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
+            background: linear-gradient(90deg,
                 transparent,
                 rgba(255, 255, 255, 0.2),
                 transparent);
@@ -2326,7 +2328,7 @@
         }
 
         .classroom-card:hover .classroom-card-content {
-            background: linear-gradient(135deg, 
+            background: linear-gradient(135deg,
                 rgba(255, 255, 255, 0.95) 0%,
                 rgba(248, 249, 250, 0.98) 100%);
         }
@@ -2538,16 +2540,16 @@
                 gap: 15px; /* 移动端减小间距 */
                 padding: 0; /* 移动端无内边距 */
             }
-            
+
             .classroom-carousel-container {
                 padding: 15px; /* 移动端减小外层padding */
                 margin: 20px 10px; /* 减小外边距，左右留小边距 */
             }
-            
+
             .classroom-carousel-wrapper {
                 gap: 30px !important; /* 移动端页面间距减小到30px */
             }
-            
+
             .classroom-more-button {
                 top: 15px;
                 right: 15px;
@@ -2555,17 +2557,17 @@
                 font-size: 13px;
                 border-radius: 20px;
             }
-            
+
             .classroom-card {
                 height: 240px; /* 移动端调整高度 */
                 min-height: 240px; /* 确保最小高度 */
             }
-            
+
             .classroom-card-image {
                 height: 120px; /* 移动端图片高度 */
                 object-fit: cover; /* 确保图片适配 */
             }
-            
+
             .classroom-card-content {
                 padding: 12px; /* 移动端减少内边距 */
                 height: calc(100% - 120px); /* 确保内容区域高度 */
@@ -2573,7 +2575,7 @@
                 flex-direction: column;
                 justify-content: center;
             }
-            
+
             .classroom-card-title {
                 font-size: 13px; /* 移动端稍小字体 */
                 line-height: 1.3;
@@ -2591,11 +2593,11 @@
                 padding: 12px; /* 小屏幕进一步减小padding */
                 margin: 15px 8px; /* 小屏幕进一步减小边距 */
             }
-            
+
             .classroom-carousel-wrapper {
                 gap: 20px !important; /* 小屏幕页面间距进一步减小到20px */
             }
-            
+
             .classroom-more-button {
                 top: 12px;
                 right: 12px;
@@ -2603,27 +2605,27 @@
                 font-size: 12px;
                 border-radius: 18px;
             }
-            
+
             .classroom-more-button::before {
                 font-size: 10px;
             }
-            
+
             .classroom-page {
                 gap: 12px; /* 小屏幕进一步减小间距 */
                 padding: 0; /* 小屏幕无内边距 */
                 min-height: 440px; /* 确保足够高度 */
             }
-            
+
             .classroom-card {
                 height: 210px; /* 小屏幕卡片高度进一步减小 */
                 min-height: 210px;
             }
-            
+
             .classroom-card-image {
                 height: 110px; /* 小屏幕图片高度 */
                 object-fit: cover;
             }
-            
+
             .classroom-card-content {
                 padding: 10px;
                 height: calc(100% - 110px);
@@ -2631,7 +2633,7 @@
                 flex-direction: column;
                 justify-content: center;
             }
-            
+
             .classroom-card-title {
                 font-size: 12px;
                 line-height: 1.3;
@@ -2658,8 +2660,8 @@
             font-size: 20px;
             cursor: pointer;
             z-index: 10;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                        opacity 0.3s ease, 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease,
                         visibility 0.3s ease;
             display: flex;
             /* 让箭头居中 */
@@ -3030,9 +3032,9 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.2), 
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
                 transparent);
             transition: left 0.5s ease;
             z-index: 1;
@@ -3068,7 +3070,7 @@
                 display: none !important;
             }
         }
-        
+
         /* 桌面端导航栏 .nav-list 样式仅限 .main-nav 下，避免影响侧边栏 */
         @media (min-width: 769px) {
             .main-nav .nav-list {
@@ -4278,7 +4280,7 @@
             .desktop-announcement {
                 display: none !important;
             }
-            
+
             .mobile-announcement {
                 display: block !important;
             }
@@ -4292,7 +4294,7 @@
             padding: 40px 35px;
             margin-top: 30px;
             position: relative;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
                         0 2px 8px rgba(139, 0, 0, 0.05);
             backdrop-filter: blur(10px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -4307,9 +4309,9 @@
             left: 0;
             right: 0;
             height: 6px;
-            background: linear-gradient(90deg, 
-                #8B0000 0%, 
-                #DC143C 50%, 
+            background: linear-gradient(90deg,
+                #8B0000 0%,
+                #DC143C 50%,
                 #8B0000 100%);
             border-radius: 16px 16px 0 0;
             box-shadow: 0 2px 8px rgba(139, 0, 0, 0.3);
@@ -4323,11 +4325,11 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, 
-                transparent, 
-                rgba(139, 0, 0, 0.1), 
-                transparent, 
-                rgba(220, 20, 60, 0.1), 
+            background: linear-gradient(45deg,
+                transparent,
+                rgba(139, 0, 0, 0.1),
+                transparent,
+                rgba(220, 20, 60, 0.1),
                 transparent);
             background-size: 400% 400%;
             border-radius: 18px;
@@ -4398,9 +4400,9 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.4), 
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
                 transparent);
             transition: left 0.6s ease;
         }
@@ -4449,15 +4451,15 @@
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
-            
+
             .announcement-card {
                 padding: 15px;
             }
-            
+
             .card-title {
                 font-size: 15px;
             }
-            
+
             .card-content {
                 font-size: 13px;
                 -webkit-line-clamp: 2;
@@ -4518,9 +4520,9 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.4), 
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
                 transparent);
             transition: left 0.6s ease;
         }
@@ -4578,9 +4580,9 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
                 transparent);
             transition: left 0.5s ease;
         }
@@ -4718,9 +4720,9 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
                 transparent);
             transition: left 0.5s ease;
         }
@@ -4885,9 +4887,9 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(139, 0, 0, 0.1), 
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(139, 0, 0, 0.1),
                 transparent);
             transition: left 0.6s ease;
         }
@@ -5050,31 +5052,31 @@
             .mobile-optimized {
                 background-size: 200% auto !important; /* 移动端背景图片优化 */
             }
-            
+
             .announcement-item {
                 position: relative !important;
             }
-            
+
             .announcement-action {
                 position: absolute !important;
                 top: 8px !important;
                 right: 8px !important;
                 z-index: 2 !important;
             }
-            
+
             .announcement-content {
                 padding-right: 80px !important; /* 为右侧按钮留出空间 */
             }
-            
+
             .announcement-title {
                 padding-right: 0 !important;
             }
-            
+
             /* 移动端隐藏部分元信息，只显示日期 */
             .announcement-meta .views {
                 display: none !important;
             }
-            
+
             /* 移动端优化标签显示 */
             .announcement-tag {
                 position: absolute !important;
@@ -5082,31 +5084,31 @@
                 left: 8px !important;
                 z-index: 2 !important;
             }
-            
+
             .announcement-title {
                 margin-top: 25px !important; /* 为标签留出空间 */
             }
         }
-        
+
         @media (max-width: 480px) {
             .mobile-optimized {
                 background-size: 150% auto !important; /* 超小屏幕背景图片进一步优化 */
             }
-            
+
             .announcement-action {
                 top: 6px !important;
                 right: 6px !important;
             }
-            
+
             .announcement-content {
                 padding-right: 70px !important; /* 减小右侧空间 */
             }
-            
+
             .announcement-tag {
                 top: 6px !important;
                 left: 6px !important;
             }
-            
+
             .announcement-title {
                 margin-top: 20px !important; /* 减小顶部空间 */
             }
@@ -5119,12 +5121,12 @@
                 -webkit-tap-highlight-color: rgba(139, 0, 0, 0.1) !important;
                 user-select: none !important;
             }
-            
+
             .announcement-item:active {
                 transform: scale(0.98) !important;
                 transition: transform 0.1s ease !important;
             }
-            
+
             .details-link {
                 -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3) !important;
                 min-height: 32px !important; /* 确保触摸区域足够大 */
@@ -5132,17 +5134,17 @@
                 align-items: center !important;
                 justify-content: center !important;
             }
-            
+
             .announcement-title a {
                 -webkit-tap-highlight-color: rgba(139, 0, 0, 0.1) !important;
             }
         }
-        
+
         @media (max-width: 480px) {
             .announcement-item:active {
                 transform: scale(0.97) !important;
             }
-            
+
             .details-link {
                 min-height: 28px !important; /* 超小屏幕稍微减小触摸区域 */
             }
@@ -5179,7 +5181,7 @@
             box-shadow: 0 4px 16px rgba(139,0,0,0.13);
             transform: scale(0.98);
         }
-        
+
         /* 移动端新闻链接样式 - 确保触摸导航正常工作 */
         .mobile-news-link {
             display: block;
@@ -5210,7 +5212,7 @@
             color: inherit;
             text-decoration: none;
         }
-        
+
         /* 移动端媒体查询优化 */
         @media (max-width: 768px) {
             .mobile-news-list li {
@@ -5252,7 +5254,7 @@
         .mobile-news-carousel {
             margin-top: 2px;
         }
-        
+
     </style>
     <script src="./news/loadNews.js"></script>
     <script>
@@ -5266,20 +5268,20 @@
                 }
             });
         }
-        
+
         document.addEventListener('DOMContentLoaded', function() {
             // 为所有inner.html链接添加时间戳
             addTimestampToLinks();
             // --- 全新移动端新闻资讯模块功能 ---
             function initMobileNews() {
                 console.log('=== 移动端新闻资讯模块初始化开始 ===');
-                
+
                 const container = document.querySelector('.mobile-news-container');
                 const slidesContainer = document.getElementById('mobileNewsSlides');
                 const indicatorsContainer = document.getElementById('mobileNewsIndicators');
                 const prevBtn = document.getElementById('mobileNewsPrev');
                 const nextBtn = document.getElementById('mobileNewsNext');
-                
+
                 if (!container || !slidesContainer || !indicatorsContainer) {
                     console.error('移动端新闻模块元素未找到！');
                     return;
@@ -5287,22 +5289,24 @@
 
                 // 显示容器
                 container.style.display = 'block';
-                
+
                 // 新闻数据
                 const newsData = [
                     {
                         img: "./img/news_1.png",
                         title: "宣传部党支部进行专题理论学习",
                         description: "7月8日上午，宣传部党支部在金明校区行政楼510会议室召开专题理论学习会，围绕中央八项规定精神特别是其中关于改进新闻报道文风的核心要求展开深入学习研讨。",
-                        link: "./inner.html",
+                        link: "./inner.html?category=新闻快报&index=0",
+                        category: "新闻快报",
                         date: "2025年07月09日",
                         views: "1,456"
                     },
                     {
-                        img: "./img/news_2.png", 
+                        img: "./img/news_2.png",
                         title: "宣传部党支部召开习近平文化思想专题理论学习会",
                         description: "6月3日，宣传部党支部在金明校区行政楼510会议室召开专题理论学习会，深入学习习近平文化思想，集中研讨如何展现可信、可爱、可敬的中国形象。",
-                        link: "./inner.html",
+                        link: "./inner.html?category=新闻快报&index=1",
+                        category: "新闻快报",
                         date: "2025年06月05日",
                         views: "1,234"
                     },
@@ -5310,7 +5314,8 @@
                         img: "./img/news_3.png",
                         title: "凝心聚力强文化 提质进位创辉煌",
                         description: "5月29日下午，校党委宣传部、总务处、教育发展基金会办公室、哲学与公共管理学院、经济学院联合举办主题党日活动，深入学习领会习近平总书记考察河南时的重要讲话精神。",
-                        link: "./inner.html", 
+                        link: "./inner.html?category=新闻快报&index=2",
+                        category: "新闻快报",
                         date: "2025年05月30日",
                         views: "1,089"
                     },
@@ -5318,7 +5323,8 @@
                         img: "./img/news_4.png",
                         title: "河南省报业协会秘书长李宜鹏一行到我校调研座谈",
                         description: "3月18日下午，河南省报业协会秘书长李宜鹏一行到我校调研并在龙子湖校区友兰学堂中楼301会议室召开座谈会，围绕校报发展进行深入交流。",
-                        link: "./inner.html",
+                        link: "./inner.html?category=新闻快报&index=3",
+                        category: "新闻快报",
                         date: "2025年03月20日",
                         views: "987"
                     },
@@ -5326,7 +5332,8 @@
                         img: "./img/news_5.png",
                         title: "党委宣传部召开组织生活会",
                         description: "2月26日上午，党委宣传部在郑州校区友兰中楼301会议室召开专题组织生活会，支部全体党员参加会议，开展批评与自我批评。",
-                        link: "./inner.html",
+                        link: "./inner.html?category=新闻快报&index=4",
+                        category: "新闻快报",
                         date: "2025年02月26日",
                         views: "876"
                     }
@@ -5339,28 +5346,29 @@
                     newsData.slice(0, 4).forEach((news, idx) => {
                         const li = document.createElement('li');
                         // 使用 anchor 标签包装内容，确保移动端可以正常跳转
+                        const dynamicLink = `${news.link}?category=${encodeURIComponent(news.category)}&index=${idx}`;
                         li.innerHTML = `
-                            <a href="${news.link}?v=${Date.now()}" class="mobile-news-link">
+                            <a href="${dynamicLink}" class="mobile-news-link">
                                 <div class="news-title">${news.title}</div>
                                 <div class="news-desc">${news.description}</div>
                                 <div class="news-meta">${news.date} · 阅读 ${news.views}</div>
                             </a>
                         `;
-                        
+
                         // 添加触摸事件支持，提升移动端体验
                         li.addEventListener('touchstart', function(e) {
                             this.style.transform = 'scale(0.98)';
                             this.style.transition = 'transform 0.1s ease';
                         });
-                        
+
                         li.addEventListener('touchend', function(e) {
                             this.style.transform = 'scale(1)';
                         });
-                        
+
                         li.addEventListener('touchcancel', function(e) {
                             this.style.transform = 'scale(1)';
                         });
-                        
+
                         listContainer.appendChild(li);
                     });
                 }
@@ -5406,7 +5414,7 @@
                         if (itemDiag.computedStyle.pointerEvents === 'none') {
                             itemDiag.issues.push('pointer-events设置为none');
                         }
-                        
+
                         if (itemDiag.computedStyle.zIndex === 'auto' || parseInt(itemDiag.computedStyle.zIndex) < 0) {
                             itemDiag.issues.push('z-index可能有问题');
                         }
@@ -5420,7 +5428,7 @@
                         const centerX = itemDiag.boundingRect.left + itemDiag.boundingRect.width / 2;
                         const centerY = itemDiag.boundingRect.top + itemDiag.boundingRect.height / 2;
                         const elementAtPoint = document.elementFromPoint(centerX, centerY);
-                        
+
                         if (elementAtPoint && !item.contains(elementAtPoint)) {
                             itemDiag.issues.push(`被其他元素覆盖: ${elementAtPoint.tagName}.${elementAtPoint.className}`);
                         }
@@ -5442,7 +5450,7 @@
                     setTimeout(() => {
                         const result = diagnoseMobileInteraction();
                         console.log('自动移动端诊断:', result);
-                        
+
                         // 如果发现问题，尝试自动修复
                         if (result.issues.length > 0) {
                             console.warn('发现移动端交互问题，尝试自动修复...');
@@ -5460,11 +5468,11 @@
                     newsItems.forEach(item => {
                         // 确保pointer-events正常
                         item.style.pointerEvents = 'auto';
-                        
+
                         // 确保z-index足够高
                         item.style.zIndex = '10';
                         item.style.position = 'relative';
-                        
+
                         // 确保触摸目标大小
                         if (item.getBoundingClientRect().height < 44) {
                             item.style.minHeight = '44px';
@@ -5501,17 +5509,16 @@
                             <h3 class="mobile-news-title">${news.title}</h3>
                         </div>
                     `;
-                    
+
                     // 添加点击事件
                     slide.addEventListener('click', () => {
-                        const timestamp = Date.now();
-                        const url = news.link + '?v=' + timestamp;
-                        window.location.href = url;
+                        const dynamicLink = `${news.link}?category=${encodeURIComponent(news.category)}&index=${index}`;
+                        window.location.href = dynamicLink;
                     });
-                    
+
                     slidesContainer.appendChild(slide);
                 });
-                
+
                 // 创建指示器
                 indicatorsContainer.innerHTML = '';
                 newsData.forEach((_, index) => {
@@ -5521,19 +5528,19 @@
                     indicator.addEventListener('click', () => goToSlide(index));
                     indicatorsContainer.appendChild(indicator);
                 });
-                
 
-                
+
+
                 // 轮播控制逻辑
                 let currentSlide = 0;
                 const totalSlides = newsData.length;
                 let autoplayInterval;
-                
+
                 function goToSlide(index) {
                     currentSlide = index;
                     const translateX = -currentSlide * 100;
                     slidesContainer.style.transform = `translateX(${translateX}%)`;
-                    
+
                     // 更新指示器
                     const indicators = indicatorsContainer.querySelectorAll('.mobile-news-indicator');
                     indicators.forEach((indicator, i) => {
@@ -5541,42 +5548,42 @@
                     });
                     // 删除按钮禁用逻辑，实现无限循环
                 }
-                
+
                 function nextSlide() {
                     const nextIndex = (currentSlide + 1) % totalSlides;
                     goToSlide(nextIndex);
                 }
-                
+
                 function prevSlide() {
                     const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
                     goToSlide(prevIndex);
                 }
-                
+
                 // 绑定按钮事件
                 if (prevBtn) prevBtn.addEventListener('click', () => {
                     clearInterval(autoplayInterval);
                     prevSlide();
                     startAutoplay();
                 });
-                
+
                 if (nextBtn) nextBtn.addEventListener('click', () => {
                     clearInterval(autoplayInterval);
                     nextSlide();
                     startAutoplay();
                 });
-                
+
                 // 触摸滑动支持
                 let startX = 0;
                 let endX = 0;
-                
+
                 slidesContainer.addEventListener('touchstart', (e) => {
                     startX = e.touches[0].clientX;
                 }, { passive: true });
-                
+
                 slidesContainer.addEventListener('touchend', (e) => {
                     endX = e.changedTouches[0].clientX;
                     const diffX = startX - endX;
-                    
+
                     if (Math.abs(diffX) > 50) {
                         clearInterval(autoplayInterval);
                         if (diffX > 0) {
@@ -5587,24 +5594,24 @@
                         startAutoplay();
                     }
                 }, { passive: true });
-                
+
                 // 自动播放
                 function startAutoplay() {
                     autoplayInterval = setInterval(nextSlide, 4000);
                 }
-                
+
                 function stopAutoplay() {
                     clearInterval(autoplayInterval);
                 }
-                
+
                 // 鼠标悬停暂停
                 container.addEventListener('mouseenter', stopAutoplay);
                 container.addEventListener('mouseleave', startAutoplay);
-                
+
                 // 初始化
                 goToSlide(0);
                 startAutoplay();
-                
+
                 // 页面可见性变化处理
                 document.addEventListener('visibilitychange', () => {
                     if (document.hidden) {
@@ -5613,20 +5620,21 @@
                         startAutoplay();
                     }
                 });
-                
+
                 console.log('移动端新闻资讯模块初始化完成！');
             }
 
             // 初始化所有功能
             initCarousel();
             initClassroomCarousel();
-            
+
             // 根据屏幕尺寸决定初始化哪些功能
             if (window.innerWidth <= 768) {
                 console.log('移动端模式，初始化移动端功能...');
                 initMobileNews(); // 初始化移动端新闻模块
                 initMobileTheory(); // 初始化移动端理论学习
-                
+                initMobileClassroom(); // 初始化移动端思政课堂
+
                 // 移动端：隐藏除第一页外的所有思政课堂页面
                 const classroomPages = document.querySelectorAll('.classroom-page');
                 classroomPages.forEach((page, index) => {
@@ -5634,7 +5642,7 @@
                         page.style.display = 'none';
                     }
                 });
-                
+
                 // 隐藏页面切换指示器
                 const classroomDots = document.getElementById('classroomDots');
                 if (classroomDots) {
@@ -5657,51 +5665,50 @@
             function initMobileTheory() {
                 const tabs = document.querySelectorAll('.mobile-theory-tab');
                 const contentList = document.getElementById('mobile-theory-list');
-                
+
                 if (!tabs.length || !contentList) return;
 
-                // 理论学习数据
+                // 理论学习数据 - 与inner.html中的理论学习分类数据匹配
                 const theoryData = {
-                    theory: [
-                        { title: '习近平：培养德智体美劳全面发展的社会主义建设者和接班人', link: './inner.html' },
-                        { title: '习近平：在全国科技大会、国家科学技术奖励大会、两院院士大会上的讲话', link: './inner.html' },
-                        { title: '纪律是管党治党的"戒尺"——习近平总书记关于党的纪律和规矩相关重要论述', link: './inner.html' },
-                        { title: '习近平：推进新时代党的建设新的伟大工程', link: './inner.html' },
-                        { title: '习近平：坚持以人民为中心的发展思想', link: './inner.html' }
-                    ],
                     latest: [
-                        { title: '必须坚持人民至上', link: './inner.html' },
-                        { title: '坚持系统观念', link: './inner.html' },
-                        { title: '习近平：培养德智体美劳全面发展的社会主义建设者和接班人', link: './inner.html' },
-                        { title: '推进新时代党的建设新的伟大工程', link: './inner.html' },
-                        { title: '深入学习贯彻习近平新时代中国特色社会主义思想', link: './inner.html' }
+                        { title: '《习近平关于加强党的作风建设论述摘编》：推进作风建设  常态化长效化', link: './inner.html' },
+                        { title: '《习近平关于加强党的作风建设论述摘编》：使党的作风全面纯洁起来以优良党风带动社风民风向上向善', link: './inner.html' },
+                        { title: '《习近平关于加强党的作风建设论述摘编》：坚持正风肃纪反腐相贯通', link: './inner.html' },
+                        { title: '《习近平关于加强党的作风建设论述摘编》：各级领导干部要带头转变作风，身体力行，以上率下', link: './inner.html' },
+                        { title: '《习近平关于加强党的作风建设论述摘编》：持续深化纠治"四风"', link: './inner.html' }
+                    ],
+                    theory: [
+                        { title: '《习近平关于加强党的作风建设论述摘编》：中央八项规定是改进作风的切入口和动员令，是长期有效的...', link: './inner.html' },
+                        { title: '《习近平关于加强党的作风建设论述摘编》：作风问题核心是党同人民群众的关系问题', link: './inner.html' },
+                        { title: '《习近平关于加强党的作风建设论述摘编》：作风问题本质上是党性问题', link: './inner.html' },
+                        { title: '《习近平关于加强党的作风建设论述摘编》：党的作风关系人心向背，决定党和国家事业成败', link: './inner.html' },
+                        { title: '《习近平文化思想学习纲要》：唱响主旋律，弘扬正能量——关于掌握信息化条件下舆论主导权、广泛凝...', link: './inner.html' }
                     ]
                 };
 
                 function renderContent(type) {
                     const data = theoryData[type];
                     let html = '';
-                    
-                    data.forEach(item => {
-                        // 添加时间戳避免缓存
-                        const timestamp = Date.now();
-                        const linkWithTimestamp = item.link + '?v=' + timestamp;
-                        
+
+                    data.forEach((item, index) => {
+                        // 为不同标签页生成不同的索引偏移，确保链接和标题对应
+                        let actualIndex = index;
                         if (type === 'theory') {
-                            html += `
-                                <li>
-                                    <a href="${linkWithTimestamp}">${item.title}</a>
-                                </li>
-                            `;
-                        } else {
-                            html += `
-                                <li>
-                                    <a href="${linkWithTimestamp}">${item.title}</a>
-                                </li>
-                            `;
+                            // 重点专题使用偏移索引，从索引5开始（最新文章占用0-4）
+                            actualIndex = index + 5;
                         }
+                        // latest类型保持原索引0-4不变
+
+                        // 生成跳转到理论学习分类具体文章的链接
+                        const dynamicLink = `${item.link}?category=${encodeURIComponent('理论学习')}&index=${actualIndex}`;
+
+                        html += `
+                            <li>
+                                <a href="${dynamicLink}">${item.title}</a>
+                            </li>
+                        `;
                     });
-                    
+
                     contentList.innerHTML = html;
                 }
 
@@ -5720,14 +5727,135 @@
                     });
                 });
             }
-            
+
+            // 移动端思政课堂功能
+            function initMobileClassroom() {
+                const tabs = document.querySelectorAll('.mobile-classroom-tab');
+                const contentList = document.getElementById('mobile-classroom-list');
+
+                if (!tabs.length || !contentList) return;
+
+                // 思政课堂数据 - 区分最新文章和重点专题
+                const classroomData = {
+                    latest: [
+                        {
+                            title: '我校召开2025年学生思想政治教育与安全稳定工作会议',
+                            link: './inner.html?category=通知公告&index=0',
+                            category: '思政课堂',
+                            summary: '学校召开2025年学生思想政治教育与安全稳定工作会议，深入学习贯彻党的二十大精神，全面部署新学期学生工作重点任务。'
+                        },
+                        {
+                            title: '我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期',
+                            link: './inner.html?category=通知公告&index=1',
+                            category: '思政课堂',
+                            summary: '学校召开2025年春季学期学生工作会议，深入交流学生工作经验，研讨新学期工作重点，推进"至善"学工启思汇品牌建设。'
+                        },
+                        {
+                            title: '杨萌芽到校团委调研座谈',
+                            link: './inner.html?category=通知公告&index=2',
+                            category: '思政课堂',
+                            summary: '校党委副书记杨萌芽深入校团委调研座谈，了解共青团工作开展情况，指导团学工作创新发展。'
+                        },
+                        {
+                            title: '我校召开思政课建设工作会',
+                            link: './inner.html?category=通知公告&index=3',
+                            category: '思政课堂',
+                            summary: '学校召开思政课建设工作会，研究部署思政课教学改革，提升思政课教学质量和育人效果。'
+                        },
+                        {
+                            title: '季波为新生开讲思政课：选择河大就是选择责任、选择未来',
+                            link: './inner.html?category=通知公告&index=4',
+                            category: '思政课堂',
+                            summary: '校党委书记季波为2024级新生开讲思政第一课，以"选择河大就是选择责任、选择未来"为主题，引导新生树立正确的人生观。'
+                        }
+                    ],
+                    key: [
+                        {
+                            title: '深入学习贯彻习近平新时代中国特色社会主义思想',
+                            link: './inner.html',
+                            category: '思政课堂',
+                            summary: '全面系统学习习近平新时代中国特色社会主义思想的核心要义和实践要求，推进理论学习走深走实。'
+                        },
+                        {
+                            title: '学习贯彻党的二十大精神专题教育',
+                            link: './inner.html',
+                            category: '思政课堂',
+                            summary: '深入学习党的二十大报告精神，把握新时代新征程的使命任务，凝聚奋进力量。'
+                        },
+                        {
+                            title: '习近平文化思想学习研讨',
+                            link: './inner.html',
+                            category: '思政课堂',
+                            summary: '学习贯彻习近平文化思想，推进文化自信自强，建设社会主义文化强国。'
+                        },
+                        {
+                            title: '习近平法治思想专题学习',
+                            link: './inner.html',
+                            category: '思政课堂',
+                            summary: '深入学习习近平法治思想，推进全面依法治国，建设法治中国。'
+                        },
+                        {
+                            title: '习近平生态文明思想实践探索',
+                            link: './inner.html',
+                            category: '思政课堂',
+                            summary: '学习贯彻习近平生态文明思想，推进美丽中国建设，实现人与自然和谐共生。'
+                        }
+                    ]
+                };
+
+                // 渲染内容函数
+                function renderContent(type) {
+                    const data = classroomData[type];
+                    let html = '';
+
+                    data.forEach((item, index) => {
+                        // 为不同标签页生成不同的索引偏移，确保链接和标题对应
+                        let actualIndex = index;
+                        if (type === 'key') {
+                            // 重点专题使用偏移索引，从索引5开始（最新文章占用0-4）
+                            actualIndex = index + 5;
+                        }
+                        // latest类型保持原索引0-4不变
+
+                        // 生成跳转到思政课堂分类具体文章的链接
+                        const dynamicLink = `${item.link}?category=${encodeURIComponent(item.category)}&index=${actualIndex}`;
+                        html += `
+                            <li>
+                                <a href="${dynamicLink}">
+                                    <div class="article-title">${item.title}</div>
+                                    <div class="article-summary">${item.summary}</div>
+                                </a>
+                            </li>
+                        `;
+                    });
+
+                    contentList.innerHTML = html;
+                }
+
+                // 初始化显示最新文章
+                renderContent('latest');
+
+                // 绑定切换事件
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // 移除所有活跃状态
+                        tabs.forEach(t => t.classList.remove('active'));
+                        // 添加当前活跃状态
+                        tab.classList.add('active');
+                        // 渲染对应内容
+                        renderContent(tab.dataset.tab);
+                    });
+                });
+            }
+
             // 监听屏幕尺寸变化
             window.addEventListener('resize', function() {
                 if (window.innerWidth <= 768) {
                     // 切换到移动端时初始化移动端功能
                     initMobileNews();
                     initMobileTheory();
-                    
+                    initMobileClassroom();
+
                     // 移动端：隐藏除第一页外的所有思政课堂页面
                     const classroomPages = document.querySelectorAll('.classroom-page');
                     classroomPages.forEach((page, index) => {
@@ -5737,7 +5865,7 @@
                             page.style.display = 'flex';
                         }
                     });
-                    
+
                     // 隐藏页面切换指示器
                     const classroomDots = document.getElementById('classroomDots');
                     if (classroomDots) {
@@ -5749,7 +5877,7 @@
                     classroomPages.forEach(page => {
                         page.style.display = 'flex';
                     });
-                    
+
                     // 显示页面切换指示器
                     const classroomDots = document.getElementById('classroomDots');
                     if (classroomDots) {
@@ -5763,16 +5891,16 @@
             const sidebarToggle = document.getElementById('sidebarToggle');
             const sidebar = document.getElementById('sidebarMenu');
             const sidebarOverlay = document.getElementById('sidebarOverlay');
-            
+
             console.log('侧边栏元素检查:', {
                 sidebarToggle: sidebarToggle ? '找到' : '未找到',
                 sidebar: sidebar ? '找到' : '未找到',
                 sidebarOverlay: sidebarOverlay ? '找到' : '未找到'
             });
-            
+
             if (sidebarToggle && sidebar && sidebarOverlay) {
                 console.log('侧边栏控制逻辑已初始化');
-                
+
                 // 打开侧边栏
                 sidebarToggle.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -5808,7 +5936,7 @@
                         document.body.style.overflow = ''; // 恢复滚动
                     }
                 });
-                
+
                 // 窗口大小变化时关闭侧边栏（从移动端切换到桌面端）
                 window.addEventListener('resize', function() {
                     if (window.innerWidth >= 769 && sidebar.classList.contains('active')) {
@@ -5825,16 +5953,16 @@
             if (window.innerWidth > 768) {
                 const heroSection = document.querySelector('.hero-section');
                 const mainNav = document.querySelector('.main-nav');
-                
+
                 if (heroSection && mainNav) {
                     let hideTimeout;
-                    
+
                     // 鼠标进入轮播图区域时显示导航栏
                     heroSection.addEventListener('mouseenter', function() {
                         clearTimeout(hideTimeout);
                         mainNav.style.transform = 'translateY(0)';
                         mainNav.style.opacity = '1';
-                        
+
                         // 立即显示所有导航项
                         const navItems = mainNav.querySelectorAll('.nav-list li');
                         navItems.forEach((item, index) => {
@@ -5844,18 +5972,18 @@
                             }, index * 50); // 快速依次显示
                         });
                     });
-                    
+
                     // 鼠标进入导航栏时保持显示
                     mainNav.addEventListener('mouseenter', function() {
                         clearTimeout(hideTimeout);
                     });
-                    
+
                     // 鼠标离开时延迟隐藏（避免误触）
                     function hideNav() {
                         hideTimeout = setTimeout(() => {
                             mainNav.style.transform = 'translateY(-100%)';
                             mainNav.style.opacity = '0';
-                            
+
                             // 隐藏所有导航项
                             const navItems = mainNav.querySelectorAll('.nav-list li');
                             navItems.forEach(item => {
@@ -5864,7 +5992,7 @@
                             });
                         }, 300); // 300ms延迟
                     }
-                    
+
                     heroSection.addEventListener('mouseleave', hideNav);
                     mainNav.addEventListener('mouseleave', hideNav);
                 }
@@ -5877,7 +6005,7 @@
                 const dotsContainer = document.querySelector('.dots-container');
                 const prevBtn = document.getElementById('prevBtn');
                 const nextBtn = document.getElementById('nextBtn');
-                
+
                 if (!slidesWrapper || slides.length === 0) return;
 
                 let currentSlide = 0;
@@ -5899,7 +6027,7 @@
                     slides.forEach((slide, index) => {
                         // 清除所有状态类
                         slide.classList.remove('active', 'prev', 'next', 'hidden');
-                        
+
                         if (index === currentSlide) {
                             // 当前主slide
                             slide.classList.add('active');
@@ -5914,7 +6042,7 @@
                             slide.classList.add('hidden');
                         }
                     });
-                    
+
                     // 更新圆点
                     const dots = document.querySelectorAll('.dot');
                     dots.forEach((dot, index) => {
@@ -5984,7 +6112,7 @@
                 const pages = document.querySelectorAll('.desktop-classroom .classroom-page');
                 const mobilePages = document.querySelectorAll('.mobile-classroom .classroom-page');
                 const dotsContainer = document.getElementById('classroomDots');
-                
+
                 // 初始化移动端图片轮播
                 if (mobileCarouselWrapper && mobilePages.length > 0) {
                     initMobileImageCarousel();
@@ -5998,10 +6126,10 @@
                     if (dotsContainer) {
                         dotsContainer.style.display = 'none';
                     }
-                    
+
                     // 初始化移动端页面切换功能
                     initMobilePageCarousel();
-                    
+
                     return; // 移动端不执行网页端页面切换逻辑
                 }
 
@@ -6025,11 +6153,11 @@
                     const containerStyle = window.getComputedStyle(container);
                     const paddingLeft = parseFloat(containerStyle.paddingLeft);
                     const paddingRight = parseFloat(containerStyle.paddingRight);
-                    
+
                     // 计算实际可用宽度
                     containerWidth = container.clientWidth - paddingLeft - paddingRight;
                     const pageGap = getPageGap();
-                    
+
                     // 确保每个页面的宽度与可用宽度一致
                     pages.forEach(page => {
                         page.style.width = containerWidth + 'px';
@@ -6037,7 +6165,7 @@
                         page.style.maxWidth = containerWidth + 'px';
                         page.style.flexShrink = '0';
                     });
-                    
+
                     // 设置wrapper总宽度，包含间距
                     const totalWidth = (containerWidth * pages.length) + (pageGap * (pages.length - 1));
                     carouselWrapper.style.width = totalWidth + 'px';
@@ -6060,22 +6188,22 @@
                     const pageGap = getPageGap();
                     const baseOffset = 10; // 添加10px的基础偏移量
                     const translateX = -currentPage * (containerWidth + pageGap) + baseOffset;
-                    
+
                     if (animated) {
                         carouselWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                     } else {
                         carouselWrapper.style.transition = 'none';
                     }
-                    
+
                     carouselWrapper.style.transform = `translateX(${translateX}px)`;
-                    
+
                     // 恢复过渡效果
                     if (!animated) {
                         requestAnimationFrame(() => {
                             carouselWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                         });
                     }
-                    
+
                     // 更新圆点
                     const dots = document.querySelectorAll('.desktop-classroom-dot');
                     dots.forEach((dot, index) => {
@@ -6123,14 +6251,14 @@
                 // 触摸/鼠标事件处理
                 function handleStart(e) {
                     if (isDragging) return;
-                    
+
                     isDragging = true;
                     startTime = Date.now();
                     startX = e.touches ? e.touches[0].clientX : e.clientX;
                     currentX = startX;
                     stopAutoplay();
                     carouselWrapper.style.cursor = 'grabbing';
-                    
+
                     // 阻止默认行为
                     e.preventDefault();
                 }
@@ -6138,14 +6266,14 @@
                 function handleMove(e) {
                     if (!isDragging) return;
                     e.preventDefault();
-                    
+
                     currentX = e.touches ? e.touches[0].clientX : e.clientX;
                     const deltaX = currentX - startX;
                     // 修正：计算当前页面的translateX值，包含间距和偏移量
                     const pageGap = getPageGap();
                     const baseOffset = 10; // 添加10px的基础偏移量
                     const currentTranslate = -currentPage * (containerWidth + pageGap) + baseOffset;
-                    
+
                     // 添加阻尼效果，限制滑动范围
                     let dampedDelta = deltaX;
                     if (currentPage === 0 && deltaX > 0) {
@@ -6153,7 +6281,7 @@
                     } else if (currentPage === pages.length - 1 && deltaX < 0) {
                         dampedDelta = deltaX * 0.3; // 最后一页向左滑动时添加阻尼
                     }
-                    
+
                     // 实时跟随手指移动
                     carouselWrapper.style.transition = 'none';
                     carouselWrapper.style.transform = `translateX(${currentTranslate + dampedDelta}px)`;
@@ -6161,15 +6289,15 @@
 
                 function handleEnd(e) {
                     if (!isDragging) return;
-                    
+
                     isDragging = false;
                     carouselWrapper.style.cursor = 'grab';
-                    
+
                     const deltaX = currentX - startX;
                     const deltaTime = Date.now() - startTime;
                     const velocity = Math.abs(deltaX) / deltaTime; // 计算滑动速度
                     const threshold = containerWidth * 0.25; // 25%的宽度作为阈值
-                    
+
                     // 根据滑动距离和速度判断是否切换页面
                     if (Math.abs(deltaX) > threshold || (velocity > 0.3 && Math.abs(deltaX) > 50)) {
                         if (deltaX > 0 && currentPage > 0) {
@@ -6184,7 +6312,7 @@
                         // 滑动距离不够，回弹到当前页面
                         updateCarousel(true);
                     }
-                    
+
                     // 延迟重启自动播放，确保动画完成
                     setTimeout(() => {
                         if (!isDragging) restartAutoplay();
@@ -6203,24 +6331,24 @@
                                 page.style.display = 'flex';
                             }
                         });
-                        
+
                         // 隐藏页面切换指示器
                         if (dotsContainer) {
                             dotsContainer.style.display = 'none';
                         }
-                        
+
                         return; // 移动端不执行页面切换逻辑
                     } else {
                         // 桌面端：显示所有页面
                         pages.forEach(page => {
                             page.style.display = 'flex';
                         });
-                        
+
                         // 显示页面切换指示器
                         if (dotsContainer) {
                             dotsContainer.style.display = 'flex';
                         }
-                        
+
                         updateContainerWidth();
                         updateCarousel(false);
                     }
@@ -6232,16 +6360,16 @@
                 carouselWrapper.addEventListener('touchmove', handleMove, { passive: false });
                 carouselWrapper.addEventListener('touchend', handleEnd, { passive: false });
                 carouselWrapper.addEventListener('touchcancel', handleEnd, { passive: false });
-                
+
                 // 鼠标事件
                 carouselWrapper.addEventListener('mousedown', handleStart);
                 carouselWrapper.addEventListener('mousemove', handleMove);
                 carouselWrapper.addEventListener('mouseup', handleEnd);
                 carouselWrapper.addEventListener('mouseleave', handleEnd);
-                
+
                 // 窗口大小变化事件
                 window.addEventListener('resize', handleResize);
-                
+
                 // 防止拖拽选择文本和图片
                 carouselWrapper.addEventListener('selectstart', (e) => e.preventDefault());
                 carouselWrapper.addEventListener('dragstart', (e) => e.preventDefault());
@@ -6264,7 +6392,7 @@
             function initMobilePageCarousel() {
                 const mobileCarouselWrapper = document.getElementById('mobileClassroomCarousel');
                 const mobilePages = document.querySelectorAll('.mobile-classroom .classroom-page');
-                
+
                 if (!mobileCarouselWrapper || mobilePages.length === 0) return;
 
                 let currentPage = 0;
@@ -6281,30 +6409,30 @@
                     const containerStyle = window.getComputedStyle(container);
                     const paddingLeft = parseFloat(containerStyle.paddingLeft);
                     const paddingRight = parseFloat(containerStyle.paddingRight);
-                    
+
                     containerWidth = container.clientWidth - paddingLeft - paddingRight;
-                    
+
                     mobilePages.forEach(page => {
                         page.style.width = containerWidth + 'px';
                         page.style.minWidth = containerWidth + 'px';
                         page.style.maxWidth = containerWidth + 'px';
                         page.style.flexShrink = '0';
                     });
-                    
+
                     mobileCarouselWrapper.style.width = (containerWidth * mobilePages.length) + 'px';
                 }
 
                 function updateCarousel(animated = true) {
                     const translateX = -currentPage * containerWidth;
-                    
+
                     if (animated) {
                         mobileCarouselWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                     } else {
                         mobileCarouselWrapper.style.transition = 'none';
                     }
-                    
+
                     mobileCarouselWrapper.style.transform = `translateX(${translateX}px)`;
-                    
+
                     if (!animated) {
                         requestAnimationFrame(() => {
                             mobileCarouselWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
@@ -6344,47 +6472,47 @@
                 // 触摸/鼠标事件处理
                 function handleStart(e) {
                     if (isDragging) return;
-                    
+
                     isDragging = true;
                     startTime = Date.now();
                     startX = e.touches ? e.touches[0].clientX : e.clientX;
                     currentX = startX;
                     stopAutoplay();
                     mobileCarouselWrapper.style.cursor = 'grabbing';
-                    
+
                     e.preventDefault();
                 }
 
                 function handleMove(e) {
                     if (!isDragging) return;
                     e.preventDefault();
-                    
+
                     currentX = e.touches ? e.touches[0].clientX : e.clientX;
                     const deltaX = currentX - startX;
                     const currentTranslate = -currentPage * containerWidth;
-                    
+
                     let dampedDelta = deltaX;
                     if (currentPage === 0 && deltaX > 0) {
                         dampedDelta = deltaX * 0.3;
                     } else if (currentPage === mobilePages.length - 1 && deltaX < 0) {
                         dampedDelta = deltaX * 0.3;
                     }
-                    
+
                     mobileCarouselWrapper.style.transition = 'none';
                     mobileCarouselWrapper.style.transform = `translateX(${currentTranslate + dampedDelta}px)`;
                 }
 
                 function handleEnd(e) {
                     if (!isDragging) return;
-                    
+
                     isDragging = false;
                     mobileCarouselWrapper.style.cursor = 'grab';
-                    
+
                     const deltaX = currentX - startX;
                     const deltaTime = Date.now() - startTime;
                     const velocity = Math.abs(deltaX) / deltaTime;
                     const threshold = containerWidth * 0.25;
-                    
+
                     if (Math.abs(deltaX) > threshold || (velocity > 0.3 && Math.abs(deltaX) > 50)) {
                         if (deltaX > 0 && currentPage > 0) {
                             prevPage();
@@ -6396,7 +6524,7 @@
                     } else {
                         updateCarousel(true);
                     }
-                    
+
                     setTimeout(() => {
                         if (!isDragging) restartAutoplay();
                     }, 100);
@@ -6427,7 +6555,7 @@
             // 移动端图片轮播初始化函数
             function initMobileImageCarousel() {
                 const mobilePages = document.querySelectorAll('.mobile-classroom .classroom-page');
-                
+
                 mobilePages.forEach((page, pageIndex) => {
                     const imageCarousel = page.querySelector('.classroom-image-carousel');
                     const slides = page.querySelectorAll('.classroom-image-slide');
@@ -6435,7 +6563,7 @@
                     const nextBtn = page.querySelector('.classroom-image-arrow.next');
                     const dotsContainer = page.querySelector('.classroom-image-dots');
                     const textItems = page.querySelectorAll('.classroom-text-item');
-                    
+
                     if (!imageCarousel || slides.length === 0) return;
 
                     let currentSlide = 0;
@@ -6460,15 +6588,15 @@
                             slides.forEach((slide, index) => {
                                 slide.classList.toggle('active', index === currentSlide);
                             });
-                            
+
                             // 更新文字列表的活跃状态 - 增强移动端体验
                             textItems.forEach((item, index) => {
                                 const wasActive = item.classList.contains('active');
                                 const shouldBeActive = index === currentSlide;
-                                
+
                                 if (wasActive !== shouldBeActive) {
                                     item.classList.toggle('active', shouldBeActive);
-                                    
+
                                     // 移动端激活动画效果 - 性能优化
                                     if (shouldBeActive && window.innerWidth <= 768) {
                                         // 使用 will-change 提示浏览器优化
@@ -6476,7 +6604,7 @@
                                         item.style.animation = 'none';
                                         item.offsetHeight; // 触发重排
                                         item.style.animation = 'classroomItemActivate 0.3s ease-out';
-                                        
+
                                         // 动画结束后清理 will-change
                                         setTimeout(() => {
                                             item.style.willChange = 'auto';
@@ -6484,7 +6612,7 @@
                                     }
                                 }
                             });
-                            
+
                             // 更新指示器
                             if (dotsContainer) {
                                 const dots = dotsContainer.querySelectorAll('.classroom-image-dot');
@@ -6493,7 +6621,7 @@
                                 });
                             }
                         });
-                        
+
                         // 移动端滚动优化已禁用 - 避免自动跳转到思政课堂位置
                         // 注释：原本的 scrollIntoView 会导致页面自动滚动到思政课堂区域
                         // 现在只在用户主动交互时才进行局部滚动调整
@@ -6536,7 +6664,7 @@
                             prevBtn.style.transform = 'scale(0.9)';
                             prevBtn.style.transition = 'transform 0.1s ease';
                         }, { passive: false });
-                        
+
                         prevBtn.addEventListener('touchend', (e) => {
                             e.preventDefault();
                             prevBtn.style.transform = 'scale(1)';
@@ -6544,7 +6672,7 @@
                             prevSlide();
                             restartAutoplay();
                         }, { passive: false });
-                        
+
                         // 桌面端点击事件
                         prevBtn.addEventListener('click', (e) => {
                             // 防止在移动端重复触发
@@ -6557,7 +6685,7 @@
                             restartAutoplay();
                         });
                     }
-                    
+
                     if (nextBtn) {
                         // 移动端触摸事件
                         nextBtn.addEventListener('touchstart', (e) => {
@@ -6565,7 +6693,7 @@
                             nextBtn.style.transform = 'scale(0.9)';
                             nextBtn.style.transition = 'transform 0.1s ease';
                         }, { passive: false });
-                        
+
                         nextBtn.addEventListener('touchend', (e) => {
                             e.preventDefault();
                             nextBtn.style.transform = 'scale(1)';
@@ -6573,7 +6701,7 @@
                             nextSlide();
                             restartAutoplay();
                         }, { passive: false });
-                        
+
                         // 桌面端点击事件
                         nextBtn.addEventListener('click', (e) => {
                             // 防止在移动端重复触发
@@ -6591,113 +6719,54 @@
                     textItems.forEach((item, index) => {
                         let touchStartTime = 0;
                         let preventDoubleClick = false;
-                        
+
                         try {
-                            // 确保HTML链接在JavaScript禁用时仍然可用
                             const linkElement = item.querySelector('a');
+                            // 保证a标签有href
                             if (linkElement && !linkElement.href) {
                                 linkElement.href = './inner.html';
                             }
-                            
-                            // 移动端触摸开始事件
+                            // 移动端触摸开始
                             item.addEventListener('touchstart', (e) => {
-                                try {
-                                    touchStartTime = Date.now();
-                                    if (item.style) {
-                                        item.style.transform = 'scale(0.98)';
-                                        item.style.transition = 'transform 0.1s ease';
-                                    }
-                                } catch (error) {
-                                    console.warn('Touch start error:', error);
+                                touchStartTime = Date.now();
+                                if (item.style) {
+                                    item.style.transform = 'scale(0.98)';
+                                    item.style.transition = 'transform 0.1s ease';
                                 }
                             }, { passive: true });
-                            
-                            // 移动端触摸结束事件
+                            // 移动端触摸结束
                             item.addEventListener('touchend', (e) => {
-                                try {
-                                    if (item.style) {
-                                        item.style.transform = 'scale(1)';
+                                if (item.style) item.style.transform = 'scale(1)';
+                                if (preventDoubleClick) return;
+                                preventDoubleClick = true;
+                                setTimeout(() => { preventDoubleClick = false; }, 300);
+                                const touchDuration = Date.now() - touchStartTime;
+                                if (touchDuration < 500) {
+                                    // 优先跳转到a的href
+                                    if (linkElement && linkElement.href) {
+                                        window.location.href = linkElement.href;
+                                    } else {
+                                        window.location.href = './inner.html?v=' + Date.now();
                                     }
-                                    
-                                    // 防止重复点击
-                                    if (preventDoubleClick) return;
-                                    preventDoubleClick = true;
-                                    setTimeout(() => { preventDoubleClick = false; }, 300);
-                                    
-                                    // 检查是否是快速点击（不是长按）
-                                    const touchDuration = Date.now() - touchStartTime;
-                                    if (touchDuration < 500) {
-                                        // 如果点击的是链接，直接跳转
-                                        if (e.target.tagName === 'A' || e.target.closest('a')) {
-                                            const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
-                                            if (link && link.href) {
-                                                window.location.href = link.href;
-                                            } else {
-                                                // 降级方案：直接跳转到默认页面
-                                                window.location.href = './inner.html?v=' + Date.now();
-                                            }
-                                            return;
-                                        }
-                                        
-                                        // 否则切换轮播并跳转
-                                        try {
-                                            if (typeof stopAutoplay === 'function') stopAutoplay();
-                                            if (typeof goToSlide === 'function') goToSlide(index);
-                                            if (typeof restartAutoplay === 'function') restartAutoplay();
-                                        } catch (syncError) {
-                                            console.warn('Sync error:', syncError);
-                                        }
-                                        
-                                        // 延迟跳转，让用户看到切换效果
-                                        setTimeout(() => {
-                                            window.location.href = './inner.html?v=' + Date.now();
-                                        }, 200);
-                                    }
-                                } catch (error) {
-                                    console.warn('Touch end error:', error);
-                                    // 降级方案：直接跳转
-                                    window.location.href = './inner.html?v=' + Date.now();
                                 }
                             }, { passive: true });
-                            
-                            // 触摸取消事件
+                            // 触摸取消
                             item.addEventListener('touchcancel', (e) => {
-                                try {
-                                    if (item.style) {
-                                        item.style.transform = 'scale(1)';
-                                    }
-                                } catch (error) {
-                                    console.warn('Touch cancel error:', error);
-                                }
+                                if (item.style) item.style.transform = 'scale(1)';
                             }, { passive: true });
-                            
-                            // 保留原有的点击事件作为降级方案
+                            // 桌面端点击事件
                             item.addEventListener('click', (e) => {
-                                try {
-                                    // 防止在移动端重复触发
-                                    if ('ontouchstart' in window) {
-                                        e.preventDefault();
-                                        return;
-                                    }
-                                    
-                                    // 桌面端处理逻辑
-                                    if (e.target.tagName === 'A' || e.target.closest('a')) {
-                                        return; // 让链接正常工作
-                                    }
-                                    
-                                    if (typeof stopAutoplay === 'function') stopAutoplay();
-                                    if (typeof goToSlide === 'function') goToSlide(index);
-                                    if (typeof restartAutoplay === 'function') restartAutoplay();
-                                } catch (error) {
-                                    console.warn('Click error:', error);
-                                    // 降级方案：直接跳转
+                                if ('ontouchstart' in window) {
+                                    e.preventDefault();
+                                    return;
+                                }
+                                if (linkElement && linkElement.href) {
+                                    window.location.href = linkElement.href;
+                                } else {
                                     window.location.href = './inner.html?v=' + Date.now();
                                 }
                             });
-                            
                         } catch (error) {
-                            console.warn('Event binding error for item', index, ':', error);
-                            // 最基本的降级方案：确保点击能跳转
                             item.addEventListener('click', () => {
                                 window.location.href = './inner.html?v=' + Date.now();
                             });
@@ -6724,7 +6793,7 @@
                                 console.warn('Classroom elements validation failed');
                                 return false;
                             }
-                            
+
                             // 验证事件绑定
                             let eventsValid = true;
                             textItems.forEach((item, index) => {
@@ -6733,28 +6802,28 @@
                                     eventsValid = false;
                                 }
                             });
-                            
+
                             // 验证初始状态
                             const activeSlides = Array.from(slides).filter(slide => slide.classList.contains('active'));
                             const activeTextItems = Array.from(textItems).filter(item => item.classList.contains('active'));
-                            
+
                             if (activeSlides.length !== 1 || activeTextItems.length !== 1) {
                                 console.warn('Initial state validation failed');
                                 // 自动修复
                                 goToSlide(0);
                             }
-                            
+
                             return eventsValid;
                         } catch (error) {
                             console.warn('Validation error:', error);
                             return false;
                         }
                     }
-                    
+
                     // 启动自动播放
                     startAutoplay();
                     updateSlides();
-                    
+
                     // 延迟验证，确保所有初始化完成
                     setTimeout(() => {
                         const isValid = validateClassroomInteraction();
@@ -6833,10 +6902,10 @@
             <ul class="nav-list" style="margin:0;padding:0;width:100%;">
                 <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./jgou.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">机构设置<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
                 <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">新闻快报<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
-                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">理论学习<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
-                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">思政课堂<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
-                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">通知公告<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
-                <li style="width:100%;"><a href="./inner.html" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">文件资料<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
+                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html?category=理论学习" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">理论学习<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
+                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html?category=思政课堂" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">思政课堂<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
+                <li style="width:100%;border-bottom:1px solid rgba(255,255,255,0.2);"><a href="./inner.html?category=通知公告" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">通知公告<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
+                <li style="width:100%;"><a href="./inner.html?category=文件资料" style="width:100%;padding:20px 24px;text-align:left;border-radius:0;background:transparent;color:#fff;border:none;box-shadow:none;position:relative;">文件资料<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;color:rgba(255,255,255,0.6);transition:transform 0.3s,color 0.3s;">›</span></a></li>
             </ul>
         </nav>
         <div style="width:100%;height:48px;background:url('./img/dw_index_topbg.jpg') no-repeat center center;background-size:cover;"></div>
@@ -6850,10 +6919,10 @@
         <ul class="nav-list">
             <li><a href="./jgou.html">机构设置</a></li>
             <li><a href="./inner.html">新闻快报</a></li>
-            <li><a href="./inner.html">理论学习</a></li>
-            <li><a href="./inner.html">思政课堂</a></li>
-            <li><a href="./inner.html">通知公告</a></li>
-            <li><a href="./inner.html">文件资料</a></li>
+            <li><a href="./inner.html?category=理论学习">理论学习</a></li>
+            <li><a href="./inner.html?category=思政课堂">思政课堂</a></li>
+            <li><a href="./inner.html?category=通知公告">通知公告</a></li>
+            <li><a href="./inner.html?category=文件资料">文件资料</a></li>
             <!-- 其他导航项... -->
         </ul>
     </nav>
@@ -6886,7 +6955,7 @@
             <img src="./img/title_new.png" alt="新闻资讯" class="section-title-img" />
         </div>
         <section class="content-section container">
-            
+
             <!-- 全新移动端新闻资讯模块 -->
             <div class="mobile-news-container">
                 <!-- 新增：新闻列表 -->
@@ -6907,7 +6976,7 @@
                     <!-- 动态指示器由JavaScript填充 -->
                 </div>
             </div>
-            
+
             <!-- 桌面端新闻模块 -->
             <div class="card-grid" id="news-card-grid">
                 <section class="container">
@@ -6931,9 +7000,9 @@
                 <div class="theory-column">
                     <h3 class="column-title">重点专题</h3>
                     <ul class="theory-list">
-                        <li><a href="./inner.html">《习近平关于加强党的作风建设论述摘编》：各级领导干部要带头转变作风，身体力行，以上率下</a></li>
-                        <li><a href="./inner.html">《习近平关于加强党的作风建设论述摘编》：持续深化纠治"四风"</a></li>
-                        <li><a href="./inner.html">《习近平关于加强党的作风建设论述摘编》：中央八项规定是改进作风的切入口和动员令，是长期有效的铁规矩、硬杠杠</a></li>
+                        <li><a href="./inner.html?category=理论学习&index=0">《习近平关于加强党的作风建设论述摘编》：推进作风建设  常态化长效化</a></li>
+                        <li><a href="./inner.html?category=理论学习&index=1">《习近平关于加强党的作风建设论述摘编》：使党的作风全面纯洁起来以优良党风带动社风民风向上向善</a></li>
+                        <li><a href="./inner.html?category=理论学习&index=2">《习近平关于加强党的作风建设论述摘编》：坚持正风肃纪反腐相贯通</a></li>
                         <!-- 更多理论... -->
                     </ul>
                 </div>
@@ -6941,7 +7010,7 @@
                     <h3 class="column-title">最新文章</h3>
                     <ul class="latest-list">
                         <li>
-                            <a href="./inner.html">《习近平关于加强党的作风建设论述摘编》：推进作风建设 常态化长效化
+                            <a href="./inner.html?category=理论学习&index=0">《习近平关于加强党的作风建设论述摘编》：推进作风建设 常态化长效化
                             </a>
                             <div class="latest-meta">
                                 <span>2025年04月01日</span>
@@ -6949,14 +7018,14 @@
                             </div>
                         </li>
                         <li>
-                            <a href="./inner.html">《习近平关于加强党的作风建设论述摘编》：使党的作风全面纯洁起来以优良党风带动社风民风向上向善</a>
+                            <a href="./inner.html?category=理论学习&index=1">《习近平关于加强党的作风建设论述摘编》：使党的作风全面纯洁起来以优良党风带动社风民风向上向善</a>
                             <div class="latest-meta">
                                 <span>2025年03月31日</span>
                                 <span class="views">960</span>
                             </div>
                         </li>
                         <li>
-                            <a href="./inner.html">《习近平关于加强党的作风建设论述摘编》：坚持正风肃纪反腐相贯通</a>
+                            <a href="./inner.html?category=理论学习&index=2">《习近平关于加强党的作风建设论述摘编》：坚持正风肃纪反腐相贯通</a>
                             <div class="latest-meta">
                                 <span>2025年03月30日 19:04</span>
                                 <span class="views">820</span>
@@ -6990,14 +7059,14 @@
             <div class="classroom-carousel-container desktop-classroom">
                 <!-- 查看更多按钮 -->
                 <!-- <a href="./inner.html" class="classroom-more-button">查看更多</a> -->
-                
+
                 <div class="classroom-carousel-wrapper" id="classroomCarousel">
                     <!-- 第一页 - 田字布局 -->
                     <div class="classroom-page">
                         <article class="classroom-card enhanced">
                             <img src="./img/class_1.jpg" alt="class_1" class="classroom-card-image">
                             <div class="classroom-card-content">
-                                <h3 class="classroom-card-title"><a href="./inner.html">我校召开2025年学生思想政治教育与安全稳定工作会议</a></h3>
+                                <h3 class="classroom-card-title"><a href="./inner.html?category=思政课堂&index=0">我校召开2025年学生思想政治教育与安全稳定工作会议</a></h3>
                                 <p class="classroom-card-summary">学校召开2025年学生思想政治教育与安全稳定工作会议，深入学习贯彻党的二十大精神，全面部署新学期学生工作重点任务，进一步加强和改进学生思想政治教育工作。</p>
                                 <div class="classroom-card-meta">
                                     <span class="category-tag">重要会议</span>
@@ -7013,7 +7082,7 @@
                         <article class="classroom-card enhanced">
                             <img src="./img/class_2.jpg" alt="class_2" class="classroom-card-image">
                             <div class="classroom-card-content">
-                                <h3 class="classroom-card-title"><a href="./inner.html">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a></h3>
+                                <h3 class="classroom-card-title"><a href="./inner.html?category=思政课堂&index=1">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a></h3>
                                 <p class="classroom-card-summary">学校召开2025年春季学期学生工作会议，深入交流学生工作经验，研讨新学期工作重点，推进"至善"学工启思汇品牌建设，提升学生工作质量和水平。</p>
                                 <div class="classroom-card-meta">
                                     <span class="category-tag">学工动态</span>
@@ -7029,7 +7098,7 @@
                         <article class="classroom-card enhanced">
                             <img src="./img/class_3.jpg" alt="class_3" class="classroom-card-image">
                             <div class="classroom-card-content">
-                                <h3 class="classroom-card-title"><a href="./inner.html">杨萌芽到校团委调研座谈</a></h3>
+                                <h3 class="classroom-card-title"><a href="./inner.html?category=思政课堂&index=2">杨萌芽到校团委调研座谈</a></h3>
                                 <p class="classroom-card-summary">校党委副书记杨萌芽深入校团委调研座谈，了解共青团工作开展情况，指导团学工作创新发展，推动青年学生思想政治教育工作再上新台阶。</p>
                                 <div class="classroom-card-meta">
                                     <span class="category-tag">领导调研</span>
@@ -7045,7 +7114,7 @@
                         <article class="classroom-card enhanced">
                             <img src="./img/class_4.jpg" alt="class_4" class="classroom-card-image">
                             <div class="classroom-card-content">
-                                <h3 class="classroom-card-title"><a href="./inner.html">我校召开思政课建设工作会</a></h3>
+                                <h3 class="classroom-card-title"><a href="./inner.html?category=思政课堂&index=3">我校召开思政课建设工作会</a></h3>
                                 <p class="classroom-card-summary">学校召开思政课建设工作会，深入学习贯彻习近平总书记关于思政课建设的重要指示精神，研究部署新时代思政课改革创新工作，推动思政课高质量发展。</p>
                                 <div class="classroom-card-meta">
                                     <span class="category-tag">课程建设</span>
@@ -7064,7 +7133,7 @@
                         <article class="classroom-card enhanced">
                             <img src="./img/class_5.jpg" alt="class_5" class="classroom-card-image">
                             <div class="classroom-card-content">
-                                <h3 class="classroom-card-title"><a href="./inner.html">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a></h3>
+                                <h3 class="classroom-card-title"><a href="./inner.html?category=思政课堂&index=4">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a></h3>
                                 <p class="classroom-card-summary">校党委书记季波为2024级新生开讲思政第一课，以"选择河大就是选择责任、选择未来"为主题，引导新生树立正确的人生观、价值观，激励学生勇担时代责任。</p>
                                 <div class="classroom-card-meta">
                                     <span class="category-tag">思政教育</span>
@@ -7080,7 +7149,7 @@
                         <article class="classroom-card enhanced">
                             <img src="./img/class_6.jpg" alt="class_6" class="classroom-card-image">
                             <div class="classroom-card-content">
-                                <h3 class="classroom-card-title"><a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a></h3>
+                                <h3 class="classroom-card-title"><a href="./inner.html?category=思政课堂&index=5">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a></h3>
                                 <p class="classroom-card-summary">学校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会，深入学习贯彻总书记重要讲话精神，推动中华优秀传统文化传承发展。</p>
                                 <div class="classroom-card-meta">
                                     <span class="category-tag">理论学习</span>
@@ -7094,10 +7163,10 @@
                             </div>
                         </article>
                         <article class="classroom-card enhanced">
-                            <img src="./img/class_7.jpg" alt="class_7" class="classroom-card-image">
+                            <img src="./img/szkt/0028.jpg" alt="党员教育电视片" class="classroom-card-image">
                             <div class="classroom-card-content">
-                                <h3 class="classroom-card-title"><a href="./inner.html">王宽行：至简人生 深情于学</a></h3>
-                                <p class="classroom-card-summary">王宽行教授以"至简人生 深情于学"为主题，分享治学心得和人生感悟，诠释了学者的责任担当和精神追求，为师生们上了一堂生动的人生课。</p>
+                                <h3 class="classroom-card-title"><a href="./inner.html?category=思政课堂&index=8">我校在全省党员教育电视片观摩交流活动中荣获佳绩</a></h3>
+                                <p class="classroom-card-summary">我校作为全省唯一高校获评"全省党员教育电视片制播工作先进单位"，音乐学院微视频作品《梦想青春 终将嘹亮》荣获二等奖。</p>
                                 <div class="classroom-card-meta">
                                     <span class="category-tag">学者风采</span>
                                 </div>
@@ -7110,10 +7179,10 @@
                             </div>
                         </article>
                         <article class="classroom-card enhanced">
-                            <img src="./img/class_8.jpg" alt="class_8" class="classroom-card-image">
+                            <img src="./img/szkt/0031.jpg" alt="文学院百年庆典" class="classroom-card-image">
                             <div class="classroom-card-content">
-                                <h3 class="classroom-card-title"><a href="./inner.html">张祎捷为全校学生宣讲党的二十大精神</a></h3>
-                                <p class="classroom-card-summary">张祎捷教授为全校学生宣讲党的二十大精神，深入解读党的二十大报告的重大意义和丰富内涵，引导青年学生深刻领会党的二十大精神实质。</p>
+                                <h3 class="classroom-card-title"><a href="./inner.html?category=思政课堂&index=9">我校文学院举行庆祝建院100周年创新发展大会</a></h3>
+                                <p class="classroom-card-summary">文学院庆祝建院100周年创新发展大会在明伦校区大礼堂隆重举行，来自全国各地的领导、嘉宾、校友和师生欢聚一堂，共同回顾百年发展历程。</p>
                                 <div class="classroom-card-meta">
                                     <span class="category-tag">理论宣讲</span>
                                 </div>
@@ -7133,7 +7202,7 @@
 
             <!-- 移动端：图片轮播 + 文字列表布局 -->
             <div class="classroom-carousel-container mobile-classroom">
-                
+
                 <div class="classroom-carousel-wrapper" id="mobileClassroomCarousel">
                     <!-- 第一页 - 图片轮播 + 文字列表 -->
                     <div class="classroom-page">
@@ -7173,7 +7242,7 @@
                             <div class="classroom-text-list">
                                 <div class="classroom-text-item active" data-index="0">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html">我校召开2025年学生思想政治教育与安全稳定工作会议</a>
+                                        <a href="./inner.html?category=思政课堂&index=0">我校召开2025年学生思想政治教育与安全稳定工作会议</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">重要会议</span>
@@ -7182,7 +7251,7 @@
                                 </div>
                                 <div class="classroom-text-item" data-index="1">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a>
+                                        <a href="./inner.html?category=思政课堂&index=1">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">学工动态</span>
@@ -7191,7 +7260,7 @@
                                 </div>
                                 <div class="classroom-text-item" data-index="2">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html">杨萌芽到校团委调研座谈</a>
+                                        <a href="./inner.html?category=思政课堂&index=2">杨萌芽到校团委调研座谈</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">领导调研</span>
@@ -7200,7 +7269,7 @@
                                 </div>
                                 <div class="classroom-text-item" data-index="3">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html">我校召开思政课建设工作会</a>
+                                        <a href="./inner.html?category=思政课堂&index=3">我校召开思政课建设工作会</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">思政教育</span>
@@ -7227,15 +7296,15 @@
                                     </div>
                                 </div>
                                 <div class="classroom-image-slide">
-                                    <img src="./img/class_7.jpg" alt="class_7" class="classroom-main-image">
+                                    <img src="./img/szkt/0028.jpg" alt="党员教育电视片" class="classroom-main-image">
                                     <div class="classroom-image-overlay">
-                                        <h3 class="classroom-image-title">王宽行：至简人生 深情于学</h3>
+                                        <h3 class="classroom-image-title">我校在全省党员教育电视片观摩交流活动中荣获佳绩</h3>
                                     </div>
                                 </div>
                                 <div class="classroom-image-slide">
-                                    <img src="./img/class_8.jpg" alt="class_8" class="classroom-main-image">
+                                    <img src="./img/szkt/0031.jpg" alt="文学院百年庆典" class="classroom-main-image">
                                     <div class="classroom-image-overlay">
-                                        <h3 class="classroom-image-title">张祎捷为全校学生宣讲党的二十大精神</h3>
+                                        <h3 class="classroom-image-title">我校文学院举行庆祝建院100周年创新发展大会</h3>
                                     </div>
                                 </div>
                             </div>
@@ -7248,7 +7317,7 @@
                             <div class="classroom-text-list">
                                 <div class="classroom-text-item active" data-index="0">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a>
+                                        <a href="./inner.html?category=思政课堂&index=4">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">思政教育</span>
@@ -7257,37 +7326,39 @@
                                 </div>
                                 <div class="classroom-text-item" data-index="1">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a>
+                                        <a href="./inner.html?category=思政课堂&index=5">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">理论学习</span>
                                     </div>
-                                    <p class="classroom-text-summary">学校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会，深入研讨文化传承发展的重要论述。</p>
+                                    <p class="classroom-text-summary">学校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会，深入学习贯彻总书记重要讲话精神，推动中华优秀传统文化传承发展。</p>
                                 </div>
                                 <div class="classroom-text-item" data-index="2">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html">王宽行：至简人生 深情于学</a>
+                                        <a href="./inner.html?category=思政课堂&index=2">我校在全省党员教育电视片观摩交流活动中荣获佳绩</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">人物风采</span>
                                     </div>
-                                    <p class="classroom-text-summary">王宽行教授以至简的人生哲学和深情的学术追求，展现了河大学者的精神风貌和学术品格。</p>
+                                    <p class="classroom-text-summary">我校作为全省唯一高校获评"全省党员教育电视片制播工作先进单位"，音乐学院微视频作品《梦想青春 终将嘹亮》荣获二等奖。</p>
                                 </div>
                                 <div class="classroom-text-item" data-index="3">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html">张祎捷为全校学生宣讲党的二十大精神</a>
+                                        <a href="./inner.html?category=思政课堂&index=3">我校文学院举行庆祝建院100周年创新发展大会</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">理论宣讲</span>
                                     </div>
-                                    <p class="classroom-text-summary">张祎捷教授结合青年学生特点，用生动的语言和鲜活的事例，深入浅出地阐释了党的二十大精神。</p>
+                                    <p class="classroom-text-summary">文学院庆祝建院100周年创新发展大会在明伦校区大礼堂隆重举行，来自全国各地的领导、嘉宾、校友和师生欢聚一堂，共同回顾百年发展历程。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
+
+
             <!-- 思政课堂新闻列表 - 整合到同一模块 -->
             <div class="classroom-news-list">
                 <div class="news-list">
@@ -7297,7 +7368,7 @@
                                 <span class="news-card-tag">重要会议</span>
                             </div>
                             <h3 class="news-card-title">
-                                <a href="./inner.html">我校召开2025年学生思想政治教育与安全稳定工作会议</a>
+                                <a href="./inner.html?category=思政课堂&index=0">我校召开2025年学生思想政治教育与安全稳定工作会议</a>
                             </h3>
                             <div class="news-card-summary">学校召开2025年学生思想政治教育与安全稳定工作会议，深入学习贯彻党的二十大精神，全面部署新学期学生工作重点任务，进一步加强和改进学生思想政治教育工作。</div>
                         </div>
@@ -7308,7 +7379,7 @@
                                 <span class="news-card-tag">学工动态</span>
                             </div>
                             <h3 class="news-card-title">
-                                <a href="./inner.html">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a>
+                                <a href="./inner.html?category=思政课堂&index=1">我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期</a>
                             </h3>
                             <div class="news-card-summary">学校召开2025年春季学期学生工作会议，深入交流学生工作经验，研讨新学期工作重点，推进"至善"学工启思汇品牌建设，提升学生工作质量和水平。</div>
                         </div>
@@ -7319,7 +7390,7 @@
                                 <span class="news-card-tag">领导调研</span>
                             </div>
                             <h3 class="news-card-title">
-                                <a href="./inner.html">杨萌芽到校团委调研座谈</a>
+                                <a href="./inner.html?category=思政课堂&index=2">杨萌芽到校团委调研座谈</a>
                             </h3>
                             <div class="news-card-summary">校党委副书记杨萌芽深入校团委调研座谈，了解共青团工作开展情况，指导团学工作创新发展，推动青年学生思想政治教育工作再上新台阶。</div>
                         </div>
@@ -7330,7 +7401,7 @@
                                 <span class="news-card-tag">思政教育</span>
                             </div>
                             <h3 class="news-card-title">
-                                <a href="./inner.html">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a>
+                                <a href="./inner.html?category=思政课堂&index=4">季波为新生开讲思政课：选择河大就是选择责任、选择未来</a>
                             </h3>
                             <div class="news-card-summary">校党委书记季波为2024级新生开讲思政第一课，以"选择河大就是选择责任、选择未来"为主题，引导新生树立正确的人生观、价值观，激励学生勇担时代责任。</div>
                         </div>
@@ -7341,14 +7412,14 @@
                                 <span class="news-card-tag">理论学习</span>
                             </div>
                             <h3 class="news-card-title">
-                                <a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a>
+                                <a href="./inner.html?category=思政课堂&index=5">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a>
                             </h3>
                             <div class="news-card-summary">学校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会，深入学习贯彻总书记重要讲话精神，推动中华优秀传统文化传承发展。</div>
                         </div>
                     </article>
                 </div>
                 <div class="news-more-button">
-                    <a href="./inner.html" class="more-button">更多</a>
+                    <a href="./inner.html?category=思政课堂" class="more-button">更多</a>
                 </div>
             </div>
             <style>
@@ -7445,22 +7516,22 @@
             <!-- 网页端通知公告 - 4卡片横向布局 -->
             <div class="content-box announcement-box desktop-announcement">
                 <div class="announcements-cards-container">
-                    <article class="announcement-card" onclick="window.location.href='./inner.html'">
+                    <article class="announcement-card" onclick="window.location.href='./inner.html?category=通知公告&index=0'">
                         <h3 class="card-title">关于申报2024年思政系列职称人员提交材料的通知</h3>
                         <p class="card-summary">申报2024年思政系列职称人员：按照河南大学2024年度高校教师（实验）系列职称评审工作的安排意见和校发2023-287关于印发教师（实验人员）中高级职称申报评审条件（试行），现将2024年思政系列职称人员提交材料相关事宜通知如下。1、申报2024年思政系列职称人员须符合学校职称评审相关条件...</p>
                     </article>
 
-                    <article class="announcement-card" onclick="window.location.href='./inner.html'">
+                    <article class="announcement-card" onclick="window.location.href='./inner.html?category=通知公告&index=1'">
                         <h3 class="card-title">党委宣传部"师生意见建议电子信箱"公示</h3>
                         <p class="card-summary">按照学校工作安排，为进一步贯彻"以师生为中心的理念"，做好服务育人工作，现设置党委宣传部"师生意见建议电子信箱"xcb@henu.edu.cn。</p>
                     </article>
 
-                    <article class="announcement-card" onclick="window.location.href='./inner.html'">
+                    <article class="announcement-card" onclick="window.location.href='./inner.html?category=通知公告&index=2'">
                         <h3 class="card-title">河南大学党委宣传部招聘劳务派遣人员公告</h3>
                         <p class="card-summary">根据工作需求，河南大学党委宣传部（以下称"招聘方"）面向社会公开招聘劳务派遣合同制人员4名。现将有关事宜公告如下：一、招聘原则(一)公开、平等、竞争、择优;(二)德才兼备、以德为先;(三)身心健康、人格健全。二、招聘岗位本次公开招聘岗位工作人员共4名...</p>
                     </article>
 
-                    <article class="announcement-card" onclick="window.location.href='./inner.html'">
+                    <article class="announcement-card" onclick="window.location.href='./inner.html?category=通知公告&index=3'">
                         <h3 class="card-title">关于表彰2023年度新闻宣传工作先进集体个人及优秀新闻作品的决定</h3>
                         <p class="card-summary">中共河南大学委员会关于表彰2023年度新闻宣传工作先进集体个人及优秀新闻作品的决定</p>
                     </article>
@@ -7478,12 +7549,12 @@
                         <div class="announcement-content">
                             <span class="announcement-tag important">重要通知</span>
                             <h3 class="announcement-title">
-                                <a href="./inner.html">党委宣传部"师生意见建议电子信箱"公示</a>
+                                <a href="./inner.html?category=通知公告&index=1">党委宣传部"师生意见建议电子信箱"公示</a>
                             </h3>
                         </div>
                         <!-- 右边的操作链接 -->
                         <div class="announcement-action">
-                            <a href="./inner.html" class="details-link">查看详情 →</a>
+                            <a href="./inner.html?category=通知公告&index=1" class="details-link">查看详情 →</a>
                         </div>
                     </article>
                     <article class="announcement-item">
@@ -7491,12 +7562,12 @@
                         <div class="announcement-content">
                             <span class="announcement-tag important">重要通知</span>
                             <h3 class="announcement-title">
-                                <a href="./inner.html">关于申报2024年思政系列职称人员提交材料的通知</a>
+                                <a href="./inner.html?category=通知公告&index=0">关于申报2024年思政系列职称人员提交材料的通知</a>
                             </h3>
                         </div>
                         <!-- 右边的操作链接 -->
                         <div class="announcement-action">
-                            <a href="./inner.html" class="details-link">查看详情 →</a>
+                            <a href="./inner.html?category=通知公告&index=0" class="details-link">查看详情 →</a>
                         </div>
                     </article>
                     <article class="announcement-item">
@@ -7504,12 +7575,12 @@
                         <div class="announcement-content">
                             <span class="announcement-tag important">重要通知</span>
                             <h3 class="announcement-title">
-                                <a href="./inner.html">河南大学党委宣传部招聘劳务派遣人员公告</a>
+                                <a href="./inner.html?category=通知公告&index=2">河南大学党委宣传部招聘劳务派遣人员公告</a>
                             </h3>
                         </div>
                         <!-- 右边的操作链接 -->
                         <div class="announcement-action">
-                            <a href="./inner.html" class="details-link">查看详情 →</a>
+                            <a href="./inner.html?category=通知公告&index=2" class="details-link">查看详情 →</a>
                         </div>
                     </article>
                     <article class="announcement-item">
@@ -7517,25 +7588,12 @@
                         <div class="announcement-content">
                             <span class="announcement-tag important">重要通知</span>
                             <h3 class="announcement-title">
-                                <a href="./inner.html">关于表彰2023年度新闻宣传工作先进集体个人及优秀新闻作品的决定</a>
+                                <a href="./inner.html?category=通知公告&index=3">关于表彰2023年度新闻宣传工作先进集体个人及优秀新闻作品的决定</a>
                             </h3>
                         </div>
                         <!-- 右边的操作链接 -->
                         <div class="announcement-action">
-                            <a href="./inner.html" class="details-link">查看详情 →</a>
-                        </div>
-                    </article>
-                    <article class="announcement-item">
-                        <!-- 左边的内容区域 -->
-                        <div class="announcement-content">
-                            <span class="announcement-tag important">重要通知</span>
-                            <h3 class="announcement-title">
-                                <a href="./inner.html">校党宣发〔2024〕3号 关于进一步加强校园文化建设的实施意见</a>
-                            </h3>
-                        </div>
-                        <!-- 右边的操作链接 -->
-                        <div class="announcement-action">
-                            <a href="./inner.html" class="details-link">查看详情 →</a>
+                            <a href="./inner.html?category=通知公告&index=3" class="details-link">查看详情 →</a>
                         </div>
                     </article>
                 </div>
@@ -7678,11 +7736,11 @@
             }
 
             @keyframes fadeInLogo {
-                0% { 
+                0% {
                     opacity: 0;
                     transform: translateY(20px);
                 }
-                100% { 
+                100% {
                     opacity: 1;
                     transform: translateY(0);
                 }
@@ -7709,7 +7767,7 @@
                 display: inline-block;
                 opacity: 0;
             }
-            
+
             @keyframes fadeInText {
                 0% {
                     opacity: 0;
@@ -7720,7 +7778,7 @@
                     transform: translateY(0);
                 }
             }
-            
+
             .footer-copyright::after {
                 content: '';
                 position: absolute;
@@ -7732,13 +7790,13 @@
                 transition: all 0.5s ease;
                 opacity: 0;
             }
-            
+
             .footer-copyright:hover::after {
                 width: 80%;
                 left: 10%;
                 opacity: 0.8;
             }
-            
+
             /* Add particles effect */
             .page-footer::before {
                 content: '';
@@ -7747,19 +7805,19 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: 
+                background-image:
                     radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
                     radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
                                        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
                 background-size: 50px 50px;
                 animation: particleMove 8s linear infinite;
             }
-            
+
             @keyframes particleMove {
                 0% { background-position: 0 0; }
                 100% { background-position: 50px 50px; }
             }
-            
+
             /* Mobile responsiveness for footer */
             @media (max-width: 768px) {
                 .footer-logo {
@@ -7767,15 +7825,15 @@
                     animation: fadeInLogo 1.5s ease forwards;
                     opacity: 0;
                 }
-                
+
                 .footer-copyright {
                     font-size: 14px;
                 }
-                
+
                 .page-footer {
                     padding: 30px 0;
                 }
-                
+
                 /* 修复移动端侧边栏样式 */
                 .sidebar {
                     background: url('./img/dw_index_topbg.jpg') no-repeat center center, linear-gradient(135deg, #C10C0C 80%, #fff0 100%);
