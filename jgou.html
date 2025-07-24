@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>机构设置 - 河南大学党委宣传部</title>
 
-    <link rel="icon" href="./img/henu-head.png" type="image/png">
+    <link rel="icon" href="./img/henu-head.png" type="image/png" />
 
     <style>
       /* 超级可爱的全局样式初始化~ */
@@ -25,7 +25,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
+        font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
         color: #333;
       }
 
@@ -52,13 +52,13 @@
       }
 
       :root {
-        --primary-color: #8B0000;
+        --primary-color: #8b0000;
         --secondary-color: #e6e6e6;
         --text-primary: #1f2937;
         --text-secondary: #6b7280;
         --text-muted: #4b5563;
         --border-color: #eee;
-        --gold-color: #FFD700;
+        --gold-color: #ffd700;
       }
 
       .container {
@@ -69,7 +69,7 @@
 
       /* --- 头部样式 --- */
       .page-header {
-        background: url('./img/dw_index_topbg.jpg') no-repeat center center;
+        background: url("./img/dw_index_topbg.jpg") no-repeat center center;
         background-size: cover;
         padding: 0.75rem 1rem;
         border-bottom: 1px solid #ddd;
@@ -141,11 +141,12 @@
       }
 
       .logo-text {
-        color: #8B0000;
+        color: #8b0000;
         font-size: 24px;
         font-weight: bold;
         margin-left: 10px;
-        text-shadow: 0 3px 6px rgba(255, 255, 255, 1), 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.6);
+        text-shadow: 0 3px 6px rgba(255, 255, 255, 1),
+          0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.6);
       }
 
       .logo-text .char {
@@ -170,10 +171,12 @@
       }
 
       .breadcrumb {
-        background: linear-gradient(135deg, 
+        background: linear-gradient(
+          135deg,
           rgba(139, 0, 0, 0.05) 0%,
           rgba(160, 20, 20, 0.03) 50%,
-          rgba(139, 0, 0, 0.02) 100%);
+          rgba(139, 0, 0, 0.02) 100%
+        );
         padding: 12px 0;
         font-size: 14px;
         color: var(--text-secondary);
@@ -214,9 +217,11 @@
       /* 机构设置部分 */
       .org-section {
         margin-bottom: 2rem;
-        background: linear-gradient(135deg, 
+        background: linear-gradient(
+          135deg,
           rgba(255, 255, 255, 0.9) 0%,
-          rgba(248, 249, 250, 0.8) 100%);
+          rgba(248, 249, 250, 0.8) 100%
+        );
         border-radius: 12px;
         padding: 1.5rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -226,16 +231,18 @@
       }
 
       .org-section::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 3px;
-        background: linear-gradient(90deg, 
+        background: linear-gradient(
+          90deg,
           var(--primary-color) 0%,
           var(--gold-color) 50%,
-          var(--primary-color) 100%);
+          var(--primary-color) 100%
+        );
       }
 
       .org-layout {
@@ -270,16 +277,18 @@
       }
 
       .vertical-title::after {
-        content: '';
+        content: "";
         position: absolute;
         right: -10px;
         top: 0;
         width: 3px;
         height: 100%;
-        background: linear-gradient(180deg, 
+        background: linear-gradient(
+          180deg,
           var(--gold-color) 0%,
           var(--primary-color) 50%,
-          var(--gold-color) 100%);
+          var(--gold-color) 100%
+        );
         border-radius: 2px;
       }
 
@@ -306,8 +315,12 @@
         animation: itemSlideIn 0.6s ease-out forwards;
       }
 
-      .org-item:nth-child(1) { animation-delay: 1s; }
-      .org-item:nth-child(2) { animation-delay: 1.2s; }
+      .org-item:nth-child(1) {
+        animation-delay: 1s;
+      }
+      .org-item:nth-child(2) {
+        animation-delay: 1.2s;
+      }
 
       @keyframes itemSlideIn {
         from {
@@ -321,23 +334,27 @@
       }
 
       .org-item::before {
-        content: '';
+        content: "";
         position: absolute;
         left: -100%;
         top: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, 
+        background: linear-gradient(
+          90deg,
           transparent,
           rgba(139, 0, 0, 0.1),
-          transparent);
+          transparent
+        );
         transition: left 0.5s ease;
       }
 
       .org-item:hover {
-        background: linear-gradient(135deg, 
+        background: linear-gradient(
+          135deg,
           rgba(139, 0, 0, 0.05) 0%,
-          rgba(255, 215, 0, 0.03) 100%);
+          rgba(255, 215, 0, 0.03) 100%
+        );
         transform: translateY(-2px) scale(1.02);
         box-shadow: 0 8px 25px rgba(139, 0, 0, 0.15);
         border-color: rgba(139, 0, 0, 0.3);
@@ -348,9 +365,11 @@
       }
 
       .org-item.active {
-        background: linear-gradient(135deg, 
+        background: linear-gradient(
+          135deg,
           var(--primary-color) 0%,
-          rgba(139, 0, 0, 0.9) 100%);
+          rgba(139, 0, 0, 0.9) 100%
+        );
         color: white;
         box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
         transform: scale(1.02);
@@ -384,12 +403,14 @@
       .divider {
         border: none;
         height: 3px;
-        background: linear-gradient(90deg, 
+        background: linear-gradient(
+          90deg,
           transparent 0%,
           var(--primary-color) 20%,
           var(--gold-color) 50%,
           var(--primary-color) 80%,
-          transparent 100%);
+          transparent 100%
+        );
         margin: 2rem 0;
         border-radius: 2px;
         position: relative;
@@ -397,31 +418,41 @@
       }
 
       .divider::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, 
+        background: linear-gradient(
+          90deg,
           transparent,
           rgba(255, 255, 255, 0.6),
-          transparent);
+          transparent
+        );
         animation: dividerShine 2s ease-in-out infinite;
       }
 
       @keyframes dividerShine {
-        0% { left: -100%; }
-        50% { left: 100%; }
-        100% { left: -100%; }
+        0% {
+          left: -100%;
+        }
+        50% {
+          left: 100%;
+        }
+        100% {
+          left: -100%;
+        }
       }
 
       /* 详情部分 */
       .detail-section {
         margin-top: 2rem;
-        background: linear-gradient(135deg, 
+        background: linear-gradient(
+          135deg,
           rgba(255, 255, 255, 0.95) 0%,
-          rgba(248, 249, 250, 0.9) 100%);
+          rgba(248, 249, 250, 0.9) 100%
+        );
         padding: 2rem;
         border-radius: 12px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -445,14 +476,22 @@
       }
 
       .detail-section::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.02) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(139, 0, 0, 0.02) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 215, 0, 0.02) 0%,
+            transparent 50%
+          );
         pointer-events: none;
       }
 
@@ -475,12 +514,16 @@
 
       .detail-title::before,
       .detail-title::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 50%;
         width: 40px;
         height: 2px;
-        background: linear-gradient(90deg, var(--gold-color), var(--primary-color));
+        background: linear-gradient(
+          90deg,
+          var(--gold-color),
+          var(--primary-color)
+        );
       }
 
       .detail-title::before {
@@ -527,13 +570,27 @@
         animation: paragraphSlideIn 0.6s ease-out forwards;
       }
 
-      .detail-content p:nth-child(1) { animation-delay: 1.8s; }
-      .detail-content p:nth-child(2) { animation-delay: 2s; }
-      .detail-content p:nth-child(3) { animation-delay: 2.2s; }
-      .detail-content p:nth-child(4) { animation-delay: 2.4s; }
-      .detail-content p:nth-child(5) { animation-delay: 2.6s; }
-      .detail-content p:nth-child(6) { animation-delay: 2.8s; }
-      .detail-content p:nth-child(7) { animation-delay: 3s; }
+      .detail-content p:nth-child(1) {
+        animation-delay: 1.8s;
+      }
+      .detail-content p:nth-child(2) {
+        animation-delay: 2s;
+      }
+      .detail-content p:nth-child(3) {
+        animation-delay: 2.2s;
+      }
+      .detail-content p:nth-child(4) {
+        animation-delay: 2.4s;
+      }
+      .detail-content p:nth-child(5) {
+        animation-delay: 2.6s;
+      }
+      .detail-content p:nth-child(6) {
+        animation-delay: 2.8s;
+      }
+      .detail-content p:nth-child(7) {
+        animation-delay: 3s;
+      }
 
       @keyframes paragraphSlideIn {
         from {
@@ -555,9 +612,11 @@
       .detail-content p:first-of-type {
         margin-bottom: 2rem;
         font-weight: 500;
-        background: linear-gradient(135deg, 
+        background: linear-gradient(
+          135deg,
           rgba(139, 0, 0, 0.08) 0%,
-          rgba(255, 215, 0, 0.05) 100%);
+          rgba(255, 215, 0, 0.05) 100%
+        );
         border-left-color: var(--gold-color);
       }
 
@@ -571,31 +630,31 @@
           flex-direction: column;
           gap: 1rem;
         }
-        
+
         .vertical-title {
           writing-mode: horizontal-tb;
           font-size: 1.5rem;
           text-align: center;
           padding: 1rem 0 0.5rem 0;
         }
-        
+
         .vertical-title::after {
           display: none;
         }
-        
+
         .detail-title {
           font-size: 1.5rem;
         }
-        
+
         .detail-title::before,
         .detail-title::after {
           display: none;
         }
-        
+
         .main-container {
           padding: 1rem 0.5rem;
         }
-        
+
         .org-section,
         .detail-section {
           padding: 1rem;
@@ -640,13 +699,15 @@
 
       /* 新增样式 */
       .org-item.active {
-        background: linear-gradient(135deg, 
+        background: linear-gradient(
+          135deg,
           var(--primary-color) 0%,
-          rgba(139, 0, 0, 0.9) 100%);
+          rgba(139, 0, 0, 0.9) 100%
+        );
         color: white;
         box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
       }
-      
+
       .org-item.active .item-title,
       .org-item.active .item-date {
         color: white;
@@ -655,7 +716,7 @@
 
       /* 底部页脚样式与动画 */
       .page-footer {
-        background: url('./img/dw_index_topbg.jpg') center / cover no-repeat;
+        background: url("./img/dw_index_topbg.jpg") center / cover no-repeat;
         color: #fff;
         text-align: center;
         padding: 60px 0;
@@ -666,7 +727,7 @@
       }
 
       .page-footer::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -677,24 +738,39 @@
       }
 
       .page-footer::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: 
-          radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-          radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-          radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-image: radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 255, 255, 0.1) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(255, 255, 255, 0.1) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 255, 255, 0.1) 1px,
+            transparent 1px
+          );
         background-size: 50px 50px;
         animation: particleMove 8s linear infinite;
         z-index: 2;
       }
 
       @keyframes particleMove {
-        0% { background-position: 0 0; }
-        100% { background-position: 50px 50px; }
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 50px 50px;
+        }
       }
 
       .footer-logo {
@@ -715,11 +791,11 @@
       }
 
       @keyframes fadeInLogo {
-        0% { 
+        0% {
           opacity: 0;
           transform: translateY(20px);
         }
-        100% { 
+        100% {
           opacity: 1;
           transform: translateY(0);
         }
@@ -736,19 +812,24 @@
         z-index: 3;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
-      
+
       .footer-copyright::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 0;
         height: 2px;
         bottom: -5px;
         left: 50%;
-        background: linear-gradient(90deg, var(--gold-color), white, var(--gold-color));
+        background: linear-gradient(
+          90deg,
+          var(--gold-color),
+          white,
+          var(--gold-color)
+        );
         transition: all 0.5s ease;
         opacity: 0;
       }
-      
+
       .footer-copyright:hover::after {
         width: 100%;
         left: 0%;
@@ -773,7 +854,11 @@
         right: 30px;
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, var(--primary-color), var(--gold-color));
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--gold-color)
+        );
         color: white;
         border: none;
         border-radius: 50%;
@@ -796,35 +881,36 @@
       }
 
       .back-to-top::before {
-        content: '↑';
+        content: "↑";
         font-size: 20px;
         font-weight: bold;
       }
 
       .back-home-btn {
-          display: inline-flex;
-          align-items: center;
-          background: linear-gradient(90deg, #D0021B 0%, #8B0000 100%);
-          color: #fff;
-          border: none;
-          border-radius: 24px;
-          padding: 8px 22px 8px 16px;
-          font-size: 16px;
-          font-weight: bold;
-          box-shadow: 0 2px 12px rgba(208,2,27,0.10);
-          cursor: pointer;
-          transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-          outline: none;
-          text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        background: linear-gradient(90deg, #d0021b 0%, #8b0000 100%);
+        color: #fff;
+        border: none;
+        border-radius: 24px;
+        padding: 8px 22px 8px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0 2px 12px rgba(208, 2, 27, 0.1);
+        cursor: pointer;
+        transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+        outline: none;
+        text-decoration: none;
       }
-      .back-home-btn:hover, .back-home-btn:focus {
-          background: linear-gradient(90deg, #8B0000 0%, #D0021B 100%);
-          box-shadow: 0 4px 18px rgba(208,2,27,0.18);
-          transform: translateY(-2px) scale(1.04);
-          color: #fff;
-          text-decoration: none;
+      .back-home-btn:hover,
+      .back-home-btn:focus {
+        background: linear-gradient(90deg, #8b0000 0%, #d0021b 100%);
+        box-shadow: 0 4px 18px rgba(208, 2, 27, 0.18);
+        transform: translateY(-2px) scale(1.04);
+        color: #fff;
+        text-decoration: none;
       }
-            .back-home-btn svg {
+      .back-home-btn svg {
         margin-right: 6px;
         fill: #fff;
       }
@@ -835,16 +921,17 @@
           padding: 6px 16px 6px 12px;
           font-size: 14px;
           border-radius: 20px;
-          box-shadow: 0 1px 8px rgba(208,2,27,0.15);
+          box-shadow: 0 1px 8px rgba(208, 2, 27, 0.15);
         }
         .back-home-btn svg {
           width: 16px;
           height: 16px;
           margin-right: 4px;
         }
-        .back-home-btn:hover, .back-home-btn:focus {
+        .back-home-btn:hover,
+        .back-home-btn:focus {
           transform: translateY(-1px) scale(1.02);
-          box-shadow: 0 2px 12px rgba(208,2,27,0.20);
+          box-shadow: 0 2px 12px rgba(208, 2, 27, 0.2);
         }
       }
     </style>
@@ -855,15 +942,43 @@
     <header class="page-header">
       <div class="container">
         <div class="header-content">
-          <div class="logo-area" style="display:flex;align-items:center;gap:16px;padding:0;">
+          <div
+            class="logo-area"
+            style="display: flex; align-items: center; gap: 16px; padding: 0"
+          >
             <div class="logo-img">
-              <img src="./img/henu-head.png" alt="河南大学">
+              <img src="./img/henu-head.png" alt="河南大学" />
             </div>
-            <img src="./img/jigou_banner.png" alt="机构设置" style="height:38px;max-width:180px;display:block;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.10);object-fit:contain;" />
+            <img
+              src="./img/jigou_banner.png"
+              alt="机构设置"
+              style="
+                height: 38px;
+                max-width: 180px;
+                display: block;
+                border-radius: 10px;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+                object-fit: contain;
+              "
+            />
           </div>
           <a href="./index.html" class="back-home-btn">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M10 19V5M10 5L4 11M10 5l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              返回首页
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              style="vertical-align: middle; margin-right: 6px"
+            >
+              <path
+                d="M10 19V5M10 5L4 11M10 5l6 6"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            返回首页
           </a>
         </div>
       </div>
@@ -931,7 +1046,7 @@
       </div>
 
       <!-- 宣传部主要职责详情部分 -->
-      <div id="publicityContent" class="detail-section" style="display: none;">
+      <div id="publicityContent" class="detail-section" style="display: none">
         <div class="detail-header">
           <h2 class="detail-title">宣传部主要职责</h2>
         </div>
@@ -939,40 +1054,32 @@
         <div class="detail-meta">发布日期： 2016年04月05日 00:00</div>
 
         <div class="detail-content">
-          <p>
-            宣传部是校党委负责宣传思想工作的职能部门，主要职责是：
-          </p>
+          <p>宣传部是校党委负责宣传思想工作的职能部门，主要职责是：</p>
           <p>
             1.负责宣传贯彻党的路线方针政策，做好思想意识形态领域引导和管理工作。
           </p>
           <p>
             2.负责学校的理论教育工作，协助落实学校和学院中心组的理论学习计划，组织教职工的理论学习，提供学习参考资料。
           </p>
-          <p>
-            3.负责师生思想政治工作，指导学校思想政治理论课建设工作。
-          </p>
+          <p>3.负责师生思想政治工作，指导学校思想政治理论课建设工作。</p>
           <p>
             4.负责学校精神文明创建工作的规划、协调与督促工作，开展精神文明创建、素质养成教育等。
           </p>
           <p>
             5.负责校园文化建设工作。会同有关部门，开展健康、向上、高雅的校园文化活动，打造良好的育人环境，积极推进校园文化建设。
           </p>
-          <p>
-            6.统筹指导内外宣传报道工作，树立学校良好的社会形象。
-          </p>
-          <p>
-            7.负责全校宣传思想干部队伍的培训工作。
-          </p>
+          <p>6.统筹指导内外宣传报道工作，树立学校良好的社会形象。</p>
+          <p>7.负责全校宣传思想干部队伍的培训工作。</p>
         </div>
       </div>
     </main>
 
     <!-- 底部页脚 -->
     <footer class="page-footer">
-      <img src="./img/henu_logo.png" alt="河南大学" class="footer-logo">
+      <img src="./img/henu_logo.png" alt="河南大学" class="footer-logo" />
       <p class="footer-copyright">
         © 2024 河南大学党委宣传部
-        <br>
+        <br />
         技术支持: 河南大学网站工作室
       </p>
     </footer>
@@ -984,20 +1091,24 @@
       // 显示内容切换功能
       function showContent(type) {
         // 更新选中状态
-        document.querySelectorAll('.org-item').forEach(item => {
-          item.classList.remove('active');
+        document.querySelectorAll(".org-item").forEach((item) => {
+          item.classList.remove("active");
         });
-        
+
         // 隐藏所有内容
-        document.getElementById('newsContent').style.display = 'none';
-        document.getElementById('publicityContent').style.display = 'none';
-        
-        if (type === 'news') {
-          document.getElementById('newsContent').style.display = 'block';
-          document.querySelector('.org-item:first-child').classList.add('active');
+        document.getElementById("newsContent").style.display = "none";
+        document.getElementById("publicityContent").style.display = "none";
+
+        if (type === "news") {
+          document.getElementById("newsContent").style.display = "block";
+          document
+            .querySelector(".org-item:first-child")
+            .classList.add("active");
         } else {
-          document.getElementById('publicityContent').style.display = 'block';
-          document.querySelector('.org-item:last-child').classList.add('active');
+          document.getElementById("publicityContent").style.display = "block";
+          document
+            .querySelector(".org-item:last-child")
+            .classList.add("active");
         }
       }
 
@@ -1005,34 +1116,34 @@
       function scrollToTop() {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       }
 
       // 监听滚动事件，控制返回顶部按钮显示
-      window.addEventListener('scroll', function() {
-        const backToTopBtn = document.querySelector('.back-to-top');
+      window.addEventListener("scroll", function () {
+        const backToTopBtn = document.querySelector(".back-to-top");
         if (window.pageYOffset > 300) {
-          backToTopBtn.classList.add('show');
+          backToTopBtn.classList.add("show");
         } else {
-          backToTopBtn.classList.remove('show');
+          backToTopBtn.classList.remove("show");
         }
       });
 
       // 页面加载完成后的初始化
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         // 初始化显示第一个内容
-        showContent('news');
-        
+        showContent("news");
+
         // 添加平滑滚动效果
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(this.getAttribute("href"));
             if (target) {
               target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+                behavior: "smooth",
+                block: "start",
               });
             }
           });

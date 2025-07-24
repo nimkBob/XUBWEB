@@ -953,7 +953,7 @@
             box-shadow: none;
             position: relative;
             overflow: hidden;
-            touch-action: pan-x;
+            touch-action: auto; /* 允许所有触摸操作，包括垂直滚动 */
             transition: none;
             backdrop-filter: none;
         }
@@ -1713,6 +1713,7 @@
                 width: 100% !important;
                 max-width: 100% !important;
                 overflow: hidden !important; /* 防止内容溢出 */
+                touch-action: auto !important; /* 允许所有触摸操作，包括垂直滚动 */
             }
 
             .desktop-classroom {
@@ -1795,6 +1796,7 @@
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
             color: white;
             padding: 15px;
+            pointer-events: none; /* 让overlay不阻止点击事件 */
         }
 
         .mobile-classroom .classroom-image-title {
@@ -2078,6 +2080,7 @@
             backface-visibility: hidden;
             position: relative;
             z-index: 2;
+            touch-action: pan-y pinch-zoom; /* 允许垂直滑动和缩放，但处理水平滑动 */
         }
 
         .mobile-classroom .classroom-carousel-wrapper:active {
@@ -3679,11 +3682,9 @@
                 overflow: hidden !important;
             }
 
-            /* 移动端：移除页面切换，让内容铺满宽度 */
+            /* 移动端：启用页面切换功能 */
             .classroom-carousel-wrapper {
                 gap: 0 !important;
-                transform: none !important;
-                transition: none !important;
                 width: 100% !important;
                 overflow: hidden !important;
             }
@@ -3694,11 +3695,6 @@
                 flex-shrink: 0 !important;
                 margin: 0 !important;
                 padding: 0 !important;
-            }
-
-            /* 移动端：隐藏除第一页外的所有页面 */
-            .classroom-page:not(:first-child) {
-                display: none !important;
             }
 
             /* 隐藏页面切换指示器 */
@@ -4196,10 +4192,7 @@
                 padding: 0 !important;
             }
 
-            /* 超小屏幕：隐藏除第一页外的所有页面 */
-            .classroom-page:not(:first-child) {
-                display: none !important;
-            }
+
 
             /* 隐藏页面切换指示器 */
             .classroom-dots-container {
@@ -6398,8 +6391,11 @@
                 let currentPage = 0;
                 let autoplayInterval;
                 let startX = 0;
+                let startY = 0;
                 let currentX = 0;
+                let currentY = 0;
                 let isDragging = false;
+                let isHorizontalSwipe = false;
                 let startTime = 0;
                 let containerWidth = 0;
 
@@ -6471,35 +6467,78 @@
 
                 // 触摸/鼠标事件处理
                 function handleStart(e) {
-                    if (isDragging) return;
+                    try {
+                        if (isDragging) return;
 
-                    isDragging = true;
-                    startTime = Date.now();
-                    startX = e.touches ? e.touches[0].clientX : e.clientX;
-                    currentX = startX;
-                    stopAutoplay();
-                    mobileCarouselWrapper.style.cursor = 'grabbing';
+                        isDragging = true;
+                        isHorizontalSwipe = false;
+                        startTime = Date.now();
+                        startX = e.touches ? e.touches[0].clientX : e.clientX;
+                        startY = e.touches ? e.touches[0].clientY : e.clientY;
+                        currentX = startX;
+                        currentY = startY;
+                        stopAutoplay();
+                        if (mobileCarouselWrapper && mobileCarouselWrapper.style) {
+                            mobileCarouselWrapper.style.cursor = 'grabbing';
+                        }
 
-                    e.preventDefault();
+                        // 不立即阻止默认行为，等待判断手势方向
+                    } catch (error) {
+                        console.warn('Touch start error:', error);
+                        isDragging = false;
+                        restartAutoplay();
+                    }
                 }
 
                 function handleMove(e) {
-                    if (!isDragging) return;
-                    e.preventDefault();
+                    try {
+                        if (!isDragging) return;
 
-                    currentX = e.touches ? e.touches[0].clientX : e.clientX;
-                    const deltaX = currentX - startX;
-                    const currentTranslate = -currentPage * containerWidth;
+                        currentX = e.touches ? e.touches[0].clientX : e.clientX;
+                        currentY = e.touches ? e.touches[0].clientY : e.clientY;
+                        const deltaX = currentX - startX;
+                        const deltaY = currentY - startY;
 
-                    let dampedDelta = deltaX;
-                    if (currentPage === 0 && deltaX > 0) {
-                        dampedDelta = deltaX * 0.3;
-                    } else if (currentPage === mobilePages.length - 1 && deltaX < 0) {
-                        dampedDelta = deltaX * 0.3;
+                        // 手势方向识别：只在第一次移动时判断
+                        if (!isHorizontalSwipe && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
+                            // 判断是否为水平滑动：水平距离大于垂直距离的2倍
+                            isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY) * 2;
+                            
+                            // 如果不是水平滑动，允许页面正常滚动
+                            if (!isHorizontalSwipe) {
+                                isDragging = false;
+                                if (mobileCarouselWrapper && mobileCarouselWrapper.style) {
+                                    mobileCarouselWrapper.style.cursor = 'default';
+                                }
+                                restartAutoplay();
+                                return;
+                            }
+                        }
+
+                        // 只有确认是水平滑动时才阻止默认行为和处理轮播
+                        if (isHorizontalSwipe) {
+                            e.preventDefault();
+                            
+                            const currentTranslate = -currentPage * containerWidth;
+                            let dampedDelta = deltaX;
+                        
+                            if (currentPage === 0 && deltaX > 0) {
+                                dampedDelta = deltaX * 0.3;
+                            } else if (currentPage === mobilePages.length - 1 && deltaX < 0) {
+                                dampedDelta = deltaX * 0.3;
+                            }
+
+                            if (mobileCarouselWrapper && mobileCarouselWrapper.style) {
+                                mobileCarouselWrapper.style.transition = 'none';
+                                mobileCarouselWrapper.style.transform = `translateX(${currentTranslate + dampedDelta}px)`;
+                            }
+                        }
+                    } catch (error) {
+                        console.warn('Touch move error:', error);
+                        isDragging = false;
+                        isHorizontalSwipe = false;
+                        restartAutoplay();
                     }
-
-                    mobileCarouselWrapper.style.transition = 'none';
-                    mobileCarouselWrapper.style.transform = `translateX(${currentTranslate + dampedDelta}px)`;
                 }
 
                 function handleEnd(e) {
@@ -6508,22 +6547,28 @@
                     isDragging = false;
                     mobileCarouselWrapper.style.cursor = 'grab';
 
-                    const deltaX = currentX - startX;
-                    const deltaTime = Date.now() - startTime;
-                    const velocity = Math.abs(deltaX) / deltaTime;
-                    const threshold = containerWidth * 0.25;
+                    // 只有在水平滑动时才处理轮播切换
+                    if (isHorizontalSwipe) {
+                        const deltaX = currentX - startX;
+                        const deltaTime = Date.now() - startTime;
+                        const velocity = Math.abs(deltaX) / deltaTime;
+                        const threshold = containerWidth * 0.25;
 
-                    if (Math.abs(deltaX) > threshold || (velocity > 0.3 && Math.abs(deltaX) > 50)) {
-                        if (deltaX > 0 && currentPage > 0) {
-                            prevPage();
-                        } else if (deltaX < 0 && currentPage < mobilePages.length - 1) {
-                            nextPage();
+                        if (Math.abs(deltaX) > threshold || (velocity > 0.3 && Math.abs(deltaX) > 50)) {
+                            if (deltaX > 0 && currentPage > 0) {
+                                prevPage();
+                            } else if (deltaX < 0 && currentPage < mobilePages.length - 1) {
+                                nextPage();
+                            } else {
+                                updateCarousel(true);
+                            }
                         } else {
                             updateCarousel(true);
                         }
-                    } else {
-                        updateCarousel(true);
                     }
+
+                    // 重置状态
+                    isHorizontalSwipe = false;
 
                     setTimeout(() => {
                         if (!isDragging) restartAutoplay();
@@ -6537,9 +6582,9 @@
                 }
 
                 // 添加事件监听器
-                mobileCarouselWrapper.addEventListener('touchstart', handleStart, { passive: false });
-                mobileCarouselWrapper.addEventListener('touchmove', handleMove, { passive: false });
-                mobileCarouselWrapper.addEventListener('touchend', handleEnd, { passive: false });
+                mobileCarouselWrapper.addEventListener('touchstart', handleStart, { passive: true });
+                mobileCarouselWrapper.addEventListener('touchmove', handleMove, { passive: true });
+                mobileCarouselWrapper.addEventListener('touchend', handleEnd, { passive: true });
                 mobileCarouselWrapper.addEventListener('mousedown', handleStart);
                 mobileCarouselWrapper.addEventListener('mousemove', handleMove);
                 mobileCarouselWrapper.addEventListener('mouseup', handleEnd);
@@ -6556,6 +6601,70 @@
             function initMobileImageCarousel() {
                 const mobilePages = document.querySelectorAll('.mobile-classroom .classroom-page');
 
+                // 思政课堂轮播图文章数据 - 与轮播图片对应，索引与inner.html中的思政课堂数据一致
+                const classroomArticleData = [
+                    {
+                        title: '我校召开2025年学生思想政治教育与安全稳定工作会议',
+                        link: './inner.html',
+                        category: '思政课堂',
+                        index: 0, // 对应inner.html中思政课堂数组的第0项
+                        image: './img/class_1.jpg'
+                    },
+                    {
+                        title: '我校召开2025年春季学期学生工作会议暨"至善"学工启思汇第4期',
+                        link: './inner.html',
+                        category: '思政课堂',
+                        index: 1, // 对应inner.html中思政课堂数组的第1项
+                        image: './img/class_2.jpg'
+                    },
+                    {
+                        title: '杨萌芽到校团委调研座谈',
+                        link: './inner.html',
+                        category: '思政课堂',
+                        index: 2, // 对应inner.html中思政课堂数组的第2项
+                        image: './img/class_3.jpg'
+                    },
+                    {
+                        title: '我校召开思政课建设工作会',
+                        link: './inner.html',
+                        category: '思政课堂',
+                        index: 3, // 对应inner.html中思政课堂数组的第3项
+                        image: './img/class_4.jpg'
+                    }
+                ];
+
+                // 第二页轮播图文章数据
+                const classroomArticleDataPage2 = [
+                    {
+                        title: '季波为新生开讲思政课：选择河大就是选择责任、选择未来',
+                        link: './inner.html',
+                        category: '思政课堂',
+                        index: 4, // 对应inner.html中思政课堂数组的第4项
+                        image: './img/class_5.jpg'
+                    },
+                    {
+                        title: '我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会',
+                        link: './inner.html',
+                        category: '思政课堂',
+                        index: 5, // 对应inner.html中思政课堂数组的第5项
+                        image: './img/class_6.jpg'
+                    },
+                    {
+                        title: '关于做好2023年河南大学文明校园建设工作的通知',
+                        link: './inner.html',
+                        category: '思政课堂',
+                        index: 6, // 对应inner.html中思政课堂数组的第6项
+                        image: './img/szkt/0028.jpg'
+                    },
+                    {
+                        title: '张祎捷为全校学生宣讲党的二十大精神',
+                        link: './inner.html',
+                        category: '思政课堂',
+                        index: 7, // 对应inner.html中思政课堂数组的第7项
+                        image: './img/szkt/0031.jpg'
+                    }
+                ];
+
                 mobilePages.forEach((page, pageIndex) => {
                     const imageCarousel = page.querySelector('.classroom-image-carousel');
                     const slides = page.querySelectorAll('.classroom-image-slide');
@@ -6566,8 +6675,58 @@
 
                     if (!imageCarousel || slides.length === 0) return;
 
+                    // 根据页面索引选择对应的文章数据
+                    const currentPageArticleData = pageIndex === 0 ? classroomArticleData : classroomArticleDataPage2;
+
                     let currentSlide = 0;
                     let autoplayInterval;
+
+                    // 为轮播图片添加点击跳转功能 - 修复：使用当前显示的slide索引
+                    slides.forEach((slide, index) => {
+                        // 添加点击事件监听器
+                        slide.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            // 使用当前显示的slide索引，而不是DOM中的索引
+                            const article = currentPageArticleData[currentSlide];
+                            if (article && article.link) {
+                                // 构建跳转链接，包含正确的category和index参数
+                                const dynamicLink = `${article.link}?category=${encodeURIComponent(article.category)}&index=${article.index}`;
+                                console.log('思政课堂轮播图点击跳转:', `当前slide: ${currentSlide}, 跳转链接: ${dynamicLink}`);
+                                window.location.href = dynamicLink;
+                            }
+                        });
+
+                        // 添加视觉反馈 - 鼠标悬停效果
+                        slide.style.cursor = 'pointer';
+                        slide.addEventListener('mouseenter', function() {
+                            if (window.innerWidth > 768) { // 只在桌面端显示悬停效果
+                                this.style.transform = 'scale(1.02)';
+                                this.style.transition = 'transform 0.3s ease';
+                            }
+                        });
+
+                        slide.addEventListener('mouseleave', function() {
+                            if (window.innerWidth > 768) {
+                                this.style.transform = 'scale(1)';
+                            }
+                        });
+
+                        // 移动端触摸反馈
+                        slide.addEventListener('touchstart', function() {
+                            this.style.opacity = '0.8';
+                            this.style.transition = 'opacity 0.1s ease';
+                        });
+
+                        slide.addEventListener('touchend', function() {
+                            this.style.opacity = '1';
+                        });
+
+                        slide.addEventListener('touchcancel', function() {
+                            this.style.opacity = '1';
+                        });
+                    });
 
                     // 创建指示器圆点 - 思政课堂轮播图不需要圆点
                     if (dotsContainer && !page.closest('.mobile-classroom')) {
@@ -6718,6 +6877,9 @@
                     // 绑定文字列表点击事件 - 移动端优化 + 错误处理
                     textItems.forEach((item, index) => {
                         let touchStartTime = 0;
+                        let touchStartX = 0;
+                        let touchStartY = 0;
+                        let hasMoved = false;
                         let preventDoubleClick = false;
 
                         try {
@@ -6729,19 +6891,39 @@
                             // 移动端触摸开始
                             item.addEventListener('touchstart', (e) => {
                                 touchStartTime = Date.now();
+                                touchStartX = e.touches[0].clientX;
+                                touchStartY = e.touches[0].clientY;
+                                hasMoved = false;
                                 if (item.style) {
                                     item.style.transform = 'scale(0.98)';
                                     item.style.transition = 'transform 0.1s ease';
                                 }
                             }, { passive: true });
+                            
+                            // 移动端触摸移动
+                            item.addEventListener('touchmove', (e) => {
+                                const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+                                const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+                                
+                                // 如果移动距离超过阈值，标记为已移动
+                                if (deltaX > 10 || deltaY > 10) {
+                                    hasMoved = true;
+                                    if (item.style) item.style.transform = 'scale(1)';
+                                }
+                            }, { passive: true });
+                            
                             // 移动端触摸结束
                             item.addEventListener('touchend', (e) => {
                                 if (item.style) item.style.transform = 'scale(1)';
-                                if (preventDoubleClick) return;
+                                if (preventDoubleClick || hasMoved) return;
+                                
                                 preventDoubleClick = true;
                                 setTimeout(() => { preventDoubleClick = false; }, 300);
+                                
                                 const touchDuration = Date.now() - touchStartTime;
-                                if (touchDuration < 500) {
+                                // 只有在没有滑动且触摸时间短的情况下才跳转
+                                if (touchDuration < 500 && !hasMoved) {
+                                    e.preventDefault(); // 阻止默认行为，避免双重触发
                                     // 优先跳转到a的href
                                     if (linkElement && linkElement.href) {
                                         window.location.href = linkElement.href;
@@ -6749,17 +6931,20 @@
                                         window.location.href = './inner.html?v=' + Date.now();
                                     }
                                 }
-                            }, { passive: true });
+                            }, { passive: false }); // 改为非passive，以便能够preventDefault
+                            
                             // 触摸取消
                             item.addEventListener('touchcancel', (e) => {
                                 if (item.style) item.style.transform = 'scale(1)';
                             }, { passive: true });
+                            
                             // 桌面端点击事件
                             item.addEventListener('click', (e) => {
+                                // 在移动端不处理click事件，避免冲突
                                 if ('ontouchstart' in window) {
-                                    e.preventDefault();
                                     return;
                                 }
+                                // 桌面端正常处理点击
                                 if (linkElement && linkElement.href) {
                                     window.location.href = linkElement.href;
                                 } else {
@@ -6777,11 +6962,100 @@
                     imageCarousel.addEventListener('mouseenter', stopAutoplay);
                     imageCarousel.addEventListener('mouseleave', startAutoplay);
 
-                    // 为图片轮播添加点击跳转功能
+                    // 为图片轮播添加点击跳转功能 - 移动端优化版本
                     slides.forEach((slide, index) => {
-                        slide.addEventListener('click', () => {
-                            const timestamp = Date.now();
-                            window.location.href = './inner.html?v=' + timestamp;
+                        let touchStartTime = 0;
+                        let touchStartX = 0;
+                        let touchStartY = 0;
+                        let hasMoved = false;
+
+                        // 触摸开始
+                        slide.addEventListener('touchstart', (e) => {
+                            // 只处理当前显示的图片
+                            if (!slide.classList.contains('active')) {
+                                return;
+                            }
+
+                            touchStartTime = Date.now();
+                            touchStartX = e.touches[0].clientX;
+                            touchStartY = e.touches[0].clientY;
+                            hasMoved = false;
+
+                            // 视觉反馈
+                            slide.style.transform = 'scale(0.98)';
+                            slide.style.transition = 'transform 0.1s ease';
+                        }, { passive: true });
+
+                        // 触摸移动
+                        slide.addEventListener('touchmove', (e) => {
+                            if (!slide.classList.contains('active')) {
+                                return;
+                            }
+
+                            const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+                            const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+                            
+                            // 如果移动距离超过阈值，标记为已移动
+                            if (deltaX > 15 || deltaY > 15) {
+                                hasMoved = true;
+                                slide.style.transform = 'scale(1)'; // 取消视觉反馈
+                            }
+                        }, { passive: true });
+
+                        // 触摸结束 - 处理跳转
+                        slide.addEventListener('touchend', (e) => {
+                            slide.style.transform = 'scale(1)'; // 恢复大小
+
+                            // 只处理当前显示的图片
+                            if (!slide.classList.contains('active')) {
+                                return;
+                            }
+
+                            const touchDuration = Date.now() - touchStartTime;
+                            
+                            // 只有在没有滑动且触摸时间短的情况下才跳转
+                            if (!hasMoved && touchDuration < 800) {
+                                // 根据页面和当前显示的图片索引确定正确的文章索引
+                                let articleIndex = currentSlide;
+                                
+                                // 第一页的文章索引：0, 1, 2, 3
+                                // 第二页的文章索引：4, 5, 8, 9
+                                if (pageIndex === 1) { // 第二页
+                                    const secondPageIndices = [4, 5, 8, 9];
+                                    articleIndex = secondPageIndices[currentSlide] || currentSlide;
+                                }
+                                
+                                // 直接跳转到文章详情页
+                                window.location.href = `./inner.html?category=思政课堂&index=${articleIndex}`;
+                            }
+                        }, { passive: true });
+
+                        // 触摸取消
+                        slide.addEventListener('touchcancel', (e) => {
+                            slide.style.transform = 'scale(1)';
+                        }, { passive: true });
+
+                        // 桌面端点击事件（备用）
+                        slide.addEventListener('click', (e) => {
+                            // 在移动端不处理click事件
+                            if ('ontouchstart' in window) {
+                                return;
+                            }
+
+                            // 只处理当前显示的图片
+                            if (!slide.classList.contains('active')) {
+                                return;
+                            }
+
+                            // 根据页面和当前显示的图片索引确定正确的文章索引
+                            let articleIndex = currentSlide;
+                            
+                            if (pageIndex === 1) { // 第二页
+                                const secondPageIndices = [4, 5, 8, 9];
+                                articleIndex = secondPageIndices[currentSlide] || currentSlide;
+                            }
+                            
+                            window.location.href = `./inner.html?category=思政课堂&index=${articleIndex}`;
                         });
                     });
 
@@ -7335,7 +7609,7 @@
                                 </div>
                                 <div class="classroom-text-item" data-index="2">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html?category=思政课堂&index=2">我校在全省党员教育电视片观摩交流活动中荣获佳绩</a>
+                                        <a href="./inner.html?category=思政课堂&index=8">我校在全省党员教育电视片观摩交流活动中荣获佳绩</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">人物风采</span>
@@ -7344,7 +7618,7 @@
                                 </div>
                                 <div class="classroom-text-item" data-index="3">
                                     <h4 class="classroom-text-title">
-                                        <a href="./inner.html?category=思政课堂&index=3">我校文学院举行庆祝建院100周年创新发展大会</a>
+                                        <a href="./inner.html?category=思政课堂&index=9">我校文学院举行庆祝建院100周年创新发展大会</a>
                                     </h4>
                                     <div class="classroom-text-stats">
                                         <span class="classroom-text-category">理论宣讲</span>
