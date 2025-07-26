@@ -27,7 +27,7 @@
 		}
 
 		:root {
-			--primary-color: #8B0000;
+			--primary-color: #B91C1C;
 			--secondary-color: #e6e6e6;
 			--text-primary: #1f2937;
 			--text-secondary: #6b7280;
@@ -58,10 +58,10 @@
 			width: 100%;
 			height: 100%;
 			background-image: 
-				radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.02) 1px, transparent 1px),
-				radial-gradient(circle at 80% 70%, rgba(139, 0, 0, 0.02) 1px, transparent 1px),
-				radial-gradient(circle at 40% 90%, rgba(139, 0, 0, 0.02) 1px, transparent 1px),
-				radial-gradient(circle at 90% 20%, rgba(139, 0, 0, 0.02) 1px, transparent 1px);
+				radial-gradient(circle at 20% 30%, rgba(185, 28, 28, 0.02) 1px, transparent 1px),
+				radial-gradient(circle at 80% 70%, rgba(185, 28, 28, 0.02) 1px, transparent 1px),
+				radial-gradient(circle at 40% 90%, rgba(185, 28, 28, 0.02) 1px, transparent 1px),
+				radial-gradient(circle at 90% 20%, rgba(185, 28, 28, 0.02) 1px, transparent 1px);
 			background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px;
 			animation: particleFloat 20s linear infinite;
 			pointer-events: none;
@@ -95,7 +95,7 @@
 		}
 
 		::-webkit-scrollbar-thumb:hover {
-			background: #982820;
+			background: #B91C1C;
 		}
 
 		/* Firefox浏览器 */
@@ -150,11 +150,12 @@
 		/* --- 头部样式 --- */
 		.header {
 			background: url('./img/dw_index_topbg.jpg') center / cover no-repeat;
-			padding: 0.75rem 1rem;
+			padding: 0.5rem 1rem;
 			color: #333;
 			width: 100%;
-			z-index: 100;
-			position: relative;
+			z-index: 1000;
+			position: sticky;
+			top: 0;
 			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 		}
 
@@ -162,7 +163,7 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			padding: 0.5rem 0;
+			padding: 0.25rem 0;
 			margin: 0;
 			opacity: 0;
 			transform: translateY(-20px);
@@ -271,60 +272,13 @@
 			color: var(--gold-color);
 		}
 
-		.back-home-btn {
-			display: inline-flex;
-			align-items: center;
-			background: linear-gradient(90deg, #D0021B 0%, #8B0000 100%);
-			color: #fff;
-			border: none;
-			border-radius: 24px;
-			padding: 8px 22px 8px 16px;
-			font-size: 16px;
-			font-weight: bold;
-			box-shadow: 0 2px 12px rgba(208,2,27,0.10);
-			cursor: pointer;
-			transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-			outline: none;
-		}
-		.back-home-btn:hover, .back-home-btn:focus {
-			background: linear-gradient(90deg, #8B0000 0%, #D0021B 100%);
-			box-shadow: 0 4px 18px rgba(208,2,27,0.18);
-			transform: translateY(-2px) scale(1.04);
-		}
-		.back-home-btn svg {
-			margin-right: 6px;
-			fill: #fff;
-		}
-
-		/* 移动端返回首页按钮样式调整 */
-		@media (max-width: 768px) {
-			.back-home-btn {
-				padding: 6px 16px 6px 12px;
-				font-size: 14px;
-				border-radius: 20px;
-				box-shadow: 0 1px 8px rgba(208,2,27,0.15);
-			}
-			.back-home-btn svg {
-				width: 16px;
-				height: 16px;
-				margin-right: 4px;
-			}
-			.back-home-btn:hover, .back-home-btn:focus {
-				transform: translateY(-1px) scale(1.02);
-				box-shadow: 0 2px 12px rgba(208,2,27,0.20);
-			}
-		}
+		/* 移动端样式调整 */
 		@media (max-width: 768px) {
 	.header-title {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 8px;
-	}
-	.back-home-btn {
-		width: 100%;
-		justify-content: center;
-		margin-left: 0 !important;
 	}
 }
 		@keyframes titleFadeIn {
@@ -365,13 +319,14 @@
 		/* 面包屑导航 */
 		.breadcrumb {
 			background: linear-gradient(135deg, 
-				rgba(139, 0, 0, 0.05) 0%,
-				rgba(160, 20, 20, 0.03) 50%,
-				rgba(139, 0, 0, 0.02) 100%);
+				rgba(185, 28, 28, 0.05) 0%,
+				rgba(185, 28, 28, 0.03) 50%,
+				rgba(185, 28, 28, 0.02) 100%);
 			padding: 12px 0;
 			font-size: 14px;
 			color: var(--text-secondary);
-			border-bottom: 1px solid rgba(139, 0, 0, 0.1);
+			border-bottom: 1px solid rgba(185, 28, 28, 0.1);
+		}
 		}
 
 		.breadcrumb a {
@@ -515,7 +470,7 @@
 			transform: translateY(-10px);
 			animation: slideInDown 0.6s ease-out forwards;
 			background: white;
-			border: 2px solid rgba(139, 0, 0, 0.1);
+			border: 2px solid rgba(185, 28, 28, 0.1);
 			color: var(--text-primary);
 			font-weight: 500;
 		}
@@ -547,17 +502,17 @@
 			height: 100%;
 			background: linear-gradient(90deg, 
 				transparent,
-				rgba(139, 0, 0, 0.1),
+				rgba(185, 28, 28, 0.1),
 				transparent);
 			transition: left 0.5s ease;
 		}
 
 		.nav-tab:not(.active):hover {
 			transform: translateY(-2px) scale(1.05);
-			box-shadow: 0 8px 25px rgba(139, 0, 0, 0.15);
-			border-color: rgba(139, 0, 0, 0.3);
+			box-shadow: 0 8px 25px rgba(185, 28, 28, 0.15);
+			border-color: rgba(185, 28, 28, 0.3);
 			background: linear-gradient(135deg, 
-				rgba(139, 0, 0, 0.05) 0%,
+				rgba(185, 28, 28, 0.05) 0%,
 				rgba(255, 215, 0, 0.03) 100%);
 		}
 
@@ -568,10 +523,10 @@
 		.nav-tab.active {
 			background: linear-gradient(135deg, 
 				var(--primary-color) 0%,
-				rgba(139, 0, 0, 0.9) 100%);
+				rgba(185, 28, 28, 0.9) 100%);
 			color: white;
 			transform: scale(1.05);
-			box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+			box-shadow: 0 8px 25px rgba(185, 28, 28, 0.3);
 			border-color: var(--primary-color);
 			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 		}
@@ -608,7 +563,7 @@
 			max-height: 1000px;
 			overflow: hidden;
 			padding: 1.5rem;
-			border: 1px solid rgba(139, 0, 0, 0.1);
+			border: 1px solid rgba(185, 28, 28, 0.1);
 			position: relative;
 		}
 
@@ -619,7 +574,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.02) 0%, transparent 50%),
+			background: radial-gradient(circle at 20% 30%, rgba(185, 28, 28, 0.02) 0%, transparent 50%),
 						radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
 			pointer-events: none;
 		}
@@ -629,7 +584,7 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			border-bottom: 1px solid rgba(139, 0, 0, 0.1);
+			border-bottom: 1px solid rgba(185, 28, 28, 0.1);
 			position: relative;
 			cursor: pointer;
 			transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -680,19 +635,19 @@
 			height: 100%;
 			background: linear-gradient(90deg, 
 				transparent,
-				rgba(139, 0, 0, 0.1),
+				rgba(185, 28, 28, 0.1),
 				transparent);
 			transition: left 0.5s ease;
 		}
 
 		.news-item:hover {
 			background: linear-gradient(135deg, 
-				rgba(139, 0, 0, 0.08) 0%,
+				rgba(185, 28, 28, 0.08) 0%,
 				rgba(255, 215, 0, 0.05) 100%);
 			transform: translateX(8px) translateY(-2px) scale(1.02);
 			padding-left: 2rem;
 			border-left: 4px solid var(--primary-color);
-			box-shadow: 0 8px 25px rgba(139, 0, 0, 0.15);
+			box-shadow: 0 8px 25px rgba(185, 28, 28, 0.15);
 			border-radius: 12px;
 		}
 
@@ -702,12 +657,12 @@
 
 		.news-item.selected {
 			background: linear-gradient(135deg, 
-				rgba(139, 0, 0, 0.12) 0%,
+				rgba(185, 28, 28, 0.12) 0%,
 				rgba(255, 215, 0, 0.08) 100%);
 			transform: translateX(8px) translateY(-2px) scale(1.02);
 			padding-left: 2rem;
 			border-left: 4px solid var(--primary-color);
-			box-shadow: 0 8px 25px rgba(139, 0, 0, 0.2);
+			box-shadow: 0 8px 25px rgba(185, 28, 28, 0.2);
 			border-radius: 12px;
 		}
 
@@ -756,7 +711,7 @@
 			background: white;
 			padding: 0.6rem;
 			border-radius: 8px;
-			border: 1px solid rgba(139, 0, 0, 0.1);
+			border: 1px solid rgba(185, 28, 28, 0.1);
 			font-weight: 500;
 			position: relative;
 			overflow: hidden;
@@ -799,8 +754,8 @@
 		.news-date:hover {
 			border-color: var(--primary-color);
 			transform: translateY(-2px);
-			box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
-			background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), white);
+			box-shadow: 0 4px 12px rgba(185, 28, 28, 0.15);
+			background: linear-gradient(135deg, rgba(185, 28, 28, 0.05), white);
 		}
 
 		.news-date:hover .date-day {
@@ -815,8 +770,8 @@
 		.news-item:hover .news-date {
 			border-color: var(--primary-color);
 			transform: translateY(-2px);
-			box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
-			background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), white);
+			box-shadow: 0 4px 12px rgba(185, 28, 28, 0.15);
+			background: linear-gradient(135deg, rgba(185, 28, 28, 0.05), white);
 		}
 
 		.news-item:hover .news-date .date-day {
@@ -831,8 +786,8 @@
 		.news-item.selected .news-date {
 			border-color: var(--primary-color);
 			transform: translateY(-2px);
-			box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
-			background: linear-gradient(135deg, rgba(139, 0, 0, 0.08), white);
+			box-shadow: 0 4px 12px rgba(185, 28, 28, 0.15);
+			background: linear-gradient(135deg, rgba(185, 28, 28, 0.08), white);
 		}
 
 		.news-item.selected .news-date .date-day {
@@ -850,7 +805,7 @@
 			background: linear-gradient(135deg, 
 				rgba(255, 255, 255, 0.95) 0%,
 				rgba(248, 249, 250, 0.9) 100%);
-			border: 1px solid rgba(139, 0, 0, 0.1);
+			border: 1px solid rgba(185, 28, 28, 0.1);
 			border-radius: 12px;
 			padding-bottom: 2rem;
 			flex: 1;
@@ -874,7 +829,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.02) 0%, transparent 50%),
+			background: radial-gradient(circle at 20% 30%, rgba(185, 28, 28, 0.02) 0%, transparent 50%),
 						radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
 			pointer-events: none;
 			z-index: 0;
@@ -900,7 +855,7 @@
 		.article-header {
 			background: linear-gradient(135deg, 
 				var(--primary-color) 0%,
-				rgba(139, 0, 0, 0.9) 100%);
+				rgba(185, 28, 28, 0.9) 100%);
 			padding: 1.5rem 0;
 			text-align: center;
 			width: 100vw;
@@ -909,7 +864,7 @@
 			right: 50%;
 			margin-left: -50vw;
 			margin-right: -50vw;
-			box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+			box-shadow: 0 4px 15px rgba(185, 28, 28, 0.3);
 			color: #fff;
 			z-index: 1;
 		}
@@ -947,7 +902,7 @@
 			max-width: 65%;
 			border-radius: 12px;
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-			border: 1px solid rgba(139, 0, 0, 0.1);
+			border: 1px solid rgba(185, 28, 28, 0.1);
 			position: relative;
 			z-index: 1;
 		}
@@ -978,12 +933,12 @@
 			margin: 0.5rem auto 1.5rem;
 			padding: 0.75rem 1rem;
 			background: linear-gradient(135deg, 
-				rgba(139, 0, 0, 0.05) 0%,
+				rgba(185, 28, 28, 0.05) 0%,
 				rgba(248, 249, 250, 0.8) 100%);
 			border-radius: 8px;
 			width: fit-content;
 			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-			border: 1px solid rgba(139, 0, 0, 0.1);
+			border: 1px solid rgba(185, 28, 28, 0.1);
 		}
 
 		.meta-item {
@@ -1077,7 +1032,7 @@
 		.article-paragraph:first-of-type::first-letter {
 			font-size: 1.6em;
 			font-weight: 600;
-			color: #982820;
+			color: #B91C1C;
 			float: left;
 			margin-right: 2px;
 			line-height: 1;
@@ -1130,7 +1085,7 @@
 		}
 
 		.attachment-item:hover {
-			background-color: rgba(152, 40, 32, 0.05);
+			background-color: rgba(185, 28, 28, 0.05);
 		}
 
 		.attachment-icon {
@@ -1166,7 +1121,7 @@
 		}
 
 		.attachment-download-btn {
-			background-color: #982820;
+			background-color: #B91C1C;
 			color: white;
 			border: none;
 			border-radius: 4px;
@@ -1419,7 +1374,7 @@
 			}
 			
 			.news-item:active {
-				background-color: rgba(152, 40, 32, 0.05);
+				background-color: rgba(185, 28, 28, 0.05);
 			}
 			
 			.news-item::after {
@@ -1429,17 +1384,17 @@
 				top: 50%;
 				transform: translateY(-50%);
 				font-size: 1.5rem;
-				color: #982820;
+				color: #B91C1C;
 				opacity: 0.5;
 			}
 			
 			.news-item.selected {
-				border-left: 3px solid #982820;
-				background-color: rgba(152, 40, 32, 0.05);
+				border-left: 3px solid #B91C1C;
+				background-color: rgba(185, 28, 28, 0.05);
 			}
 			
 			.news-date {
-				color: #982820;
+				color: #B91C1C;
 				opacity: 0.8;
 			}
 			
@@ -1575,7 +1530,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: rgba(139, 0, 0, 0.7);
+			background: rgba(185, 28, 28, 0.7);
 			z-index: 1;
 		}
 
@@ -1680,7 +1635,7 @@
 			opacity: 0;
 			transform: translateY(100px);
 			transition: all 0.3s ease;
-			box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+			box-shadow: 0 4px 15px rgba(185, 28, 28, 0.3);
 		}
 
 		.back-to-top.show {
@@ -1690,7 +1645,7 @@
 
 		.back-to-top:hover {
 			transform: scale(1.1) translateY(-2px);
-			box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
+			box-shadow: 0 6px 20px rgba(185, 28, 28, 0.4);
 		}
 
 		.back-to-top::before {
@@ -1708,7 +1663,7 @@
 			
 			/* 侧边栏美化 */
 			.sidebar {
-				background: linear-gradient(to bottom, #982820 0%, #982820 80px, #fff 80px, #fff 100%);
+				background: linear-gradient(to bottom, #B91C1C 0%, #B91C1C 80px, #fff 80px, #fff 100%);
 				padding: 30px 15px 20px;
 				box-shadow: -2px 0 15px rgba(0, 0, 0, 0.2);
 			}
@@ -1735,7 +1690,7 @@
 			.sidebar nav .nav-list li a {
 				display: block;
 				padding: 12px 20px;
-				background-color: #982820;
+				background-color: #B91C1C;
 				color: #fff;
 				border-radius: 6px;
 				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
@@ -1890,13 +1845,13 @@
 			justify-content: center;
 			padding: 0.75rem 1.5rem;
 			border: none;
-			background: linear-gradient(135deg, #982820, #a92d2d);
+			background: linear-gradient(135deg, #B91C1C, #B91C1C);
 			color: white;
 			font-size: 0.9rem;
 			border-radius: 25px;
 			cursor: pointer;
 			transition: all 0.3s ease;
-			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.3);
+			box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
 			position: relative;
 			overflow: hidden;
 			font-weight: 600;
@@ -1935,9 +1890,9 @@
 		}
 
 		.pagination-btn:hover {
-			background: linear-gradient(135deg, #a92d2d, #c93737);
+			background: linear-gradient(135deg, #B91C1C, #B91C1C);
 			transform: translateY(-3px);
-			box-shadow: 0 6px 20px rgba(152, 40, 32, 0.4);
+			box-shadow: 0 6px 20px rgba(185, 28, 28, 0.4);
 		}
 
 		.pagination-btn:hover::before {
@@ -1947,7 +1902,7 @@
 
 		.pagination-btn:active {
 			transform: translateY(-1px);
-			box-shadow: 0 3px 10px rgba(152, 40, 32, 0.3);
+			box-shadow: 0 3px 10px rgba(185, 28, 28, 0.3);
 		}
 
 		.pagination-arrow {
@@ -1993,7 +1948,7 @@
 			font-weight: 600;
 			transition: all 0.3s ease;
 			background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-			border: 2px solid rgba(152, 40, 32, 0.1);
+			border: 2px solid rgba(185, 28, 28, 0.1);
 			color: #333;
 			position: relative;
 			overflow: hidden;
@@ -2006,18 +1961,18 @@
 			left: 50%;
 			width: 0;
 			height: 0;
-			background: rgba(152, 40, 32, 0.1);
+			background: rgba(185, 28, 28, 0.1);
 			border-radius: 50%;
 			transform: translate(-50%, -50%);
 			transition: all 0.3s ease;
 		}
 
 		.pagination-number:hover {
-			background: linear-gradient(135deg, #982820, #a92d2d);
+			background: linear-gradient(135deg, #B91C1C, #B91C1C);
 			color: white;
 			transform: translateY(-2px) scale(1.05);
-			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.3);
-			border-color: #982820;
+			box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+			border-color: #B91C1C;
 		}
 
 		.pagination-number:hover::before {
@@ -2026,10 +1981,10 @@
 		}
 
 		.pagination-number.active {
-			background: linear-gradient(135deg, #982820, #a92d2d);
+			background: linear-gradient(135deg, #B91C1C, #B91C1C);
 			color: white;
-			border-color: #982820;
-			box-shadow: 0 4px 12px rgba(152, 40, 32, 0.4);
+			border-color: #B91C1C;
+			box-shadow: 0 4px 12px rgba(185, 28, 28, 0.4);
 			transform: scale(1.1);
 		}
 
@@ -4290,12 +4245,12 @@ if (pagination) pagination.style.display = '';
 							const style = document.createElement('style');
 							style.id = 'attachment-style';
 							style.textContent = `
-.attachment-item { display: flex; align-items: center; gap: 16px; background: #f8f9fa; border-radius: 6px; margin-bottom: 12px; padding: 12px 18px; box-shadow: 0 2px 8px rgba(152,40,32,0.04); }
+.attachment-item { display: flex; align-items: center; gap: 16px; background: #f8f9fa; border-radius: 6px; margin-bottom: 12px; padding: 12px 18px; box-shadow: 0 2px 8px rgba(185, 28, 28,0.04); }
 .attachment-icon { width: 32px; height: 32px; margin-right: 10px; background-position: center; background-repeat: no-repeat; background-size: contain; }
 .attachment-info { flex: 1; }
 .attachment-name { font-size: 1rem; color: #333; margin-bottom: 2px; }
 .attachment-size { font-size: 0.85rem; color: #888; }
-.attachment-download-btn { background: #982820; color: #fff; border: none; border-radius: 4px; padding: 6px 18px; font-size: 0.95rem; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+.attachment-download-btn { background: #B91C1C; color: #fff; border: none; border-radius: 4px; padding: 6px 18px; font-size: 0.95rem; cursor: pointer; text-decoration: none; transition: background 0.2s; }
 .attachment-download-btn:hover { background: #7e211a; }
 `;
 							document.head.appendChild(style);
@@ -4369,7 +4324,7 @@ if (pagination) pagination.style.display = '';
   gap: 18px;
   background: #f8f9fa;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(152,40,32,0.06);
+  box-shadow: 0 2px 8px rgba(185, 28, 28,0.06);
   padding: 12px 24px;
   margin: 0 auto 24px auto;
   font-size: 1rem;
@@ -4542,11 +4497,11 @@ if (navSection) navSection.style.display = '';
             }
             
             .news-item:hover {
-                background-color: rgba(152, 40, 32, 0.05);
+                background-color: rgba(185, 28, 28, 0.05);
             }
             
             .news-item.selected {
-                background-color: rgba(152, 40, 32, 0.1);
+                background-color: rgba(185, 28, 28, 0.1);
             }
             
             .news-item.selected::before {
@@ -4556,7 +4511,7 @@ if (navSection) navSection.style.display = '';
                 top: 0;
                 bottom: 0;
                 width: 3px;
-                background-color: #982820;
+                background-color: #B91C1C;
             }
         `;
 			document.head.appendChild(style);
@@ -4648,9 +4603,9 @@ if (navSection) navSection.style.display = '';
 		<div
 			style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #fff; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
 			<div style="max-width: 600px; margin: 0 auto;">
-				<h2 style="color: #982820; margin-bottom: 20px; font-size: 24px;">需要启用JavaScript</h2>
+				<h2 style="color: #B91C1C; margin-bottom: 20px; font-size: 24px;">需要启用JavaScript</h2>
 				<div
-					style="width: 80px; height: 80px; margin: 0 auto 20px; background-color: #982820; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+					style="width: 80px; height: 80px; margin: 0 auto 20px; background-color: #B91C1C; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
 						stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 						<circle cx="12" cy="12" r="10"></circle>
@@ -4666,7 +4621,7 @@ if (navSection) navSection.style.display = '';
 				</p>
 				<p style="font-size: 14px; color: #666;">
 					如果您需要帮助，请联系网站管理员或参考<a href="https://www.enablejavascript.io/zh"
-						style="color: #982820; text-decoration: underline;">如何启用JavaScript</a>。
+						style="color: #B91C1C; text-decoration: underline;">如何启用JavaScript</a>。
 				</p>
 			</div>
 		</div>
@@ -4683,16 +4638,6 @@ if (navSection) navSection.style.display = '';
 						<img src="./img/xinwen_banner.png" alt="新闻中心" class="xinwen-banner" />
 					</div>
 					<div class="header-title">
-						<button class="back-home-btn" onclick="window.location.href='./index.html'">
-							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M10 19V5M10 5L4 11M10 5l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-							返回首页
-						</button>
-						<button class="back-home-btn" style="margin-left:12px;" onclick="window.location.href='./inner.html'">
-							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;margin-right:6px;">
-								<path d="M5 10h10M10 5l-5 5 5 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-							返回列表
-						</button>
 					</div>
 				</div>
 			</div>
@@ -5082,7 +5027,7 @@ if (navSection) navSection.style.display = '';
 				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
 				background: #fff !important;
 				border-radius: 8px !important;
-				border: 1px solid rgba(139, 0, 0, 0.1) !important;
+				border: 1px solid rgba(185, 28, 28, 0.1) !important;
 			}
 
 			/* 文章元信息美化 */
