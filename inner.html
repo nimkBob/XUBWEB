@@ -854,15 +854,15 @@
 			border-radius: 12px;
 			padding-bottom: 2rem;
 			flex: 1;
-			display: flex;
+			display: none; /* 改为 display: none */
 			flex-direction: column;
 			width: 100%;
 			max-width: none;
 			overflow: hidden;
-			transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+						transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 			opacity: 0;
 			transform: translateY(20px);
-			max-height: 0;
 			pointer-events: none;
 			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 		}
@@ -884,7 +884,6 @@
 			display: flex;
 			opacity: 1;
 			transform: translateY(0);
-			max-height: 5000px;
 			pointer-events: auto;
 		}
 
@@ -1213,11 +1212,15 @@
 
 			.article-content {
 				padding: 1rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 
 			.article-main {
 				padding: 1.5rem;
-				max-width: 100%; /* 使文章内容占满全宽 */
+				max-width: 90%; /* 设置为90%宽度，使其居中显示 */
+				margin: 0 auto; /* 添加居中显示 */
 			}
 
 			.article-image {
@@ -1321,7 +1324,7 @@
 
 		@media (max-width: 1200px) {
 			.article-container {
-				margin: 1rem 1rem 2rem;
+				margin: 1rem auto 2rem;
 				max-width: calc(100% - 2rem);
 			}
 		}
@@ -1342,6 +1345,26 @@
 			/* 移除移动端标题区域的白色透明层 */
 			.article-header::before {
 				display: none;
+			}
+			
+			/* 修复文章容器偏左问题 - 强制居中显示 */
+			.article-container {
+				flex: none !important;
+				margin: 1rem auto 2rem !important;
+				width: 90% !important;
+				left: 0 !important;
+				right: 0 !important;
+				position: relative !important;
+				text-align: center !important;
+			}
+			
+			.article-content {
+				text-align: center !important;
+			}
+			
+			.article-main {
+				text-align: left !important;
+				margin: 0 auto !important;
 			}
 			
 			/* 确保文章标题在移动设备上显示正常 */
@@ -4914,46 +4937,265 @@ if (navSection) navSection.style.display = '';
 		</style>
 	</footer>
 	<style>
+		/* 统一的移动端样式 */
 		@media (max-width: 768px) {
-		  .news-list {
-			max-height: 70vh !important;
-			overflow-y: auto !important;
-			-webkit-overflow-scrolling: touch !important;
-			min-height: 200px;
-		  }
-		  .main-container {
-			min-height: 100vh !important;
-		  }
-		  html, body {
-			height: 100% !important;
-			min-height: 100vh !important;
-			overflow-y: auto !important;
-		  }
-		}
-		</style>
-		<style>
-			@media (max-width: 768px) {
-			  .article-container,
-			  .article-content,
-			  .article-main {
+			/* 新闻列表样式 */
+			.news-list {
 				max-height: none !important;
 				height: auto !important;
+				min-height: 200px !important;
 				overflow-y: visible !important;
-				min-height: 0 !important;
-				display: block !important;
-			  }
+				margin-bottom: 0 !important;
+				padding-bottom: 1rem !important;
+				transition: opacity 0.3s ease !important;
 			}
-			</style>
-			<style>
-				.article-container,
-				.article-content,
-				.article-main {
-				  max-height: none !important;
-				  height: auto !important;
-				  overflow-y: visible !important;
-				  min-height: 0 !important;
+
+			/* 当文章显示时隐藏新闻列表 */
+			.news-list.hidden {
+				display: none !important;
+			}
+
+			/* 容器样式 */
+			.main-container {
+				min-height: 100vh !important;
+				height: auto !important;
+				display: flex !important;
+				flex-direction: column !important;
+			}
+
+			/* 移动端文章标题 */
+			.article-header {
+				padding: 1.25rem 0 !important;
+				display: flex !important;
+				justify-content: center !important;
+				align-items: center !important;
+				width: 100% !important;
+			}
+
+			.article-title {
+				width: 92% !important;
+				margin: 0 auto !important;
+				font-size: 1.25rem !important;
+				line-height: 1.5 !important;
+				text-align: justify !important;
+			}
+
+			/* 移动端文章内容 */
+			.article-content {
+				width: 100% !important;
+				padding: 0 !important;
+			}
+
+			.article-main {
+				width: 92% !important;
+				margin: 1rem auto !important;
+				padding: 1rem !important;
+			}
+
+			/* 移动端文章元信息 */
+			.article-meta {
+				width: 92% !important;
+				margin: 1rem auto !important;
+				padding: 0.75rem !important;
+				font-size: 0.85rem !important;
+				display: flex !important;
+				justify-content: center !important;
+				flex-wrap: wrap !important;
+				gap: 10px !important;
+			}
+
+			/* 移动端导航区域固定 */
+			.nav-section {
+				position: sticky !important;
+				top: 0 !important;
+				z-index: 100 !important;
+				background: #fff !important;
+				padding: 1rem 0 !important;
+				margin: 0 !important;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+			}
+
+			/* 文章容器样式 */
+			.article-container {
+				display: none !important;
+				margin: 0 !important;
+				height: auto !important;
+				position: relative !important;
+				background: #fff !important;
+				padding-top: 0 !important;
+				width: 100% !important;
+			}
+
+			/* 文章容器可见时的样式 */
+			.article-container.visible {
+				display: block !important;
+				margin: 0 auto !important;
+				width: 92% !important;
+				max-width: 600px !important;
+				position: relative !important;
+				left: 0 !important;
+				right: 0 !important;
+			}
+
+			/* 文章标题区域适配 */
+			.article-header {
+				position: relative !important;
+				width: 100% !important;
+				left: 0 !important;
+				margin: 0 auto !important;
+				padding: 1.25rem 0 !important;
+				text-align: center !important;
+				background: var(--primary-color) !important;
+				display: flex !important;
+				justify-content: center !important;
+				align-items: center !important;
+				max-width: 600px !important;
+			}
+
+			.article-title {
+				font-size: 1.25rem !important;
+				line-height: 1.5 !important;
+				margin: 0 !important;
+				width: 92% !important;
+				max-width: 92% !important;
+				color: #fff !important;
+				padding: 0 !important;
+				text-align: justify !important;
+			}
+
+			/* 文章内容区域 */
+			.article-content {
+				padding: 0 !important;
+				height: auto !important;
+				overflow: visible !important;
+				width: 100% !important;
+				background: #fff !important;
+				display: block !important;
+			}
+
+			/* 文章主体 */
+			.article-main {
+				width: 92% !important;
+				max-width: 92% !important;
+				padding: 1rem !important;
+				margin: 1rem auto !important;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+				background: #fff !important;
+				border-radius: 8px !important;
+				border: 1px solid rgba(139, 0, 0, 0.1) !important;
+			}
+
+			/* 文章元信息美化 */
+			.article-meta {
+				width: 92% !important;
+				margin: 1rem auto !important;
+				padding: 0.75rem !important;
+				display: flex !important;
+				justify-content: center !important;
+				flex-wrap: wrap !important;
+				gap: 10px !important;
+				background: #f8f9fa !important;
+				border-radius: 8px !important;
+				font-size: 0.85rem !important;
+			}
+
+			/* 文章内容美化 */
+			.article-text {
+				width: 100% !important;
+				text-align: justify !important;
+				line-height: 1.8 !important;
+				font-size: 1rem !important;
+				color: #333 !important;
+				padding: 0 !important;
+			}
+
+			/* 文章元信息区域 */
+			.article-meta {
+				background: #f8f9fa !important;
+				padding: 0.75rem 1rem !important;
+				margin: 0 0 1rem 0 !important;
+				font-size: 0.85rem !important;
+				color: #666 !important;
+				border-bottom: 1px solid #eee !important;
+			}
+
+			/* 文章内容样式 */
+			.article-text {
+				padding: 0 1rem !important;
+				line-height: 1.8 !important;
+				font-size: 1rem !important;
+				color: #333 !important;
+			}
+
+			/* 图片适配 */
+			.article-text img {
+				max-width: 100% !important;
+				height: auto !important;
+				margin: 1rem 0 !important;
+				border-radius: 4px !important;
+			}
+
+			/* 段落间距 */
+			.article-text p {
+				margin-bottom: 1rem !important;
+			}
+
+			/* 移动端文章布局优化 */
+			.article-meta {
+				padding: 0.5rem !important;
+				margin: 0.5rem 0 !important;
+				flex-wrap: wrap !important;
+				justify-content: flex-start !important;
+			}
+
+			.article-title {
+				font-size: 1.4rem !important;
+				padding: 0 0.5rem !important;
+				line-height: 1.4 !important;
+			}
+
+			/* 移动端返回按钮 */
+			.mobile-back-button {
+				display: none;
+			}
+
+			@media (max-width: 768px) {
+				.mobile-back-button {
+					display: block !important;
+					position: fixed !important;
+					bottom: 20px !important;
+					right: 20px !important;
+					background: var(--primary-color) !important;
+					color: white !important;
+					padding: 10px 20px !important;
+					border-radius: 50px !important;
+					box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+					border: none !important;
+					font-size: 14px !important;
+					z-index: 1001 !important;
+					cursor: pointer !important;
+					transition: all 0.3s ease !important;
 				}
-				</style>
+
+				.mobile-back-button:active {
+					transform: scale(0.95) !important;
+				}
+			}
+
+			/* 基础样式重置 */
+			html, body {
+				height: 100% !important;
+				min-height: 100vh !important;
+				overflow-x: hidden !important;
+				overflow-y: auto !important;
+			}
+
+			/* 当文章可见时，禁止背景滚动 */
+			body.article-visible {
+				overflow: hidden !important;
+			}
+		}
+	</style>
 </body>
 
 </html>
